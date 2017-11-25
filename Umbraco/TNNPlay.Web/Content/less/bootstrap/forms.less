@@ -1,0 +1,119 @@
+﻿@import (reference) "variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+
+/*
+* forms
+*/
+.form-group {
+    .fluid-property(margin-bottom, 15, 20);
+
+    label {
+        color: @brand-primary;
+        padding: 0 0 0 20px;
+    }
+}
+
+.form-control {
+    background-color: transparent;
+    border: solid 1px @brand-primary;
+    border-radius: 40px;
+    color: @text-color;
+    .form-control-focus(@brand-primary);
+}
+
+.form-control--white-color {
+    color: #fff;
+}
+
+/*
+* Validation
+*/
+
+.field-validation-error {
+    margin-left: 20px;
+}
+/*Checkbox*/
+.contourField.checkbox {
+    > label {
+        padding-left: 0;
+    }
+}
+
+.checkbox {
+    label {
+        padding-left: 25px;
+        color: @brand-primary;
+        font-weight: 700;
+
+        span::before {
+            position: absolute;
+            top: 5px;
+            left: 0;
+            content: "";
+            width: 20px;
+            height: 20px;
+            border: solid 1px @brand-primary;
+            line-height: 1;
+            border-radius: 4px;
+            background-color: transparent;
+        }
+
+        span::after {
+            content: "\f00c";
+            font-family: 'FontAwesome';
+            position: absolute;
+            top: 3px;
+            left: 1px;
+            font-size: 17px;
+            color: @brand-alt;
+            opacity:0;
+        }
+    }
+
+    input {
+        display: none;
+    }
+
+    input[type="checkbox"]:checked ~ span::before {
+        border: solid 1px @brand-alt;
+    }
+
+    input[type="checkbox"]:checked ~ span::after {
+        opacity:1;
+    }
+}
+
+/*Radio*/
+.radio {
+    label {
+        padding-left: 25px;
+
+        span:before {
+            position: absolute;
+            top: 3px;
+            left: 0;
+            content: "";
+            width: 20px;
+            height: 20px;
+            border: solid 1px @brand-primary;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+    }
+
+    input {
+        display: none;
+    }
+
+    input[type="radio"]:checked + span:after {
+        position: absolute;
+        top: 8px;
+        left: 5px;
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: @brand-primary;
+    }
+}

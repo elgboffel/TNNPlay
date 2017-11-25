@@ -1,0 +1,92 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+@bg-color: @brand-primary;
+@border-color: #958c78;
+@icon-color: #958c78;
+
+@bg-color-open: #fff;
+@border-color-open: #958c78;
+@icon-color-open: #958c78;
+
+.expander {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 99;
+
+    &__trigger {
+        display: inline-block;
+        height: 60px;
+        width: 60px;
+        background-color: @bg-color;
+        border-radius: 50%;
+        box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.25);
+        border: solid 1px @border-color;
+
+        &.is-clicked {
+            background-color: #fff;
+        }
+    }
+
+    &__icon {
+        display: inline-block;
+        position: absolute;
+        left: 15px;
+        top: 32px;
+        margin-top: -2px;
+        width: 30px;
+        height: 1px;
+        background-color: @icon-color;
+        transition: background-color 0.3s;
+
+        &:before, &:after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: @icon-color;
+            right: 0;
+            transition: transform .3s, top .3s, background-color 0s;
+        }
+
+        &:before {
+            top: -7px;
+        }
+
+        &:after {
+            top: 7px;
+        }
+    }
+}
+
+.expander--open {
+    .expander {
+
+        &__trigger {
+            background-color: @bg-color-open;
+            border-color: @border-color-open;
+        }
+
+        &__icon {
+            background-color: rgba(255, 255, 255, 0);
+
+            &:before, &:after {
+                background-color: @icon-color-open;
+            }
+
+            &:before {
+                top: 0;
+                transform: rotate(135deg);
+            }
+
+            &:after {
+                top: 0;
+                transform: rotate(225deg);
+            }
+        }
+    }
+}

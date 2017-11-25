@@ -1,0 +1,60 @@
+﻿@inherits UmbracoViewPage<SoMeViewModel>
+
+<ul class="so-me-list">
+    @if(!string.IsNullOrEmpty(Model.FacebookUrl))
+    {
+        <li>
+            <a href="@Model.FacebookUrl" target="_blank">
+                <div class="fa fa-facebook fa--border-circle fa--color-brand"></div>
+            </a>
+        </li>
+    }
+    @if(!string.IsNullOrEmpty(Model.TwitterUrl))
+    {
+        <li>
+            <a href="@Model.TwitterUrl" target="_blank">
+                <div class="fa fa-twitter fa--border-circle fa--color-brand"></div>
+            </a>
+        </li>
+    }
+    @if(!string.IsNullOrEmpty(Model.LinkedInUrl))
+    {
+        <li>
+            <a href="@Model.LinkedInUrl" target="_blank">
+                <div class="fa fa-linkedin fa--border-circle fa--color-brand"></div>
+            </a>
+        </li>
+    }
+    @if(!string.IsNullOrEmpty(Model.InstagramUrl))
+    {
+        <li>
+            <a href="@Model.InstagramUrl" target="_blank">
+                <div class="fa fa-instagram fa--border-circle fa--color-brand"></div>
+            </a>
+        </li>
+    }
+    @if(!string.IsNullOrEmpty(Model.VimeoUrl))
+    {
+        <li>
+            <a href="@Model.VimeoUrl" target="_blank">
+                <div class="fa fa-vimeo fa--border-circle fa--color-brand"></div>
+            </a>
+        </li>
+    }
+    @if(!string.IsNullOrEmpty(Model.YouTubeUrl))
+    {
+        <li>
+            <a href="@Model.YouTubeUrl" target="_blank">
+                <div class="fa fa-youtube fa--border-circle fa--color-brand"></div>
+            </a>
+        </li>
+    }
+    @if(!string.IsNullOrEmpty(Model.FlickrUrl))
+    {
+        <li>
+            <a href="@Model.FlickrUrl" target="_blank">
+                <div class="fa fa-flickr fa--border-circle fa--color-brand"></div>
+            </a>
+        </li>
+    }
+</ul>

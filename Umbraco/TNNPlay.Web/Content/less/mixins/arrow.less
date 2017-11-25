@@ -1,0 +1,177 @@
+﻿@import (reference) "../../components/bootstrap/less/variables.less";
+.arrow {
+    position: relative;
+    display: inline-block;
+    transform: rotate(45deg);
+    transform-origin: center;
+    width: 10px;
+    height: 12px;
+    margin-left: 10px;
+    transition: transform 300ms;
+    &:before, &:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &:before {
+        right: 2px;
+        width: 100%;
+        border-top: solid 1px;
+        border-color: @brand-primary;
+    }
+
+    &:after {
+        height: 100%;
+        border-right: solid 1px;
+        border-color: @brand-primary;
+    }
+}
+
+.arrow(@color) {
+    position: relative;
+    display: inline-block;
+    transform: rotate(45deg);
+    transform-origin: center;
+    width: 6px;
+    height: 6px;
+    margin-left: 10px;
+
+    &:before, &:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &:before {
+        width: 100%;
+        border-top: solid 1px;
+        border-color: @color;
+    }
+
+    &:after {
+        height: 100%;
+        border-right: solid 1px;
+        border-color: @color;
+    }
+}
+
+.arrow-left {
+    position: relative;
+    display: inline-block;
+    transform: rotate(-135deg);
+    transform-origin: center;
+    width: 10px;
+    height: 12px;
+    margin-left: 10px;
+    transition: transform 300ms;
+
+    &:before, &:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &:before {
+        width: 100%;
+        border-top: solid 1px;
+        border-color: @brand-primary;
+    }
+
+    &:after {
+        height: 100%;
+        border-right: solid 1px;
+        border-color: @brand-primary;
+    }
+}
+
+.arrow-left(@color) {
+    position: relative;
+    display: inline-block;
+    transform: rotate(-135deg);
+    transform-origin: center;
+    width: 10px;
+    height: 12px;
+    margin-left: 10px;
+
+    &:before, &:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &:before {
+        width: 100%;
+        border-top: solid 1px;
+        border-color: @color;
+    }
+
+    &:after {
+        height: 100%;
+        border-right: solid 1px;
+        border-color: @color;
+    }
+}
+
+.arrow-down {
+    position: relative;
+    display: inline-block;
+    transform: rotate(135deg);
+    transform-origin: center;
+    width: 10px;
+    height: 12px;
+    margin-left: 10px;
+    transition: transform 300ms;
+
+    &:before, &:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &:before {
+        width: 100%;
+        border-top: solid 1px;
+        border-color: @brand-primary;
+    }
+
+    &:after {
+        height: 100%;
+        border-right: solid 1px;
+        border-color: @brand-primary;
+    }
+}
+
+.arrow-down(@color) {
+    position: relative;
+    display: inline-block;
+    transform: rotate(135deg);
+    transform-origin: center;
+    width: 10px;
+    height: 12px;
+    margin-left: 10px;
+
+    &:before, &:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &:before {
+        width: 100%;
+        border-top: solid 1px;
+        border-color: @color;
+    }
+
+    &:after {
+        height: 100%;
+        border-right: solid 1px;
+        border-color: @color;
+    }
+}

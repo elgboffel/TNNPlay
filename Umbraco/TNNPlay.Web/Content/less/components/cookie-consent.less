@@ -1,0 +1,33 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.cookie-consent {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid @brand-primary;
+    z-index: 999;
+    opacity: 1;
+    visibility: visible;
+    color: @text-color;
+    font-size: 13px;
+    will-change: opacity, visibility;
+    transition: opacity 500ms ease, visibility 500ms ease;
+
+    &__content {
+        background-color: #fff;
+        padding: 10px;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &--hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+}

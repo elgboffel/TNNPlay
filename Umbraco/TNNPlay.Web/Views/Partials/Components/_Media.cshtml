@@ -1,0 +1,108 @@
+﻿@inherits UmbracoViewPage<MediaViewModel>
+@using Our.Umbraco.Picture
+@using BaseSite.Web.Helpers
+
+@switch (Model.MediaType)
+{
+    case RenderMediaTypes.Video:
+        @renderVideoImage(); break;
+    default:
+        @renderImage(); break;
+}
+
+@helper renderVideoImage()
+{
+    if (Model.EmbedVideo != null)
+    {
+        var video = Model.EmbedVideo.ToString();
+        <img src="@video.GetEmbedThumbnail()" />
+    }
+    else if (!string.IsNullOrEmpty(Model.EmbedVideoUrl))
+    {
+        <img src="@Model.EmbedVideoUrl.GetEmbedThumbnail()" />
+    }
+}
+
+@helper renderImage()
+{
+    var image = Model.Image;
+    var mediaHeigts = Model.MediaHeights;
+    var gridSettings = Model.GridSettings;
+
+    if(image != null && Model.TypedWidths != null)
+    {
+        @renderTypedMedia(image, gridSettings)
+
+    } else if (image != null)
+    {
+        @renderMedia(image)
+    }
+
+    @*if(image == null && Model.EnableImageFallback)
+    {
+        var fallbackFolder = Umbraco.TypedMedia(1210);
+        var fallbackMedia = fallbackFolder != null ? fallbackFolder.Children() : null;
+        if (fallbackMedia.Any())
+        {
+            var fallbackImage = fallbackMedia.RandomOrder().FirstOrDefault();
+            @renderMedia(fallbackImage)
+        }
+    }*@
+}
+
+@helper renderTypedMedia(IPublishedContent image, GridSettings gridSettings)
+{
+    if (!Model.MediaHeights.InheritedValuesSet)
+    {
+        Model.MediaHeights = new MediaHeights(Model.MediaHeights);
+    };
+
+    if (!Model.TypedWidths.InheritedValuesSet)
+    {
+        Model.TypedWidths = new TypedWidths(Model.TypedWidths);
+    };
+
+    var picture = Umbraco.Picture(image)
+        .Source("(min-width:1600px)", ResizeImage(Model.TypedWidths.TypedXxl, 12, 0), Model.MediaHeights.HeightXxl)
+        .Source("(min-width:1440px)", ResizeImage(Model.TypedWidths.TypedXl, 12, 0), Model.MediaHeights.HeightXl)
+        .Source("(min-width:1200px)", ResizeImage(Model.TypedWidths.TypedLg, 12, 0), Model.MediaHeights.HeightLg)
+        .Source("(min-width:992px)", ResizeImage(Model.TypedWidths.TypedMd, 12, 0), Model.MediaHeights.HeightMd)
+        .Source("(min-width:768px)", ResizeImage(Model.TypedWidths.TypedSm, 12, 0), Model.MediaHeights.HeightSm)
+        .Source("(min-width:480px)", ResizeImage(Model.TypedWidths.TypedMs, 12, 0), Model.MediaHeights.HeightXs)
+        .Srcset(ResizeImage(Model.TypedWidths.TypedXs, 12, 0), Model.MediaHeights.HeightXs)
+        .Alt(image.Name);
+
+    @Html.RenderPicture(picture);
+}
+
+@helper renderMedia(IPublishedContent image)
+{
+    if (!Model.GridSettings.InheritedValuesSet)
+    {
+        Model.GridSettings = new GridSettings(Model.GridSettings);
+    };
+
+    if (!Model.MediaHeights.InheritedValuesSet)
+    {
+        Model.MediaHeights = new MediaHeights(Model.MediaHeights);
+    };
+
+    var picture = Umbraco.Picture(image)
+        .Source("(min-width:1440px)", ResizeImage(1600, Model.GridSettings.GridXl, Model.GridSettings.GridTotalPadding), Model.MediaHeights.HeightXl)
+        .Source("(min-width:1200px)", ResizeImage(1440, Model.GridSettings.GridLg, Model.GridSettings.GridTotalPadding), Model.MediaHeights.HeightLg)
+        .Source("(min-width:992px)", ResizeImage(1200, Model.GridSettings.GridMd, Model.GridSettings.GridTotalPadding), Model.MediaHeights.HeightMd)
+        .Source("(min-width:768px)", ResizeImage(992, Model.GridSettings.GridSm, Model.GridSettings.GridTotalPadding), Model.MediaHeights.HeightSm)
+        .Source("(min-width:480px)", ResizeImage(768, Model.GridSettings.GridMs, Model.GridSettings.GridTotalPadding), Model.MediaHeights.HeightMs)
+        .Srcset(ResizeImage(480, Model.GridSettings.GridXs, Model.GridSettings.GridTotalPadding), Model.MediaHeights.HeightXs)
+        .Alt(image.Name);
+
+    @Html.RenderPicture(picture);
+}
+
+@functions {
+    private int ResizeImage(int maxContainerSize, int gridSize, int gridGridTotalPadding)
+    {
+        int size = (((maxContainerSize / 12) + 1) * gridSize) - gridGridTotalPadding;
+        return size;
+    }
+}

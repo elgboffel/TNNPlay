@@ -1,0 +1,54 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.info-box {
+    position: relative;
+    padding-top: 1px;
+    width: 100%;
+    font-size: 16px;
+    padding: 23px 23px 0 23px;
+    .fluid-line-base();
+
+    a {
+        transition: color 300ms ease;
+        .line-bottom-hover(@text-color, @alt-text-color);
+
+        &:hover {
+            color: @alt-text-color;
+        }
+
+        &:after {
+            margin-bottom: 3px;
+        }
+    }
+
+    p, ol, ul {
+        margin-bottom: 10px;
+    }
+
+    &__heading {
+        .h3();
+        .fluid-property(margin-bottom, 15, 20);
+    }
+
+    &__image-description {
+        .image-description();
+    }
+
+    &__image-photo-credit {
+        .photo-credit();
+    }
+
+    &__image-spacer {
+        margin-top: 23px;
+        .clearfix();
+    }
+
+    &__spacer {
+        margin-top: 23px;
+        .clearfix();
+    }
+}

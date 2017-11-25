@@ -1,0 +1,45 @@
+﻿@inherits UmbracoViewPage<LeBlenderModel>
+@using Lecoati.LeBlender.Extension.Models
+
+@foreach (var item in Model.Items)
+{
+    @renderContent(item)
+}
+
+@helper renderContent(LeBlenderValue content)
+{
+
+    var pickFactbox = content.GetValue<IEnumerable<IPublishedContent>>("pickFactbox");
+
+    if (pickFactbox != null && pickFactbox.Any())
+    {
+            @renderPickedFactbox(pickFactbox.FirstOrDefault())
+    }
+    else
+    {
+            @renderFactbox(content)
+    }
+}
+
+@helper renderFactbox(LeBlenderValue content)
+{
+    {
+        Html.RenderPartial(
+            "Components/_InfoBox",
+            new InfoBoxViewModel(content) { });
+    }
+}
+
+@helper renderPickedFactbox(IPublishedContent factbox)
+{
+    var box = factbox as Factbox;
+
+    {
+        Html.RenderPartial(
+          "Components/_InfoBox",
+          new InfoBoxViewModel(box)
+          {
+              Position = InfoBoxPosition.Default
+          });
+    }
+}

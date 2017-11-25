@@ -1,0 +1,42 @@
+﻿@import (reference) "variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+
+@import "../../components/bootstrap/less/scaffolding.less";
+
+body {
+    background-color: #fff;
+}
+
+main {
+    overflow: hidden;
+}
+
+button {
+    outline: none !important;
+}
+
+.grid-layout {
+    position: relative;
+}
+
+a {
+    outline: none !important;
+    font-family: inherit;
+    font-weight: inherit;
+    color: inherit;
+
+    &:hover {
+        font-family: inherit;
+        font-weight: inherit;
+        color: inherit;
+
+        h1, h2, h3, h4, h5, h6, p, ul, small, time {
+            text-decoration: none;
+        }
+    }
+
+    h1, h2, h3, h4, h5, h6, p, ul, small, time {
+        text-decoration: none;
+    }
+}

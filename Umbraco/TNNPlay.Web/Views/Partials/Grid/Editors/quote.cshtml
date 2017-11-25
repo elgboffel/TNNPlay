@@ -1,0 +1,35 @@
+﻿@inherits UmbracoViewPage<LeBlenderModel>
+@using Lecoati.LeBlender.Extension.Models
+@using BaseSite.Web.Helpers
+
+@foreach (var item in Model.Items)
+{
+    @renderContent(item)
+}
+
+@helper renderContent(LeBlenderValue content)
+{
+var position = content.GetValue<GridPosition>("quotePosition");
+var byline = content.GetValue("byline");
+
+    <div class="quote grid-position-@(position.GetEnumDisplayName())">
+        @if (content.HasProperty("quote"))
+        { 
+            <div class="quote__text">
+                <span class="quote__icon">
+                    <svg width="100%" height="100%" viewBox="0 0 27 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+                        <g transform="matrix(1,0,0,1,-366,-113)">
+                        <g id="citatDobbeltGrafik" transform="matrix(1,0,0,1,-1581,-3815)">
+                        <path d="M1959.09,3928.04c0.098,0.011 0.124,0.012 0.221,0.034c0.109,0.025 0.216,0.062 0.317,0.11c0.477,0.23 0.805,0.709 0.845,1.237c0.009,0.112 0.005,0.225 -0.012,0.336c-0.014,0.098 -0.023,0.122 -0.049,0.218l-4.122,13.474c-0.033,0.096 -0.068,0.189 -0.117,0.278c-0.049,0.09 -0.108,0.17 -0.171,0.25l-6.352,7.527c-0.066,0.073 -0.081,0.093 -0.155,0.158c-0.195,0.172 -0.435,0.291 -0.689,0.344c-0.516,0.105 -1.062,-0.074 -1.415,-0.464c-0.099,-0.11 -0.182,-0.235 -0.245,-0.369c-0.063,-0.134 -0.106,-0.278 -0.127,-0.425c-0.021,-0.146 -0.02,-0.296 0.003,-0.443c0.015,-0.098 0.024,-0.121 0.05,-0.216l2.3,-7.36l0.952,-13.3l0.011,-0.106c0.017,-0.094 0.019,-0.118 0.046,-0.209c0.03,-0.103 0.071,-0.203 0.122,-0.297c0.19,-0.346 0.515,-0.609 0.894,-0.72c0.139,-0.041 0.279,-0.056 0.423,-0.061c2.423,0 4.848,-0.086 7.27,0.004Zm13.473,0c0.099,0.011 0.124,0.012 0.222,0.034c0.109,0.025 0.215,0.062 0.316,0.11c0.478,0.23 0.805,0.709 0.846,1.237c0.008,0.112 0.004,0.225 -0.012,0.336c-0.015,0.098 -0.024,0.122 -0.049,0.218l-4.122,13.474c-0.033,0.096 -0.068,0.189 -0.117,0.278c-0.049,0.09 -0.108,0.17 -0.171,0.25l-6.352,7.527c-0.066,0.073 -0.081,0.093 -0.156,0.158c-0.195,0.172 -0.434,0.291 -0.689,0.344c-0.515,0.105 -1.061,-0.074 -1.414,-0.464c-0.099,-0.11 -0.182,-0.235 -0.245,-0.369c-0.063,-0.134 -0.106,-0.278 -0.127,-0.425c-0.021,-0.146 -0.02,-0.296 0.003,-0.443c0.015,-0.098 0.024,-0.121 0.05,-0.216l2.3,-7.36l0.951,-13.3l0.012,-0.106c0.017,-0.094 0.018,-0.118 0.045,-0.209c0.03,-0.103 0.072,-0.203 0.123,-0.297c0.189,-0.346 0.515,-0.609 0.894,-0.72c0.139,-0.041 0.278,-0.056 0.422,-0.061c2.424,0 4.849,-0.086 7.27,0.004Z" style="fill:#f54d04;" />
+                            </g></g></svg>
+                </span>
+                @Html.Raw(content.GetValue("quote"))
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(byline))
+        {
+            <small class="quote__byline">@Html.Raw(content.GetValue<string>("byline"))</small>
+        }
+        <div class="quote__spacer"></div>
+    </div>
+}

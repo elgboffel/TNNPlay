@@ -1,0 +1,73 @@
+﻿@inherits UmbracoViewPage<CollapseMenuViewModel>
+@using Umbraco.Web;
+
+@{ 
+    Html
+        .RequiresJs("~/scripts/build/expander.js", 1, 2, new { @defer = string.Empty })
+        .RequiresJs("~/scripts/build/collapse-menu.js", 1, 2, new { @defer = string.Empty });
+
+    var root = Model.StartAsSingleItem ? 
+        Model.StartNode.AsEnumerableOfOne() :
+        Model.StartNode.Children()
+            .Where(x => x.IsVisible());
+}
+
+@if (root.Any())
+{
+    <div class="cm @(Model.ClassModifier)">
+        <ul class="cm__children cm__children--expand cm__children--level1">
+            @renderChildren(root)
+        </ul>
+    </div>
+}
+
+@helper renderChildren(IEnumerable<IPublishedContent> children)
+{
+
+    foreach (var page in children)
+    {
+        @renderPage(page)
+    }
+}
+
+@helper renderPage(IPublishedContent content)
+{ 
+    @* If we start as single item, we will need to add a level,
+        so we skip level 0. since we don't start with the rendering of children *@
+    var currentLevel = Model.StartAsSingleItem ? 
+        content.Level - Model.StartNode.Level +1 :
+        content.Level - Model.StartNode.Level;
+
+    var nextLevel = currentLevel + 1;
+    var isAncestor = content.IsAncestorOrSelf(Model.StartNode);
+    var expanderType = currentLevel > 1 ? "slide" : "expand";
+    var children = content.Children();
+    var hasChildren = children.Any();
+
+    <li class="cm__section @Umbraco.If(isAncestor, "cm__section--ancestor")">
+        <div class="cm__link">
+            <a href="@content.Url">@content.UrlName</a>
+            @if (hasChildren)
+            {
+                <button role="button" class="cm__btn cm__btn--@(expanderType)"></button>
+            }
+        </div>
+        @if (hasChildren && content.Level <= Model.MaxLevelsRendered)
+        {
+             <ul class="cm__children cm__children--slide cm__children--level@(nextLevel)">
+                @if (currentLevel > 1)
+                {
+                     <li class="cm__section">
+                        <div class="cm__link cm__link--back">
+                            <button  role="button" class="cm__btn cm__btn--back"></button>
+                            <a href="@content.Url">@content.Name</a>
+                        </div>
+                    </li>
+                }
+                 @renderChildren(children)
+            </ul>
+        }
+    </li>
+}
+
+

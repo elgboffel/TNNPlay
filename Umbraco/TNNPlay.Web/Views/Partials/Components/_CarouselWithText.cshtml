@@ -1,0 +1,61 @@
+﻿@inherits UmbracoViewPage<CarouselViewModel>
+@using AnneVibekeRejser.Web.Models.ComponentModels
+
+@{
+    Html.RequiresCss("~/Content/components/owl-carousel2/dist/assets/owl.carousel.css")
+            .RequiresCss("~/Content/components/animate-css/animate.css")
+            .RequiresJs("~/Content/components/owl-carousel2/dist/owl.carousel.js", 1, 2)
+            .RequiresJs("~/scripts/build/carousel.js", 1, 2);
+
+    var carousel = Model.Carousel;
+}
+@if (carousel.Any())
+{
+
+    <div class="owl-carousel"
+         data-options='{
+        "items": 1,
+         "nav": true,
+         "navText": ["", ""],
+         "autoplay": false,
+         "autoplayHoverPause": true,
+         "animateOut": "fadeOut",
+         "autoHeight": true }'>
+        @foreach (var slide in carousel)
+        {
+            @renderSlide(slide)
+        }
+    </div>
+}
+@helper renderSlide(IPublishedContent slide)
+{
+    var image = slide.GetPropertyValue<IPublishedContent>("image");
+
+    if (image != null)
+    {
+            <div class="owl-carousel__item">
+                <div class="owl-carousel__image">
+                    @Html.Partial(
+                   "Components/_Media",
+                   new MediaViewModel
+                   {
+                       Image = image,
+                       GridSettings = Model.GridSettings,
+                       MediaHeights = Model.MediaHeights,
+
+                   })
+                    @if (image.HasValue("pictureBy"))
+                    {
+                        <div class="owl-carousel__picture-by">@Umbraco.GetDictionaryValue("Picture By", "Billede af") @(image.GetPropertyValue<string>("pictureBy"))</div>
+                    }
+                </div>
+                @if (slide.HasValue("text"))
+                {
+                    <div class="owl-carousel__caption">
+                        @(slide.GetPropertyValue<string>("text"))
+                    </div>
+                }
+                <div class="owl-carousel__spacer"></div>
+            </div>
+    }
+}

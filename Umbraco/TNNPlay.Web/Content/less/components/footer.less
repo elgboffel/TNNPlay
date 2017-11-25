@@ -1,0 +1,35 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.footer {
+    color: #fff;
+    .fluid-property(font-size, 16, 18);
+    line-height: 1.2;
+    padding-top: 25px;
+
+    &__logo {
+        width: 130px;
+        height: 65px;
+        margin: 20px 0 23px 0;
+    }
+
+    &__rte {
+        p, ul, ol, a {
+            margin: 0 0 14px;
+        }
+
+        a {
+            .line-bottom-hover(#fff, @brand-primary);
+        }
+    }
+
+    &__caption {
+        display: block;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 12px;
+    }
+}

@@ -1,4 +1,5 @@
 ﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\UmbracoCms.7.7.6\build\UmbracoCms.props" Condition="Exists('..\packages\UmbracoCms.7.7.6\build\UmbracoCms.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
@@ -25,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -300,10 +302,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\Leaflet\Assets\images\layers-2x.png" />
+    <Content Include="App_Plugins\Leaflet\Assets\images\layers.png" />
+    <Content Include="App_Plugins\Leaflet\Assets\images\marker-icon-2x.png" />
+    <Content Include="App_Plugins\Leaflet\Assets\images\marker-icon.png" />
+    <Content Include="App_Plugins\Leaflet\Assets\images\marker-shadow.png" />
+    <Content Include="App_Plugins\Leaflet\Assets\leaflet.css" />
+    <Content Include="App_Plugins\Leaflet\Assets\leaflet.js" />
+    <Content Include="App_Plugins\Leaflet\Assets\plugins\L.GeoSearch\css\l.geosearch.css" />
+    <Content Include="App_Plugins\Leaflet\Assets\plugins\L.GeoSearch\img\alert.png" />
+    <Content Include="App_Plugins\Leaflet\Assets\plugins\L.GeoSearch\img\geosearch.png" />
+    <Content Include="App_Plugins\Leaflet\Assets\plugins\L.GeoSearch\img\spinner.gif" />
+    <Content Include="App_Plugins\Leaflet\Assets\plugins\L.GeoSearch\js\l.control.geosearch.js" />
+    <Content Include="App_Plugins\Leaflet\Assets\plugins\L.GeoSearch\js\l.geosearch.provider.bing.js" />
+    <Content Include="App_Plugins\Leaflet\Assets\plugins\L.GeoSearch\js\l.geosearch.provider.esri.js" />
+    <Content Include="App_Plugins\Leaflet\Assets\plugins\L.GeoSearch\js\l.geosearch.provider.google.js" />
+    <Content Include="App_Plugins\Leaflet\Assets\plugins\L.GeoSearch\js\l.geosearch.provider.nokia.js" />
+    <Content Include="App_Plugins\Leaflet\Assets\plugins\L.GeoSearch\js\l.geosearch.provider.openstreetmap.js" />
+    <Content Include="App_Plugins\Leaflet\Backoffice\PropertyEditors\Controllers\leaflet.controller.js" />
+    <Content Include="App_Plugins\Leaflet\Backoffice\PropertyEditors\leaflet.html" />
     <Content Include="config\imageprocessor\security.config" />
     <Content Include="config\imageprocessor\processing.config" />
     <Content Include="config\imageprocessor\cache.config" />
     <Content Include="App_Plugins\ModelsBuilder\package.manifest" />
+    <Content Include="Content\less\mixins\hover.css" />
+    <Content Include="css\body-text-formats.css" />
+    <Content Include="css\footer-formats.css" />
+    <Content Include="gulpfile.js" />
     <Content Include="Media\Web.config" />
     <Content Include="config\umbracoSettings.config" />
     <Content Include="config\trees.config" />
@@ -331,7 +356,68 @@
     <Content Include="App_Plugins\LeBlender\package.manifest" />
     <Content Include="App_Plugins\LeBlender\editors\leblendereditor\views\LeBlender.cshtml" />
     <Content Include="App_Plugins\LeBlender\editors\leblendereditor\views\Base.cshtml" />
+    <Content Include="App_Plugins\Leaflet\package.manifest" />
+    <Content Include="Content\css\webfonts.less" />
+    <Content Include="Content\less\bootstrap\bootstrap-shell.less" />
+    <Content Include="Content\less\bootstrap\bootstrap.less" />
+    <Content Include="Content\less\bootstrap\breadcrumbs.less" />
+    <Content Include="Content\less\bootstrap\forms.less" />
+    <Content Include="Content\less\bootstrap\grid\grid-framework.less" />
+    <Content Include="Content\less\bootstrap\grid\ms-grid.less" />
+    <Content Include="Content\less\bootstrap\grid\xl-grid.less" />
+    <Content Include="Content\less\bootstrap\grid\xxl-grid .less" />
+    <Content Include="Content\less\bootstrap\scaffolding.less" />
+    <Content Include="Content\less\bootstrap\type.less" />
+    <Content Include="Content\less\bootstrap\variables.less" />
+    <Content Include="Content\less\components\alert-box.less" />
+    <Content Include="Content\less\components\buttons.less" />
+    <Content Include="Content\less\components\card.less" />
+    <Content Include="Content\less\components\collapse-menu.less" />
+    <Content Include="Content\less\components\cookie-consent.less" />
+    <Content Include="Content\less\components\dropdowns.less" />
+    <Content Include="Content\less\components\expander.less" />
+    <Content Include="Content\less\components\footer.less" />
+    <Content Include="Content\less\components\forms.less" />
+    <Content Include="Content\less\components\google-map.less" />
+    <Content Include="Content\less\components\grid-position.less" />
+    <Content Include="Content\less\components\hero.less" />
+    <Content Include="Content\less\components\image.less" />
+    <Content Include="Content\less\components\info-box.less" />
+    <Content Include="Content\less\components\login-wall.less" />
+    <Content Include="Content\less\components\mobile-header.less" />
+    <Content Include="Content\less\components\navbar-header.less" />
+    <Content Include="Content\less\components\navbar.less" />
+    <Content Include="Content\less\components\owl-carousel.less" />
+    <Content Include="Content\less\components\page-header.less" />
+    <Content Include="Content\less\components\preview.less" />
+    <Content Include="Content\less\components\quote.less" />
+    <Content Include="Content\less\components\search-form.less" />
+    <Content Include="Content\less\components\so-me-list.less" />
+    <Content Include="Content\less\components\so-me-share.less" />
+    <Content Include="Content\less\components\spot-box.less" />
+    <Content Include="Content\less\components\spot.less" />
+    <Content Include="Content\less\components\squeeze-box.less" />
+    <Content Include="Content\less\components\tag-list.less" />
+    <Content Include="Content\less\components\umb-grid.less" />
+    <Content Include="Content\less\font-awesome.less" />
+    <Content Include="Content\less\identity.less" />
+    <Content Include="Content\less\main.less" />
+    <Content Include="Content\less\mixins.less" />
+    <Content Include="Content\less\mixins\arrow.less" />
+    <Content Include="Content\less\mixins\fluid-property.less" />
+    <Content Include="Content\less\mixins\hover.less" />
+    <Content Include="Content\less\mixins\text-bullet.less" />
+    <Content Include="Content\less\mixins\text-styles.less" />
+    <Content Include="Content\less\shell.less" />
+    <Content Include="Content\less\utility-layout.less" />
+    <Content Include="Content\less\utility.less" />
+    <Content Include=".bowerrc" />
+    <Content Include="TNNPlay.Web.wpp.targets" />
+    <Content Include="bower.json" />
+    <Content Include="package.json" />
     <None Include="packages.config" />
+    <Content Include="robots.txt" />
+    <Content Include="scripts\app\share-page.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Rte.cshtml" />
@@ -488,6 +574,18 @@
     <Content Include="Umbraco\Webservices\TagsAutoCompleteHandler.ashx" />
     <Content Include="Umbraco\Webservices\TreeDataService.ashx" />
     <Content Include="Umbraco\Xslt\Web.config" />
+    <Content Include="Views\FrontPage.cshtml" />
+    <Content Include="Views\GridPage.cshtml" />
+    <Content Include="Views\_Layout.cshtml" />
+    <Content Include="Views\Partials\_Navbar.cshtml" />
+    <Content Include="Views\Partials\_NavbarHeader.cshtml" />
+    <Content Include="Views\Partials\_EmptySearchResult.cshtml" />
+    <Content Include="Views\Partials\_Favicons.cshtml" />
+    <Content Include="Views\Partials\_Footer.cshtml" />
+    <Content Include="Views\Partials\_OpenGraph.cshtml" />
+    <Content Include="Views\Partials\Grid\_FrontPage.cshtml" />
+    <Content Include="Views\Partials\Grid\_GridPage.cshtml" />
+    <Content Include="tsconfig.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1756,18 +1854,62 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\MediaListController.cs" />
+    <Compile Include="EventHandlers\ExternalIndexerEventHandler.cs" />
+    <Compile Include="EventHandlers\ImageProcessorInterceptorEventHandler.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Extensions\ExamineExtensions.cs" />
+    <Compile Include="Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\TemplateUtillitiesExtensions.cs" />
+    <Compile Include="Extensions\UmbracoHelperExtensions.cs" />
+    <Compile Include="Helpers\SearchHelper.cs" />
+    <Compile Include="Helpers\UtilityHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Components\BreadcrumbViewModel.cs" />
+    <Compile Include="ViewModels\Components\BreakingViewModel.cs" />
+    <Compile Include="ViewModels\Components\CardViewModel.cs" />
+    <Compile Include="ViewModels\Components\CarouselCardsViewModel.cs" />
+    <Compile Include="ViewModels\Components\CarouselViewModel.cs" />
+    <Compile Include="ViewModels\Components\CollapseMenuViewModel.cs" />
+    <Compile Include="ViewModels\Components\ContactCardViewModel.cs" />
+    <Compile Include="ViewModels\Components\HeroViewModel.cs" />
+    <Compile Include="ViewModels\Components\InfoBoxViewModel.cs" />
+    <Compile Include="ViewModels\Components\MapViewModel.cs" />
+    <Compile Include="ViewModels\Components\MediaListViewModel.cs" />
+    <Compile Include="ViewModels\Components\MediaViewModel.cs" />
+    <Compile Include="ViewModels\Components\PageHeaderViewModel.cs" />
+    <Compile Include="ViewModels\Components\SoMeShareViewModel.cs" />
+    <Compile Include="ViewModels\Components\SoMeViewModel.cs" />
+    <Compile Include="ViewModels\Components\TagListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <TypeScriptCompile Include="scripts\app\carousel.ts" />
+    <TypeScriptCompile Include="scripts\app\clipboard.ts" />
+    <TypeScriptCompile Include="scripts\app\collapse-menu.tsx" />
+    <TypeScriptCompile Include="scripts\app\cookie-consent.ts" />
+    <TypeScriptCompile Include="scripts\app\expander.ts" />
+    <TypeScriptCompile Include="scripts\app\google-map.ts" />
+    <TypeScriptCompile Include="scripts\app\media-list.async.ts" />
+    <TypeScriptCompile Include="scripts\app\preview.ts" />
+    <TypeScriptCompile Include="scripts\app\search-form.ts" />
+    <TypeScriptCompile Include="scripts\app\squeeze-box.ts" />
+    <TypeScriptCompile Include="scripts\app\sticky.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>

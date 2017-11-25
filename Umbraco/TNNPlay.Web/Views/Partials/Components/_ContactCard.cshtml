@@ -1,0 +1,56 @@
+﻿@inherits UmbracoViewPage<ContactCardViewModel>
+
+<div class="contact-card">
+    <div class="contact-card__image">
+        @if(Model.Image != null)
+        {
+            @Html.Partial(
+                "Components/_Media",
+                new MediaViewModel
+                {
+                    Image = Model.Image,
+                    TypedWidth = Model.TypedWidth,
+                    ImageHeight = Model.ImageHeight,
+                    ImageHeightMobile = Model.ImageHeightMobile
+
+                }
+            )
+        }
+    </div>
+    <div class="contact-card__content">
+        <h5 class="contact-card__name">@Model.Name</h5>
+        @if(!string.IsNullOrEmpty(Model.Title))
+        {
+            <p class="contact-card__info">@Html.Raw(Model.Title)</p>
+        }
+        @if(!string.IsNullOrEmpty(Model.WorkArea))
+        {
+            <p class="contact-card__info">@Html.Raw(Model.WorkArea)</p>
+        }
+        @if(!string.IsNullOrEmpty(Model.Phone))
+        {
+            <p class="contact-card__info">@Model.Phone</p>
+        }
+        @if(!string.IsNullOrEmpty(Model.Mobile))
+        {
+            <p class="contact-card__info">@Model.Mobile</p>
+        }
+        @if(!string.IsNullOrEmpty(Model.Mail))
+        {
+            <a class="contact-card__info contact-card__info--mail" href="mailto:@Model.Mail">@Model.Mail</a>
+        }
+        <div class="spacer10"></div>
+        <div class="visible-xs visible-sm">
+            @if(!string.IsNullOrEmpty(Model.Mail))
+            {
+                <a class="btn btn--blue btn--align-bottom" href="mailto:@Model.Mail">Kontakt</a>
+            }
+            <div class="spacer25"></div>
+        </div>
+    </div>
+    @if(!string.IsNullOrEmpty(Model.Mail))
+    {
+        <a class="btn btn--blue btn--align-bottom hidden-xs hidden-sm" href="mailto:@Model.Mail">Kontakt</a>
+    }
+    <div class="spacer25 hidden-xs hidden-sm"></div>
+</div>

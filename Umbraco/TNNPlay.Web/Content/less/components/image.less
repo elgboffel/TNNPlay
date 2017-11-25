@@ -1,0 +1,24 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.image {
+
+    &__image {
+        position: relative;
+    }
+
+    &__description {
+        .image-description();
+    }
+
+    &__photo-credit {
+        .photo-credit();
+    }
+
+    &__spacer {
+        .fluid-line-base-spacer();
+    }
+}

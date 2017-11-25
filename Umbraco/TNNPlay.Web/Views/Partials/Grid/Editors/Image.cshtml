@@ -1,0 +1,63 @@
+﻿@inherits UmbracoViewPage<LeBlenderModel>
+@using Lecoati.LeBlender.Extension.Models
+@using Skalk.Web.Helpers
+
+@foreach (var item in Model.Items)
+{
+    @renderContent(item)
+}
+
+@helper renderContent(LeBlenderValue content)
+{
+    var selectedImage = content.GetValue<IPublishedContent>("image");
+    var imageDescription = content.GetValue<string>("imageDescription");
+    var gridPosition = content.GetValue<GridPosition>("position");
+
+     <div class="image grid-position-@(gridPosition.GetEnumDisplayName())">
+         @if (selectedImage != null)
+         {
+             var image = selectedImage;
+             <div class="image__image">
+                @{Html.RenderPartial(
+                    "Components/_Media",
+                    new MediaViewModel
+                    {
+                        Image = image,
+                        GridSettings = new GridSettings
+                        {
+                            GridMd = 6
+                        }
+                    });}
+
+                 @if (image.HasValue("description") || !string.IsNullOrEmpty(imageDescription))
+                 {
+                     @renderDescription(image, imageDescription)
+                 }
+             </div>
+         }
+         <div class="image__spacer"></div>
+     </div>
+}
+
+@helper renderDescription(IPublishedContent image, string imageDescription)
+{
+    var description = image.GetPropertyValue<string>("description", "");
+    var photoCredit = image.GetPropertyValue<string>("photoCredit", "");
+
+    <div class="image__description">
+        @if (!string.IsNullOrEmpty(imageDescription))
+        {
+            @Html.Raw(Umbraco.ReplaceLineBreaksForHtml(imageDescription))
+        }
+        else if (!string.IsNullOrEmpty(description))
+        {
+            @Html.Raw(Umbraco.ReplaceLineBreaksForHtml(description))
+        }
+        @if (!string.IsNullOrEmpty(photoCredit))
+        {
+            <span class="image__photo-credit">
+                Foto: @photoCredit
+            </span>
+        }
+    </div>
+}

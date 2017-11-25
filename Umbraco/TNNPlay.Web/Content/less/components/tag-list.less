@@ -1,0 +1,47 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.tag-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    color: @color-stone;
+    .fluid-line-base();
+
+    &__item {
+        position: relative;
+        display: inline-block;
+        margin-right: 13px;
+        margin-bottom: 7px;
+        > a {
+            padding-left: 15px;
+            transition: color 200ms ease;
+
+            &:hover, &:focus {
+                color: @brand-primary;
+
+                .tag-list__icon {
+                    path {
+                        fill: @brand-primary !important;
+                    }
+                }
+            }
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        display: inline-block;
+        left: 0;
+        width: 13px;
+        height: 13px;
+
+        path {
+            transition: fill 200ms ease;
+        }
+    }
+}

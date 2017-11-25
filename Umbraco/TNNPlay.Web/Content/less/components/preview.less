@@ -1,0 +1,41 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.preview {
+    display: flex;
+    flex-direction: column;
+
+    &__content {
+        position: relative;
+        overflow: hidden;
+        max-height: 260px;
+        margin: 0 0 10px;
+
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            height: 100px;
+            width: 100%;
+            background: linear-gradient( rgba(255, 255, 255, 0.00), #fff);
+            transition: opacity 200ms ease;
+        }
+
+        &--expand {
+            transition: max-height 3s ease;
+            max-height: 9999px;
+
+            &:after {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+    }
+
+    &__expander {
+        .fluid-property(margin-bottom, 35, 55);
+    }
+}

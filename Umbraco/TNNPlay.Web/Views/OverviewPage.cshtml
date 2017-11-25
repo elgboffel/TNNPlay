@@ -4,7 +4,7 @@
     Layout = "_Layout.cshtml";
 
     Html
-        .RequiresJs("~/scripts/build/preview.js", 1, 2, new { @defer = string.Empty });
+        .RequiresJs("~/scripts/dist/preview.js", 1, 2, new { @defer = string.Empty });
 
     var descendantPages = Model.Descendants<GridPage>()
         .Where(x => x.IsVisible())
@@ -71,51 +71,67 @@
     @switch (Model.DocumentTypeAlias)
     {
 
-        case "landingpageTagFilter":
-            @renderLandingPageSearchByTag(); break;
+        case "overviewPageTagFilter":
+            @renderOverviewPageSearchByTag(); break;
+
+        case "overviewPagePickers":
+            @renderOverviewPagePickers(); break;
 
         default:
-            @renderLandingPage(descendantPages); break;
+            @renderOverviewgPage(descendantPages); break;
     }
 
 </div>
 
-@helper renderLandingPage(IOrderedEnumerable<GridPage> pages)
+@helper renderOverviewPagePickers()
 {
+    var nestedItems = Model.GetPropertyValue("overviewNested", Enumerable.Empty<IPublishedContent>());
 
-if (pages.Any())
-{
-        <h4 class="margin-bt25">Vælg en destination</h4>
+    if(nestedItems.Any())
+    {
+        foreach (var item in nestedItems)
         {
-            Html.RenderPartial(
-              "Components/_MediaList",
-              new MediaListViewModel()
-              {
-                  MediaList = pages,
-                  ViewRenderMode = ViewRenderMode.EnableBootstrap,
-                  CardClassModifier = "",
-                  ShowLead = false,
-                  ShowImage = false,
-                  GridSettings = new GridSettings
-                  {
-                      GridXl = 2,
-                      GridLg = 3,
-                      GridMd = 4,
-                      GridSm = 4,
-                      GridMs = 6
-                  },
-                  MediaHeights = new MediaHeights
-                  {
-                      HeightSm = 420,
-                      HeightXs = 300,
-                  }
-              });
+            @Html.Action(
+                "GetPage",
+                "MediaList",
+                new MediaListViewModel()
+                {
+                    ViewModel = item,
+                    RenderPartialView = RenderPartialView.MediaList,
+                    RenderMethod = RenderListMethod.OverviewNested,
+                    ViewRenderMode = ViewRenderMode.EnableBootstrap,
+                    CardClassModifier = "",
+                    MediaListIndex = new MediaListIndex
+                    {
+                        Indexes = new int[] { 0 },
+                        CardClassModifier = "card--columns",
+                        GridSettings = new GridSettings
+                        {
+                            GridXs = 12
+                        },
+                        MediaHeights = new MediaHeights
+                        {
+                            HeightMd = 500,
+                            HeightXs = 300
+                        },
+                        
+                    },
+                    GridSettings = new GridSettings
+                    {
+                        GridLg = 4,
+                        GridSm = 6
+                    },
+                    MediaHeights = new MediaHeights
+                    {
+                        HeightSm = 225,
+                        HeightXs = 300
+                    }
+                })
         }
-        <div class="spacer25"></div>
-}
+    }
 }
 
-@helper renderLandingPageSearchByTag()
+@helper renderOverviewPagePageSearchByTag()
 {
     @Html.Action(
         "GetPage",

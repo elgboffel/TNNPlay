@@ -1,0 +1,57 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+@success-color: @brand-alt;
+@warning-color: @red;
+
+.alert-box {
+    position: relative;
+    margin-bottom: 25px;
+
+    &--success {
+        color: @success-color;
+        padding-left: 55px;
+
+        &:before {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            content: "\f00c";
+            font-family: 'FontAwesome';
+            font-size: 34px;
+            font-weight: 300;
+            border: solid 1px @success-color;
+            border-radius: 50%;
+            padding-left: 5px;
+            width: 44px;
+            height: 44px;
+            line-height: 1.25;
+        }
+    }
+
+    &--warning {
+        color: @warning-color;
+        padding-left: 55px;
+
+        &:before {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            content: "\f12a";
+            font-family: 'FontAwesome';
+            font-size: 34px;
+            font-weight: 300;
+            border: solid 1px @warning-color;
+            border-radius: 50%;
+            padding-left: 15px;
+            width: 44px;
+            height: 44px;
+            line-height: 1.25;
+        }
+    }
+}

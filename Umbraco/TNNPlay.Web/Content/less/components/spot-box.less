@@ -1,0 +1,63 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.info-box {
+    font-size: 13px;
+    line-height: 1.5;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    p, time {
+        margin: 0;
+    }
+
+
+    &__section {
+        background-color: #F2F2F2;
+        margin: 0 0 2px;
+        padding: 4px 5px 5px 10px;
+        width: 100%;
+
+        time {
+            display: inline-block;
+            color: inherit;
+        }
+        > p:first-of-type {
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        &--small {
+            display: inline-block;
+            background-color: #F2F2F2;
+            margin: 0 0 2px;
+            padding: 4px 10px 5px 10px;
+            width: 49.5%;
+
+            > p:first-of-type {
+                font-weight: 700;
+                text-transform: uppercase;
+
+                small {
+                    display: inline-block;
+                    font-weight: 500;
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+
+    &__latest-date {
+        text-align: center;
+        width: 100%;
+    }
+
+    .btn-green {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,70 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.login-wall {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    font-weight: 700;
+    transition: color 200ms ease;
+    .fluid-property(font-size, 22, 18);
+    line-height: 1.15;
+
+    &:hover, &:focus {
+        font-weight: 700;
+        color: @brand-primary;
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.65);
+    }
+
+    &:after {
+        position: absolute;
+        .fluid-property(top, 10, 25);
+        .fluid-property(right, 10, 25);
+        content: "\f023";
+        font-family: "FontAwesome";
+        font-weight: 400;
+    }
+
+
+    &__message {
+        .fluid-property(padding-top, 10, 25);
+        .fluid-property(padding-right, 10, 25);
+        .fluid-property(padding-bottom, 10, 25);
+        .fluid-property(padding-left, 10, 25);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &__icon {
+    }
+}
+
+.login-wall--video {
+    .login-wall {
+        &__icon {
+            text-align: center;
+
+            &:after {
+                content: "\f144";
+                font-family: 'FontAwesome';
+                .fluid-property(font-size, 50, 63);
+                font-weight: 400;
+                line-height: 1;
+            }
+        }
+    }
+}

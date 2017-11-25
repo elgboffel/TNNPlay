@@ -1,0 +1,84 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.mobile-header {
+    width: 100%;
+    background-color: @dark-brown;
+    padding-top: 10px;
+    z-index: 99;
+
+    &__head {
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__logo {
+        width: 110px;
+        height: 55px;
+        margin-bottom: 25px;
+
+        &--animate {
+            #avrLogo {
+                stroke: @brand-primary;
+                path {
+                    fill: transparent;
+                }
+            }
+
+        }
+    }
+
+    &__nav {
+        position: relative;
+        display: none;
+        width: 100%;
+        font-size: 16px;
+        font-family: @font-family-sans-serif;
+
+        > nav {
+            padding-bottom: 30px;
+        }
+    }
+
+    &__nav-head {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__menu {
+        padding-bottom: 30px;
+    }
+
+    &__search {
+    }
+
+    &__login {
+        margin-right: 20px;
+    }
+
+    &__nav-expander {
+    }
+
+    &__link {
+        padding: 13px 45px 13px 20px;
+        color: rgba(245, 180, 0, 0.6);
+
+        &:hover, &:focus {
+            color: rgba(245, 180, 0, 0.6);
+        }
+    }
+}
+
+.mobile-header--open {
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.75);
+
+}
+
+.mobile-header--sticky {
+    position: fixed;
+    top: 0;
+}

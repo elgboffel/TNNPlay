@@ -1,0 +1,219 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.card {
+    position: relative;
+    line-height: 1.2;
+    font-size: 17px;
+    overflow: hidden;
+
+    > a {
+        position: relative;
+        z-index: 2;
+    }
+
+    &__media {
+        .fluid-property(margin-bottom, 10, 20);
+    }
+
+    &__content {
+        position: relative;
+        z-index: 2;
+    }
+
+    &__date {
+    }
+
+    &__title {
+        font-weight: 900;
+        line-height: 1;
+        .fluid-property(font-size, 30, 56);
+        transition: transform 300ms ease, text-shadow 200ms ease;
+    }
+
+    &__heading {
+        .h2();
+        letter-spacing: 0.03em;
+    }
+
+    &__lead {
+        .fluid-property(font-size, 17, 20);
+        font-weight: 700;
+        margin: 0;
+    }
+
+    &__tags {
+        margin-top: auto;
+        .fluid-property(margin-bottom, 10, 20);
+    }
+
+    &__spacer {
+        .fluid-property(margin-top, 20, 30);
+        .clearfix();
+    }
+}
+
+.card--default {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+    margin-bottom: 10px;
+    .fluid-property(padding-top, 20, 30);
+    .fluid-property(padding-right, 20, 30);
+    .fluid-property(padding-left, 20, 30);
+    background-color: @color-lime;
+
+    > a {
+    }
+
+    .card {
+        &__content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            height: 100%;
+        }
+
+        &__spacer {
+            .fluid-property(margin-top, 15, 25);
+        }
+    }
+}
+
+.card--columns {
+    .card--default();
+    .fluid-property(padding-bottom, 10, 20);
+
+    @media(min-width: @screen-xs-min) {
+        flex-direction: row;
+
+        > a {
+            padding-right: 15px;
+        }
+
+        .card {
+            &__media {
+                .fluid-property(margin-bottom, 0, 0);
+            }
+
+            &__content {
+                padding-left: 15px;
+            }
+
+            &__tags {
+                .fluid-property(margin-bottom, 0, 0);
+            }
+        }
+    }
+}
+
+.card--list {
+    margin-top: -1px;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px 0 0 0;
+    border-top: solid 1px #575E61;
+    border-bottom: solid 1px #575E61;
+    transition: border-color 200ms ease;
+
+    &:hover, &:focus {
+        border-color: @brand-primary;
+        z-index: 1;
+    }
+
+    .card {
+        &__media {
+            .fluid-property(margin-bottom, 10, 20);
+        }
+
+        &__content {
+            flex: 1;
+        }
+
+        &__heading {
+            .h4();
+        }
+
+        &__lead {
+            .fluid-property(font-size, 17, 19);
+            font-weight: 400;
+        }
+
+        &__spacer {
+            margin: 10px;
+        }
+    }
+
+    @media(min-width: @screen-xs-min) {
+        flex-direction: row;
+
+        > a {
+        }
+
+        .card {
+            &__media {
+                .fluid-property(margin-right, 20, 30);
+            }
+        }
+    }
+}
+
+.card--hero {
+    .card {
+        &__content {
+            position: absolute;
+            left: 80px;
+            bottom: 80px;
+            width: 450px;
+            background-color: #CFD8DD;
+            padding: 25px 25px 0 25px;
+        }
+
+        &__heading {
+            .h1();
+            .fluid-property(margin-bottom, 15, 20);
+        }
+
+        &__lead {
+            .multiline-truncate(2, 20px, 1.1);
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.card--hero-position-bottom-right {
+    .card {
+        &__content {
+            left: auto;
+            right: 80px;
+            bottom: 80px;
+        }
+    }
+}
+
+.card--hero-position-top-right {
+    .card {
+        &__content {
+            left: auto;
+            bottom:auto;
+            right: 80px;
+            top: 80px;
+        }
+    }
+}
+
+.card--hero-position-top-left {
+    .card {
+        &__content {
+            bottom: auto;
+            top: 80px;
+        }
+    }
+}

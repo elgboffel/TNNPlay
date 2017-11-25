@@ -1,0 +1,50 @@
+﻿@inherits UmbracoViewPage<HeroViewModel>
+
+<div class="hero @(Model.ModifierClass)">
+    @if (Model.Link != null)
+    {
+        @:<a href="@Model.Link.Url" target="@Model.Link.Target">
+    }
+    @if (Model.Image != null)
+    {
+        <div class="hero__image">
+                @RenderImage(Model.Image)
+        </div>
+    }
+    <div class="hero__content">
+    @if (!string.IsNullOrEmpty(Model.Trumpet))
+    {
+        <small>@Model.Trumpet</small>
+    }
+    @if(!string.IsNullOrEmpty(Model.Heading))
+    {
+        <h1>@Html.Raw(Model.Heading)</h1>
+    }
+    @if(!string.IsNullOrEmpty(Model.Lead))
+    {
+        <p class="hero__lead"> @Html.Raw(Model.Lead)</p>
+    }
+    </div>
+    @if (Model.Link != null)
+    {
+        @:</a>
+    }
+    @if (Model.Image != null && Model.Image.HasValue("pictureBy"))
+    {
+        <div class="hero__picture-by">@Umbraco.GetDictionaryValue("Picture By", "Billede af") @(Model.Image.GetPropertyValue<string>("pictureBy"))</div>
+    }
+</div>
+
+@helper RenderImage(IPublishedContent image)
+{
+
+    { Html.RenderPartial(
+        "Components/_Media",
+        new MediaViewModel
+        {
+            Image = image,
+            GridSettings = Model.GridSettings,
+            MediaHeights = Model.MediaHeights
+        });
+    }
+}

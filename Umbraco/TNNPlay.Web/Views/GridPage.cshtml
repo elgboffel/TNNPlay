@@ -1,90 +1,143 @@
 ﻿@inherits UmbracoViewPage<IGenericPage>
-@using Skalk.Web.Helpers
+@using BaseSite.Web.Helpers
 @using Umbraco.Web.PropertyValueConverters.Leaflet;
 
 @{
     Layout = "_Layout.cshtml";
     var page = Model;
-    var hasGridLayout = Model.HasProperty("layout") && Model.Layout.CheckIfGridExist();
+    var hasGridLayout = Model.Layout.CheckIfGridExist();
 }
 
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            @Html.CachedPartial(
-                "Components/_Breadcrumb",
-                new BreadcrumbViewModel
-                {
-                    CurrentPage = page,
-                    ShowCurrentPage = true,
-                    ClassModifier = "margin-bt45",
-                }, 3600, cacheByPage: true)
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-md-6 col-md-offset-3">
-            @Html.CachedPartial(
-                "Components/_PageHeader",
-                new PageHeaderViewModel
-                {
-                    Heading = page.Heading
-                }, 3600, cacheByPage: true)
-        </div>
-    </div>
-    <div class="row margin-bt40">
-        <div class="col-xs-12 col-md-10 col-md-offset-1">
-            @Html.CachedPartial(
-                    "Components/_Media",
-                    new MediaViewModel
-                    {
-                        Image = page.HeroImage,
-                        GridSettings = new GridSettings
-                        {
-                            GridMd = 10
-                        },
-                        MediaHeights = new MediaHeights
-                        {
-                            HeightMd = 660,
-                            HeightMs = 350,
-                            HeightXs = 200
-                        }
-                    }, 3600, cacheByPage: true)
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-md-6 col-md-offset-3">
-            @Html.CachedPartial(
-                "Components/_PageHeader",
-                new PageHeaderViewModel
-                {
-                    Date = page.Date,
-                    Lead = page.Lead,
-                    Author = page.Author,
-                }, 3600, cacheByPage: true)
+        <div class="row">
+            <div class="col-xs-12">
+                @Html.CachedPartial(
+                     "Components/_Hero",
+                     new HeroViewModel
+                     {
+                         Image = page.HeroImage,
+                         Trumpet = page.Trumpet,
+                         Heading = page.Heading,
+                         GridSettings = new GridSettings
+                         {
+                             GridMd = 12,
+                            GridTotalPadding = -20
+                         },
+                         MediaHeights = new MediaHeights
+                         {
+                             HeightSm = 715,
+                             HeightXs = 400
+                         }
+                     }, 3600, cacheByPage: true)
             </div>
         </div>
-    </div>
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-md-1">
-            @{Html.RenderPartial(
-                "Components/_SoMeShare",
-                new SoMeShareViewModel
-                {
-                    CurrentPage = page,
-                    EnableFacebook = true,
-                    EnableEmail = true,
-                    EnableCopyUrl = true
-                }); }
+</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                @Html.CachedPartial(
+                  "Components/_Breadcrumb",
+                  new BreadcrumbViewModel
+                  {
+                      CurrentPage = page,
+                      ShowCurrentPage = true,
+                      ClassModifier = "margin-bt45",
+                  }, 3600, cacheByPage: true)
+            </div>
         </div>
-        <div class="col-xs-12 col-md-6 col-md-offset-2">
-            @if (hasGridLayout)
+
+    <div class="grid-layout">
+        <div class="row">
+            <div class="col-xs-12 col-md-8 col-md-offset-2">
+                @Html.CachedPartial(
+                  "Components/_PageHeader",
+                  new PageHeaderViewModel
+                  {
+                      Date = page.Date,
+                      Lead = page.Lead,
+                      Author = page.Author,
+                  }, 3600, cacheByPage: true)
+                </div>
+            </div>
+        @{Html.RenderPartial(
+            "Components/_SoMeShare",
+            new SoMeShareViewModel
             {
-                @Html.GetGridHtml(page, "layout", "_GridPage")
-            }
-            @{ Html.RenderPartial("Components/_TagList", new TagListViewModel(Model.TagPicker)); }
-        </div>
+                CurrentPage = page,
+                EnableFacebook = true,
+                EnableEmail = true,
+                EnableCopyUrl = true
+            }); }
+
+        @*
+            Check if grid layout has values, is done with a count, 
+            default it has to objects in a jToken. So above it has values.
+            If not, render Imports
+        *@
+        @if (hasGridLayout)
+        {
+            @Html.GetGridHtml(page, "layout", "_GridPage")
+        }
+        
+        @{ Html.RenderPartial("Components/_TagList", new TagListViewModel(Model.TagPicker)); }
+
+        @if (page.HasProperty("mapPicker") && page.HasValue("mapPicker"))
+        {
+            @renderMapList()
+        } else if (page.HasProperty("mapLocation") && page.HasValue("mapLocation"))
+        {
+            @renderMap()
+        }
     </div>
 </div>
 
-@*@{ Html.RenderPartial("Shared/_RelatedPages", Model); }*@
+@{ Html.RenderPartial("Shared/_RelatedPages", Model); }
+
+@helper renderMapList()
+{
+
+var mapPicker = Model.GetPropertyValue("mapPicker", Enumerable.Empty<IPublishedContent>());
+
+var gridPages = mapPicker
+    .Where(x => x.DocumentTypeAlias.Equals("gridPage"));
+
+var travelGroup = mapPicker
+    .Where(x => x.DocumentTypeAlias.Equals("travelGroup"))
+    .Select(x => x.GetPropertyValue("travelGroupPicker", Enumerable.Empty<IPublishedContent>()))
+    .SelectMany(x => x);
+
+var mapList = gridPages.Concat(travelGroup);
+
+    <aside class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-2 line-base">
+            @{ Html.RenderPartial(
+                "Components/_Map",
+                new MapViewModel
+                {
+                    Heading = Model.GetPropertyValue<string>("mapHeading", ""),
+                    MapLocationList = mapList,
+                    CanvasHeight = 390,
+                    Zoom = Model.GetPropertyValue<int>("zoom")
+
+                }); }
+        </div>
+    </aside>
+}
+
+@helper renderMap()
+{
+    <aside class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-2 line-base">
+            @{ Html.RenderPartial(
+          "Components/_Map",
+          new MapViewModel
+          {
+              Heading = Model.GetPropertyValue<string>("mapHeading", ""),
+              MapLocation = Model.GetPropertyValue<LeafletMapModel>("mapLocation"),
+              CanvasHeight = 390,
+              Zoom = Model.GetPropertyValue<int>("zoom")
+
+          }); }
+        </div>
+    </aside>
+}

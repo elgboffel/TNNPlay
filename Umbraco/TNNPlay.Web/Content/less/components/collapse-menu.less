@@ -1,0 +1,189 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+@link-padding: 13px @btnSize 13px 20px;
+
+/*
+* Expand
+*/
+@text-color-expand: @brand-primary;
+@bg-expand: @dark-brown;
+
+/*
+* Slide
+*/
+@bg-slide: #fff;
+@text-color-slide: @text-color;
+@border-bottom-slide: 1px solid lighten(@text-color, 70%);
+/*
+* Hovers
+*/
+@hover-bg-color: @dark-brown;
+@hover-text-color: @brand-primary;
+
+/*
+* Icons
+*/
+@leftIcon: '>';
+
+/*
+* Btn
+*/
+@btnSize: 45px;
+
+.cm {
+    overflow: hidden;
+
+    &__section {
+        overflow: hidden;
+        width: 100%;
+        will-change: min-height;
+        transition: min-height 400ms ease;
+    }
+
+    &__children {
+        position: absolute;
+        display: none;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+
+        li:first-child {
+            box-shadow: inset 0px 12px 15px -10px rgba(0,0,0,0.5);
+        }
+
+        &--ancestor-or-current {
+            left: 0 !important;
+            z-index: 1;
+        }
+
+        &--expand {
+            color: @text-color-expand;
+            background-color: @bg-expand;
+        }
+
+        &--slide {
+            background-color: @bg-slide;
+            color: @text-color-slide;
+            will-change: left;
+            transition: left 400ms ease;
+
+            > li {
+                border-bottom: @border-bottom-slide;
+            }
+        }
+    }
+
+    &__link {
+        position: relative;
+        line-height: 1.2;
+
+        > a {
+            padding: @link-padding;
+            width: 100%;
+        }
+
+        &--back {
+            padding-left: @btnSize;
+            padding-right: 0;
+        }
+    }
+
+    &__btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: transparent;
+        border: none;
+        width: @btnSize;
+        height: 100%;
+        z-index: 1;
+
+
+        &:before {
+            content: @leftIcon;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            will-change: transform;
+            transition: transform 200ms ease;
+        }
+
+        &--back {
+            left: 0;
+            right: auto;
+            transform: rotate(180deg);
+        }
+
+        &--open {
+            &:before {
+                transform: translate(-50%, -50%) rotate(90deg);
+            }
+        }
+    }
+}
+
+//Overwrite class to track ancestor
+.cm--open {
+    .cm__section {
+        &--ancestor {
+            ul {
+                display: block;
+            }
+        }
+    }
+}
+
+/*
+* Accordion level
+*/
+.cm__children--level1 {
+    position: relative;
+    display: block;
+
+    > .cm__section {
+        min-height: @btnSize;
+
+        > .cm__link {
+            background-color: @bg-expand;
+            z-index: 2;
+        }
+    }
+}
+
+/*
+* First level of childrens
+*/
+.cm__children--level2 {
+    overflow: hidden;
+}
+
+/*
+* Generate remaining children levels
+*/
+
+.generate-children-levels(20);
+
+.generate-children-levels(@n, @i: 3) when (@i =< @n) {
+    .cm__children--level@{i} {
+        left: ((@i - 2) * 100%);
+        top: 0;
+    }
+
+    .generate-children-levels(@n, (@i + 1));
+}
+
+.cm--alt-color {
+    .cm {
+        &__children {
+            &--expand {
+                color: rgba(245, 180, 0, 0.60);
+            }
+        }
+    }
+}

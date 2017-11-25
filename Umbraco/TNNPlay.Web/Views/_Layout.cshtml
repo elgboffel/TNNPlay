@@ -7,9 +7,8 @@
         .RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js", 1, 1)
         .RequiresJs("~/Content/components/picturefill/dist/picturefill.min.js", 1, 1)
         .RequiresJs("~/Content/components/animejs//anime.min.js", 1, 1)
-        //.RequiresJs("~/scripts/build/helpers/utility-helpers.js", 1, 1)
         .RequiresCss("~/content/css/shell.css", 1, 1)
-        .RequiresCss("~/content/css/main.css", 2, 1, new { @defer = string.Empty });
+        .RequiresCss("~/content/css/main.css", 1, 2, new { @defer = string.Empty });
 
     var website = Model.Site() as Website;
 }
@@ -35,7 +34,7 @@
     @Html.RenderCssHere()
 </head>
 <body>
-   @Html.CachedPartial("_NavbarHeader", Model, 3600, cacheByPage: true)
+   @*@Html.CachedPartial("_NavbarHeader", Model, 3600, cacheByPage: true)*@
 
    @*@{ Html.RenderPartial("_MobileHeader"); }*@
 
@@ -43,7 +42,7 @@
         @RenderBody()
     </main>
 
-   @Html.CachedPartial("_Footer", Model, 3600)
+   @*@Html.CachedPartial("_Footer", Model, 3600)*@
 
    @*@{ Html.RenderPartial("Components/_CookieConsent", Model); }*@
 

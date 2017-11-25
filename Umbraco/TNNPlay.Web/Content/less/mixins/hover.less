@@ -1,0 +1,45 @@
+﻿.line-bottom-hover(@color: #fff, @hover-color, @size: 2px) {
+    display:inline;
+    transition: box-shadow 200ms ease;
+    box-shadow: inset 0 -@size 0 @color;
+
+    &:hover, &:focus {
+        box-shadow: inset 0 -@size 0 @hover-color;
+    }
+}
+
+.line-bottom-hover--hidden(@color: #fff, @size: 2px) {
+    display: inline;
+    transition: box-shadow 200ms ease;
+    box-shadow: inset 0 -@size 0 transparent;
+
+    &:hover, &:focus {
+        box-shadow: inset 0 -@size 0 @color;
+    }
+}
+
+.box-hover(@color: @text-color, @hover-color, @size: 2px) {
+    display: inline;
+    transition: box-shadow 200ms ease, background-color 350ms ease-out, color 200ms ease;
+    box-shadow: inset 0 -@size 0 @color;
+    background-color: transparent;
+
+    &:hover, &:focus {
+        box-shadow: inset 0 -@size 0 transparent;
+        background-color: @hover-color;
+        color: #fff;
+
+    }
+}
+
+.glow-hover(@color: @input-border-focus) {
+    @color-rgba: rgba(red(@color), green(@color), blue(@color), .6);
+
+    will-change: border-color, box-shadow;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+    &:hover, &:focus {
+        border-color: @color;
+        outline: 0;
+        .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px @{color-rgba}");
+    }
+}

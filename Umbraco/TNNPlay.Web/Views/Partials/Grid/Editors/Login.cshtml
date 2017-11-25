@@ -1,0 +1,78 @@
+﻿@inherits UmbracoViewPage<LeBlenderModel>
+@using Lecoati.LeBlender.Extension.Models
+@using System.Web.Mvc.Html
+@using ClientDependency.Core.Mvc
+@using Umbraco.Web
+@using Umbraco.Web.Models
+@using Umbraco.Web.Controllers
+
+@{
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+    Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.min.js");
+    Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.unobtrusive.min.js");
+
+    //int redirectId = Model.MacroParameters.GetValue("redirect", 0);
+}
+
+@foreach (var item in Model.Items)
+{
+    @renderItem(item)
+}
+
+@helper renderItem(LeBlenderValue item) {
+    var loginStatusModel = Members.GetCurrentLoginStatus();
+
+    if (loginStatusModel.IsLoggedIn)
+    {
+        var logoutModel = new PostRedirectModel();
+
+        <p>@String.Format(Umbraco.GetDictionaryValue("Logged on as", "You are currently logged in as {0}"), @loginStatusModel.Name)</p>
+
+        using (Html.BeginUmbracoForm<UmbLoginStatusController>("HandleLogout"))
+        {
+            <button class="btn btn--default">@Umbraco.GetDictionaryValue("Logout", "Log ud")</button>
+
+            <input type="hidden" name="logoutModel.RedirectUrl" value="" />
+        }
+    }
+    else
+    {
+        var loginModel = new LoginModel();
+        string redirectUrl = Umbraco.GetQueryString("redirectUrl", string.Empty);
+        if (!string.IsNullOrEmpty(redirectUrl))
+        {
+            loginModel.RedirectUrl = redirectUrl;
+        }
+        else
+        {
+            // Redirect to the page we where trying to access
+            loginModel.RedirectUrl = Request.Url.AbsolutePath;
+        }
+        //if (redirectId > 0)
+        //{
+        //    loginModel.RedirectUrl = Umbraco.TypedContent(redirectId).Url;
+        //}
+
+        using (Html.BeginUmbracoForm<UmbLoginController>("HandleLogin"))
+        {
+            @Html.ValidationSummary("loginModel", true, "Forkert brugernavn eller adgangskode.")
+
+            <div class="form-group">
+                <label for="@Html.IdFor(m => loginModel.Username)" class="control-label">Brugernavn</label>
+                @Html.TextBoxFor(m => loginModel.Username, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => loginModel.Username)
+            </div>
+
+            <div class="form-group">
+                <label for="@Html.IdFor(m => loginModel.Password)" class="control-label">Adgangskode</label>
+                @Html.PasswordFor(m => loginModel.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => loginModel.Password)
+            </div>
+
+            @Html.HiddenFor(m=>loginModel.RedirectUrl)
+
+            <button class="btn btn--default">Log på</button>
+        }
+    }
+}

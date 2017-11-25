@@ -1,0 +1,28 @@
+﻿@inherits UmbracoViewPage<LeBlenderModel>
+@using Lecoati.LeBlender.Extension.Models
+
+@foreach (var item in Model.Items)
+{
+    @renderCarousel(item)
+}
+
+@helper renderCarousel(LeBlenderValue content)
+{
+    var carousel = content.GetValue<IEnumerable<IPublishedContent>>("carousel");
+
+        @Html.Partial(
+        "Components/_CarouselWithText",
+        new CarouselViewModel
+        {
+            Carousel = carousel,
+            GridSettings = new GridSettings
+            {
+                GridMd = 9
+            },
+            MediaHeights = new MediaHeights
+            {
+                HeightSm = 590,
+                HeightXs = 450
+            }
+        })
+}

@@ -1,0 +1,62 @@
+﻿@import "../../components/bootstrap/less/breadcrumbs.less";
+@import (reference) "variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: @color-stone;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+    a {
+        line-height: 1.5;
+        .line-bottom-hover--hidden(@brand-primary);
+    }
+
+    > li {
+
+        &:first-child {
+            width: 17px;
+            height: 17px;
+            margin-right: 5px;
+
+            path {
+                transition: fill 150ms ease-in-out;
+            }
+
+            &:hover {
+                path {
+                    fill: @brand-primary !important;
+                }
+            }
+        }
+
+        &:last-child {
+            &:after {
+                content: none !important;
+            }
+        }
+
+        + li:after {
+            content: "|";
+            padding: 0 2px 0 0px;
+            color: inherit;
+            font-weight: 700;
+        }
+
+
+        &:before {
+            content: none !important;
+        }
+    }
+
+    &__active {
+        font-weight: 700;
+    }
+}

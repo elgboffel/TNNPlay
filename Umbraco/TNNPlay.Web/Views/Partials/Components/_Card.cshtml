@@ -1,0 +1,66 @@
+﻿@inherits UmbracoViewPage<CardViewModel>
+
+<div class="card @(Model.ClassModifier)">
+    @if(!string.IsNullOrEmpty(Model.Url))
+    {
+        @:<a href="@Model.Url">
+    }
+
+    @if (Model.Image != null || Model.EnableImageFallback || Model.MediaType != RenderMediaTypes.Image)
+    {
+        <div class="card__media">
+            @Html.Partial(
+           "Components/_Media",
+           new MediaViewModel
+           {
+               Image = Model.Image,
+               EmbedVideo = Model.EmbedVideo,
+               EmbedVideoUrl = Model.EmbedVideoUrl,
+               TypedWidths = Model.TypedWidths,
+               GridSettings = Model.GridSettings,
+               MediaHeights = Model.MediaHeights,
+               EnableImageFallback = Model.EnableImageFallback,
+               MediaType = Model.MediaType
+           })
+        </div>
+    }
+
+    @if(!string.IsNullOrEmpty(Model.Heading))
+    {
+        <div class="card__content">
+            @if (!string.IsNullOrEmpty(Model.Title))
+            {
+                <div class="card__title">@Html.Raw(Model.Title)</div>
+            }
+            <div class="card__inner">
+
+                @if (!string.IsNullOrEmpty(Model.Date) && DateTime.Parse(Model.Date).Year > 1)
+                {
+                    <time class="card__date">@Model.Date</time>
+                }
+                @if (!string.IsNullOrEmpty(Model.Trumpet))
+                {
+                    <small class="card__trumpet">@Model.Trumpet</small>
+                }
+                @if(!string.IsNullOrEmpty(Model.Heading))
+                {
+                    <h4 class="card__heading">@Html.Raw(Model.Heading)</h4>
+                }
+                @if (!string.IsNullOrEmpty(Model.Lead))
+                {
+                    <p class="card__lead">@Model.Lead</p>
+                }
+                @if (Model.Tags != null)
+                {
+                    <div class="card__tag">@Model.Tags</div>
+                }
+                <div class="card__spacer"></div>
+            </div>
+        </div>
+    }
+
+    @if(!string.IsNullOrEmpty(Model.Url))
+    {
+        @:</a>
+    }
+</div>

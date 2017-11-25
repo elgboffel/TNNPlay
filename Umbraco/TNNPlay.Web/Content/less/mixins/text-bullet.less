@@ -1,0 +1,24 @@
+﻿.text-bullet() {
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -20px;
+        transform: translateY(-50%);
+        height: 4px;
+        width: 4px;
+        background-color: @brand-primary;
+        opacity: 0;
+        visibility: hidden;
+        transition: left 250ms linear, opacity 300ms ease;
+    }
+}
+
+.text-bullet--hover() {
+    &:before {
+        left: 0;
+        opacity: 1;
+        visibility: visible;
+    }
+}

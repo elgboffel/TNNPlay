@@ -1,0 +1,27 @@
+﻿@inherits UmbracoViewPage<PageHeaderViewModel>
+@using Umbraco.Web.Mvc
+
+
+<div class="page-header @Model.ClassModifier">
+    @if (!string.IsNullOrEmpty(Model.Trumpet))
+    {
+        <div class="page-header__trumpet">@Model.Trumpet</div>
+    }
+    @if (!string.IsNullOrEmpty(Model.Heading))
+    {
+        <h1 class="page-header__heading">@Html.Raw(Model.Heading)</h1>
+    }
+    @if (Model.Date != null && Model.Date.Value.Year > 1)
+    {
+        <time class="page-header__date">@Model.Date.Value.ToString("dd. MMMM yyyy")</time>
+    }
+    @if (!string.IsNullOrEmpty(Model.Lead))
+    {
+        <p class="page-header__lead">@Model.Lead</p>
+    }
+    @if (!string.IsNullOrEmpty(Model.Author))
+    {
+        <div class="page-header__author">Af: @Html.Raw(Model.Author)</div>
+    }
+    <div class="page-header__spacer"></div>
+</div>

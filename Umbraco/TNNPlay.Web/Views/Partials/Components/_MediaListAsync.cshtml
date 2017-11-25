@@ -1,0 +1,62 @@
+﻿@inherits UmbracoViewPage<MediaListViewModel>
+@{
+    Html.RequiresJs("~/Scripts/dist/media-list.async.js", new { @defer = string.Empty });
+}
+@{
+
+    if (Model.MediaList.Any())
+    {
+        using (Html.BeginUmbracoForm(
+            "GetPage",
+            "MediaList",
+            null,
+            new { @class = "media-list-form" },
+            FormMethod.Get))
+        {
+            { Html.RenderPartial(
+                "Components/_MediaList",
+                Model); }
+
+            if (Model.Page < Model.TotalPages)
+            {
+
+                @Html.HiddenFor(m => Model.ItemsPerPage)
+                @Html.HiddenFor(m => Model.Page)
+                @Html.HiddenFor(m => Model.TotalPages)
+                @Html.HiddenFor(m => Model.SearchType)
+                @Html.HiddenFor(m => Model.ViewRenderMode)
+                @Html.HiddenFor(m => Model.CardClassModifier)
+                @Html.HiddenFor(m => Model.TypedWidth)
+                @Html.HiddenFor(m => Model.GridSettings.GridXxl)
+                @Html.HiddenFor(m => Model.GridSettings.GridXl)
+                @Html.HiddenFor(m => Model.GridSettings.GridLg)
+                @Html.HiddenFor(m => Model.GridSettings.GridMd)
+                @Html.HiddenFor(m => Model.GridSettings.GridSm)
+                @Html.HiddenFor(m => Model.GridSettings.GridMs)
+                @Html.HiddenFor(m => Model.GridSettings.GridXs)
+                @Html.HiddenFor(m => Model.GridSettings.GridTotalPadding)
+                @Html.HiddenFor(m => Model.MediaHeights.HeightXl)
+                @Html.HiddenFor(m => Model.MediaHeights.HeightLg)
+                @Html.HiddenFor(m => Model.MediaHeights.HeightMd)
+                @Html.HiddenFor(m => Model.MediaHeights.HeightSm)
+                @Html.HiddenFor(m => Model.MediaHeights.HeightMs)
+                @Html.HiddenFor(m => Model.MediaHeights.HeightXs)
+                @Html.HiddenFor(m => Model.ShowBreadcrumb)
+                @Html.HiddenFor(m => Model.ShowImage)
+                @Html.HiddenFor(m => Model.ShowLead)
+                @Html.HiddenFor(m => Model.ShowTitle)
+                @Html.HiddenFor(m => Model.MediaType)
+                @Html.HiddenFor(m => Model.InitialLoad)
+
+
+
+                <div class="flex-box">
+                    <button type="submit" class="btn btn--default btn--center @Umbraco.If(Model.CardClassModifier.Contains("card--list"), "margin-t45")">
+                        @Umbraco.GetDictionaryValue("Show more", "Hent flere")
+                    </button>
+                </div>
+
+            }
+        }
+    }
+}

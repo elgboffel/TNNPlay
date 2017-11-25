@@ -1,0 +1,31 @@
+﻿@inherits UmbracoViewPage<InfoBoxViewModel>
+@using BaseSite.Web.Helpers
+
+@{ 
+
+}
+
+<div class="factbox factbox--position-@(Model.Position.GetEnumDisplayName())">
+    @if (Model.Map != null)
+    {
+        <div class="factbox__map">
+            @{ Html.RenderPartial(
+                "Components/_Map",
+                new MapViewModel
+                {
+                    MapLocation = Model.Map,
+                    CanvasHeight = 165
+
+                }); }
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(Model.Heading))
+    {
+        <h5 class="factbox__heading">@Html.Raw(Model.Heading)</h5>
+    }
+    @if (Model.Content != null)
+    {
+        @Html.Raw(Model.Content)
+    }
+    <div class="factbox__spacer"></div>
+</div>

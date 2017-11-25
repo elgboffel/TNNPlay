@@ -1,0 +1,40 @@
+﻿
+@inherits UmbracoViewPage<CarouselCardsViewModel>
+
+@{
+    Html.RequiresCss("~/Content/components/owl-carousel2/dist/assets/owl.carousel.css")
+            .RequiresCss("~/Content/components/animate-css/animate.css")
+            .RequiresJs("~/Content/components/owl-carousel2/dist/owl.carousel.js", 1, 2, new { @defer = string.Empty })
+            .RequiresJs("~/scripts/build/carousel.js", 1, 2, new { @defer = string.Empty });
+
+    var list = Model.List;
+}
+@if (list != null && list.Any())
+{
+
+    <div class="owl-carousel @(Model.CarouselClassModifier)"
+         data-options='@Model.Options'>
+        @foreach (var item in list)
+        {
+            @renderSlide(item)
+        }
+    </div>
+}
+@helper renderSlide(IPublishedContent item)
+{
+    <div class="owl-carousel__item">
+            @{ Html.RenderPartial(
+                    "Components/_Card",
+                    new CardViewModel(item, showLead: Model.ShowLead, showTitle: Model.ShowTitle, showInfo: Model.ShowInfo)
+                    {
+                        ClassModifier = Model.CardClassModifier,
+                        TypedWidth = Model.TypedWidth,
+                        GridSettings = Model.GridSettings,
+                        MediaHeights = Model.MediaHeights,
+                        EnableImageFallback = Model.EnableImageFallback,
+                        MediaType = Model.MediaType
+
+                    }); }
+        <div class="owl-carousel__spacer"></div>
+    </div>
+}

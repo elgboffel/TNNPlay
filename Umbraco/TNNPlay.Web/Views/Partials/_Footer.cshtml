@@ -1,0 +1,94 @@
+﻿@inherits UmbracoViewPage
+@using Our.Umbraco.LinksPicker.Models
+
+@{
+    var website = Model.AncestorOrSelf<Website>();
+
+    var footer = website.Layout;
+}
+
+@{
+    var website = Model.AncestorOrSelf<Culture>() != null ?
+        Model.AncestorOrSelf<Culture>() as IGenericWebsite :
+        Model.AncestorOrSelf<Website>() as IGenericWebsite;
+
+    var footer = website.FooterLayout;
+}
+
+@if (footer != null && footer.Any())
+{
+    <footer class="footer">
+        <div class="container">
+            <div class="row flex-box">
+                @for(var i = 0; i < footer.Count(); i++)
+                {
+                    var element = footer.ElementAt(i);
+                    switch (element.DocumentTypeAlias)
+                    {
+                        case "multipleLinks":
+                            @renderLinks(element, i) break;
+
+                        default:
+                            @renderRte(element, i) break;
+                    }
+                }
+                <div class="col-xs-12 col-ms-6 col-md-4">
+                    @Html.Raw(website.Newsletter)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 flex-center">
+                    @Html.CachedPartial(
+                        "Components/_SoMe",
+                        new SoMeViewModel
+                        {
+                            FacebookUrl = website.FacebookUrl,
+                            InstagramUrl = website.InstagramUrl,
+                            YouTubeUrl = website.YouTubeUrl,
+                        },
+                        3600
+                    )
+                </div>
+            </div>
+        </div>
+    </footer>
+}
+
+@helper renderLinks(IPublishedContent multipleLinks, int index)
+{
+    var links = multipleLinks.GetPropertyValue("links", Enumerable.Empty<LinksPickerItem>());
+
+    <div class="col-xs-12 col-ms-6 col-md-4">
+        @if (multipleLinks.HasValue("heading"))
+        {
+            <h5 class="margin-bt10">@Html.Raw(multipleLinks.GetPropertyValue<string>("heading"))</h5>
+        }
+        @if(links.Any())
+        {
+            <ul class="link-list">
+                @foreach(var link in links)
+                {
+                    <li><a href="@link.Url" target="@link.Target">@link.Name</a></li>
+                }
+            </ul>
+        }
+    </div>
+}
+
+@helper renderRte(IPublishedContent rte, int index)
+{
+    <div class="col-xs-12 col-ms-6 col-md-4">
+        @if (rte.HasValue("heading"))
+        {
+            <h5>@Html.Raw(rte.GetPropertyValue<string>("heading"))</h5>
+        }
+        @if (rte.HasValue("rte"))
+        {
+            <div class="footer__rte">
+                @Html.Raw(rte.GetPropertyValue<IHtmlString>("rte", null))
+            </div>
+        }
+    </div>
+}
+
+

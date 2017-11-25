@@ -1,0 +1,109 @@
+﻿@inherits UmbracoViewPage<MediaListViewModel>
+
+@{
+    var list = Model.MediaList;
+}
+
+@if (list != null && list.Any())
+{
+
+    switch (Model.ViewRenderMode)
+    {
+        case ViewRenderMode.EnableBootstrap:
+            @renderListWithBootstrap(list); break;
+
+        default:
+            @renderList(list); break;
+    }
+}
+
+@helper renderList(IEnumerable<IPublishedContent> list)
+{
+    <div class="media-list @(Model.MedialistClassModifier)">
+        @for (int i = 0; i < list.Count(); i++)
+        {
+            var element = list.ElementAt(i);
+            @renderCard(element, i)
+        }
+    </div>
+}
+
+@helper renderListWithBootstrap(IEnumerable<IPublishedContent> list)
+{
+    var hasIndexModel = Model.MediaListIndex != null;
+    var indexGrid = string.Empty;
+    if (hasIndexModel && Model.MediaListIndex.GridSettings != null)
+    {
+        Model.MediaListIndex.GridSettings = new GridSettings(Model.MediaListIndex.GridSettings);
+        indexGrid = Model.MediaListIndex.GridSettings.ConvertGridSettingsToString();
+    }
+
+    if (hasIndexModel && Model.MediaListIndex.MediaHeights != null)
+    {
+        Model.MediaListIndex.MediaHeights = new MediaHeights(Model.MediaListIndex.MediaHeights);
+    }
+
+    if (hasIndexModel && Model.MediaListIndex.TypedWidths != null)
+    {
+        Model.MediaListIndex.TypedWidths = new TypedWidths(Model.MediaListIndex.TypedWidths);
+    }
+
+    Model.GridSettings = new GridSettings(Model.GridSettings);
+    var defaultGrid = Model.GridSettings.ConvertGridSettingsToString();
+
+    var listCount = list.Count();
+
+    <div class="row flex-box media-list @(Model.MedialistClassModifier)">
+        @for (var index = 0; index < listCount; index++)
+        {
+            var element = list.ElementAt(index);
+            var setNavPoint = Model.ItemsPerPage;
+            var isIndexGrid = !string.IsNullOrEmpty(indexGrid) && Model.MediaListIndex.Indexes.Contains(index);
+            
+            <div @Umbraco.If(index % Model.ItemsPerPage == 0, string.Format("id=\"nav-point{0}\"", index / Model.ItemsPerPage + 1))
+                 class="@(isIndexGrid ? indexGrid : defaultGrid)">
+                @renderCard(element, index, hasIndexModel)
+            </div>
+        }
+    </div>
+}
+
+@helper renderCard(IPublishedContent item, int index, bool hasIndexModel = false)
+{ 
+    var hasIndexSettings = hasIndexModel &&
+                   Model.MediaListIndex.Indexes.Contains(index);
+
+    var gridSettings = hasIndexSettings && Model.MediaListIndex.GridSettings != null ?
+                       Model.MediaListIndex.GridSettings :
+                       Model.GridSettings;
+
+    var mediaHeights = hasIndexSettings && Model.MediaListIndex.MediaHeights != null ?
+                       Model.MediaListIndex.MediaHeights :
+                       Model.MediaHeights;
+
+    var typedWidths = hasIndexSettings && Model.MediaListIndex.TypedWidths != null ?
+                       Model.MediaListIndex.TypedWidths :
+                       Model.TypedWidths;
+
+    var cardClassModifier = hasIndexSettings && !string.IsNullOrEmpty(Model.MediaListIndex.CardClassModifier) ?
+                            Model.MediaListIndex.CardClassModifier : 
+                            Model.CardClassModifier;
+
+    { Html.RenderPartial(
+    "Components/_Card",
+    new CardViewModel(
+        item,
+        showLead: Model.MediaListSettings.ShowLead,
+        showTitle: Model.MediaListSettings.ShowTitle,
+        showImage: Model.MediaListSettings.ShowImage,
+        showTrumpet: Model.MediaListSettings.ShowTrumpet)
+        {
+            TypedWidths = typedWidths,
+            GridSettings = gridSettings,
+            MediaHeights = mediaHeights,
+            ClassModifier = cardClassModifier,
+            EnableImageFallback = Model.EnableImageFallback,
+            MediaType = Model.MediaType
+        });
+    }
+}

@@ -1,0 +1,31 @@
+﻿@inherits UmbracoViewPage
+
+@{
+    var website = Model.AncestorOrSelf<Culture>() != null ?
+    Model.AncestorOrSelf<Culture>() as IGenericWebsite :
+    Model.AncestorOrSelf<Website>() as IGenericWebsite;
+
+    var navbar = website.Children()
+        .Where(c => c.IsVisible());
+}
+
+<nav class="navbar" role="navigation">
+    <ul>
+        @foreach (var item in navbar)
+        {
+            @renderNavbar(item)
+        }
+    </ul>
+</nav>
+
+
+@helper renderNavbar(IPublishedContent item)
+{
+
+    bool path = item.IsAncestorOrSelf(Model);
+
+    <li class="navbar__link @Umbraco.If(path, "navbar__link--active")">
+        <a href="@item.Url">@item.Name</a>
+    </li>
+}
+

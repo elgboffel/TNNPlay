@@ -1,0 +1,79 @@
+﻿@inherits UmbracoViewPage<SidebarViewModel>
+@using Datagraf.Web.Models.PartialModels
+@using Datagraf.Web.Models.ComponentModels
+@using Our.Umbraco.LinksPicker.Models
+
+@if (Model.Layout != null)
+{
+    <aside class="sidebar">
+        @if(!string.IsNullOrEmpty(Model.Headline))
+        {
+            <h3>@Model.Headline</h3>
+        }
+        @foreach (var item in Model.Layout)
+        {
+            switch (item.DocumentTypeAlias)
+            {
+                case "nestedEmployee":
+                    @renderEmployee(item) break;
+
+                case "multipleLinks":
+                    @renderLinks(item) break;
+
+                default:
+                    @renderRichText(item) break;
+            }
+        }
+    </aside>
+}
+
+@helper renderEmployee(IPublishedContent emp)
+{
+    var employee = emp.GetPropertyValue("contentPicker", Enumerable.Empty<IPublishedContent>()).FirstOrDefault();
+    <h4 class="text-center">@Html.Raw(emp.GetPropertyValue<string>("headline", ""))</h4>
+    @Html.CachedPartial(
+    "Components/_ContactCard",
+    new ContactCardViewModel
+    {
+        Image = employee.GetPropertyValue("image", Enumerable.Empty<IPublishedContent>()).FirstOrDefault(),
+            TypedWidth = 250,
+            ImageHeight = 250,
+            Name = employee.Name,
+            Title = employee.GetPropertyValue<string>("title", ""),
+            Phone = employee.GetPropertyValue<string>("phone", ""),
+            Mobile = employee.GetPropertyValue<string>("mobile", ""),
+            Mail = employee.GetPropertyValue<string>("mail", ""),
+        }, 3600, cacheByPage: true)
+}
+
+
+@helper renderRichText(IPublishedContent rte)
+{
+    if(rte.HasValue("content"))
+    {
+        <div class="sidebar-rte">
+            @if(rte.HasValue("headline"))
+            {
+                <h3>@Html.Raw(rte.GetPropertyValue<string>("headline"))</h3>
+            }
+            @Html.Raw(rte.GetPropertyValue<IHtmlString>("content", null))
+        </div>
+    }
+}
+
+@helper renderLinks(IPublishedContent multipleLinks)
+{
+    var links = multipleLinks.GetPropertyValue("links", Enumerable.Empty<LinksPickerItem>());
+
+    if(links.Any())
+    {
+        <div class="sidebar-link-list">
+            <ul>
+                @foreach(var link in links)
+                {
+                    <li><a href="@link.Url" target="@link.Target">@link.Name</a></li>
+                }
+            </ul>
+        </div>
+    }
+}

@@ -1,0 +1,87 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.navbar-header {
+    padding-top: 7px;
+    border-bottom: solid 2px @brand-primary;
+
+    &__logo {
+        width: 210px;
+        height: 49px;
+        margin-bottom: 15px;
+    }
+
+    &__menu {
+        display: flex;
+        justify-content: flex-end;
+        font-size: 16px;
+        color: @text-color;
+        line-height: 1.5;
+        margin-top: 12px;
+    }
+
+    &__list {
+        margin-bottom: 0;
+        padding: 0;
+        list-style: none;
+
+        > li {
+            display: inline-block;
+
+            + li {
+                margin-left: 30px;
+            }
+
+            a {
+                .line-bottom-hover--hidden(@brand-primary);
+            }
+        }
+    }
+
+    &__login {
+        line-height: 0.9;
+        margin-left: 30px;
+    }
+
+    &__login-link {
+        display: inline-block;
+        color: @color-stone;
+        transition: color 300ms ease;
+        line-height: 1.8;
+        .line-bottom-hover--hidden(@brand-primary);
+
+        > span {
+            display: inline-block;
+            width: 14px;
+            height: 17px;
+
+            path {
+                transition: fill 300ms ease;
+            }
+        }
+
+
+        &:hover {
+            path {
+                fill: @brand-primary !important;
+            }
+        }
+    }
+
+    &__content {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    &__navbar {
+        .fluid-property(margin-left, 30, 110);
+    }
+
+    &__search {
+        margin-left: auto;
+        margin-bottom: 15px;
+    }
+}

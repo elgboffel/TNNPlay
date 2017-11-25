@@ -1,0 +1,35 @@
+﻿@inherits UmbracoViewPage<LeBlenderModel>
+@using Lecoati.LeBlender.Extension.Models
+
+@foreach (var item in Model.Items)
+{
+    @renderContent(item)
+}
+
+@helper renderContent(LeBlenderValue content)
+{
+    var contentPicker = content.GetValue<IEnumerable<IPublishedContent>>("contentPicker");
+    var headline = content.GetValue<string>("headline");
+    if (!string.IsNullOrEmpty(headline))
+    {
+        <h4 class="text-center">@Html.Raw(headline)</h4>
+    }
+    if (contentPicker.Any())
+    {
+        var employee = contentPicker.FirstOrDefault();
+        @Html.CachedPartial(
+        "Components/_ContactCard",
+        new ContactCardViewModel
+        {
+            Image = employee.GetPropertyValue("image", Enumerable.Empty<IPublishedContent>()).FirstOrDefault(),
+            TypedWidth = 250,
+            ImageHeight = 250,
+            Name = employee.Name,
+            Title = employee.GetPropertyValue<string>("title", ""),
+            Department = employee.GetPropertyValue<string>("department", ""),
+            Phone = employee.GetPropertyValue<string>("phone", ""),
+            Mobile = employee.GetPropertyValue<string>("mobile", ""),
+            Mail = employee.GetPropertyValue<string>("mail", ""),
+        }, 3600, cacheByPage: true)
+    }
+}

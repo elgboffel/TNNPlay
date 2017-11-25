@@ -1,0 +1,134 @@
+﻿@import "../../components/bootstrap/less/type.less";
+@import (reference) "variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+
+//
+// Utility
+// --------------------------------------------------
+.line-base {
+    .fluid-property(margin-bottom, 25, 35);
+}
+
+//
+// Typography
+// --------------------------------------------------
+
+// Headings
+// -------------------------
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: @headings-font-family;
+    font-weight: @headings-font-weight;
+    .fluid-property(line-height, 0.95, 1.2, 768, 1440, em);
+    color: @headings-color;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3 {
+    margin-top: 0;
+    margin-bottom: @line-base;
+}
+
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    margin-top: 0;
+    margin-bottom: @line-base;
+}
+
+h1, .h1 {
+    font-family: @font-family-serif;
+    font-weight: 900;
+    .fluid-property(font-size, 40, 70);
+}
+
+h2, .h2 {
+    font-size: @font-size-h2;
+}
+
+h3, .h3 {
+    font-family: @font-family-serif;
+    font-weight: 900;
+    letter-spacing: 0.03em;
+    .fluid-property(font-size, 26, 34);
+    .fluid-property(margin-bottom, 20, 30);
+
+}
+
+h4, .h4 {
+    margin: 0 0 3px;
+    .fluid-property(font-size, 17, 20);
+}
+
+h5, .h5 {
+    margin: 0 0 3px;
+    .fluid-property(font-size, 16, 18);
+}
+
+h6, .h6 {
+    font-size: @font-size-h6;
+}
+
+
+// Body text
+// -------------------------
+
+a {
+    display:inline-block;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+    text-decoration: none !important;
+
+}
+
+p {
+    margin: 0;
+    .line-base();
+}
+
+.lead {
+    font-family: @font-family-sans-serif;
+    margin-bottom: 25px;
+    font-weight: 400;
+    line-height: 1.15;
+    .fluid-property(font-size, 24, 35);
+}
+
+.byline {
+    display: block;
+    font-family: @font-family-sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: @alt-text-color;
+    margin: 0 0 25px;
+}
+
+.image-description {
+    .fluid-property(font-size, 14, 15);
+    font-weight: 700;
+}
+
+.photo-credit {
+    .fluid-property(font-size, 14, 15);
+    font-weight: 700;
+    color: #666A6C;
+}
+
+time {
+    display: block;
+    font-family: @font-family-sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 700;
+    color: @alt-text-color;
+}
+
+ul, ol {
+    margin: 0;
+    .line-base();
+}

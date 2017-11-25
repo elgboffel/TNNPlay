@@ -1,0 +1,63 @@
+﻿@inherits UmbracoViewPage<BreadcrumbViewModel>
+
+@{
+    var startNode = Model.CurrentPage;
+    var siteRoot = startNode.AncestorOrSelf(1);
+
+    var crumbs = new List<IPublishedContent>();
+    crumbs.AddRange(startNode.AncestorsOrSelf().Where(p => p.Level > 1).OrderBy(p => p.Level));
+
+    if (crumbs.Any())
+    {
+        @RenderBreadcrumbs(crumbs, startNode, siteRoot)
+    }
+}
+
+@helper RenderBreadcrumbs(List<IPublishedContent> breadcrumbs, IPublishedContent startNode, IPublishedContent siteRoot)
+{
+    <ul class="breadcrumb @(Model.ClassModifier)">
+        <li>
+            <a href="@siteRoot.Url">
+                <svg width="100%" height="100%" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g transform="matrix(1,0,0,1,-5,-48)"> <g id="homeGrafik" transform="matrix(0.993789,0,0,0.991239,-5426.06,-110.168)"> <path d="M5478.7,159.566c0.1,0.001 0.1,0.101 0.1,0.2l0,4.6l2.2,1.7c0.1,0 0.1,0.1 0.1,0.2c0,0.1 -0.1,0.2 -0.1,0.3l-0.6,0.9c0,0.1 -0.1,0.2 -0.2,0.2c-0.1,0.1 -0.2,0 -0.2,0l-1.255,-0.95l0.055,1.15l0,5.4c0,0.2 -0.1,0.3 -0.2,0.5c-0.1,0.2 -0.2,0.3 -0.4,0.3l-3.8,0.6l0,-4.3l-2.6,0.4l0,4.3l-3.8,0.6c-0.2,0.1 -0.4,0 -0.5,-0.1c-0.1,-0.1 -0.2,-0.3 -0.2,-0.5l-0.086,-6.327l-1.114,1.227c-0.1,0.1 -0.1,0.1 -0.2,0.1c-0.1,0 -0.1,0 -0.2,-0.1l-0.6,-0.7c-0.1,0 -0.1,-0.1 -0.1,-0.2c0,-0.1 0,-0.2 0.1,-0.3l7.2,-7.9c0.3,-0.2 0.5,-0.4 0.8,-0.4c0.3,-0.1 0.5,0 0.7,0.1l2.5,1.9l0,-2.2c0,-0.1 0,-0.2 0.1,-0.3c0,0 0.1,-0.1 0.2,-0.1l1.9,-0.3l0.2,0Z" style="fill:#819bac;" /> </g> </g></svg>
+            </a>
+        </li>
+        @foreach (var crumb in breadcrumbs)
+        {
+            bool active = crumb.Equals(startNode);
+            <li class="@(active ? "breadcrumb__active" : string.Empty)">
+                @if (active && Model.ShowCurrentPage != false)
+                {
+                    @renderCurrentPage(crumb)
+                }
+                else
+                {
+                    <a href="@crumb.Url" class="breadcrumb__truncate">@Html.Raw(crumb.Name)</a>
+                }
+            </li>
+        }
+    </ul>
+}
+
+@helper renderCurrentPage(IPublishedContent crumb)
+{
+    var siblingPages = crumb
+        .Parent.Children()
+        .Where(x => x.Id != crumb.Id && x.IsVisible());
+
+    if (siblingPages.Any())
+    {
+        <div class="dropdown @(Model.DropdownClassModifier)">
+            <div role="button" class="dropdown__expander breadcrumb__truncate">@Html.Raw(crumb.Name)</div>
+            <ul class="dropdown__menu">
+                @foreach (var page in siblingPages)
+                {
+                    <li><a href="@page.Url">@page.Name</a></li>
+                }
+            </ul>
+        </div>
+    }
+    else
+    {
+            <span class="breadcrumb__truncate">@Html.Raw(crumb.Name)</span>
+    }
+}

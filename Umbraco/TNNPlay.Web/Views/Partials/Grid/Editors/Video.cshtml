@@ -1,0 +1,25 @@
+﻿@inherits UmbracoViewPage<LeBlenderModel>
+@using Lecoati.LeBlender.Extension.Models
+@using BaseSite.Web.Helpers
+
+@foreach (var item in Model.Items)
+{
+    @renderContent(item)
+}
+
+@helper renderContent(LeBlenderValue content)
+{
+    var video = content.GetValue<IEnumerable<IPublishedContent>>("videoPicker") ;
+
+    if (video != null && video.Any())
+    {
+        var embedVideo = video.First().GetPropertyValue<MvcHtmlString>("embedVideo") ;
+
+        if (embedVideo != null)
+        {
+            <div class="embed-responsive embed-responsive-16by9 fluid-line-base">
+                @embedVideo
+            </div>
+        }
+    }
+}

@@ -1,0 +1,42 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.page-header {
+    color: @text-color;
+    font-family: @font-family-sans-serif;
+
+    h1 {
+        .fluid-property(font-size, 32, 42);
+        margin-bottom: 10px;
+    }
+
+    time {
+        font-size: 13px;
+        font-weight: 700;
+        color: @light-brown;
+    }
+
+    &__lead {
+        .fluid-property(font-size, 25, 35);
+        line-height: 1.15;
+        margin-bottom: 15px;
+    }
+
+    &__author {
+        font-size: 13px;
+        color: @light-brown;
+    }
+
+    &__trumpet {
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+    &__spacer {
+        margin-top: 25px;
+        .clearfix();
+    }
+}

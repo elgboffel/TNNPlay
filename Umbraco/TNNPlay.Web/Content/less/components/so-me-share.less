@@ -1,0 +1,49 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.so-me-share {
+    top: 12px;
+    justify-content: center;
+    list-style: none;
+    padding-left: 15px;
+    font-size: 18px;
+    line-height: 1;
+    color: @light-brown;
+    margin: 0;
+
+    @media(min-width: @screen-md-min) {
+        position: absolute;
+        margin-right: 0;
+        flex-direction: column;
+    }
+
+    &__item {
+
+        &--facebook {
+        }
+
+        &--email {
+            margin-left: -5px;
+        }
+
+        &--clipboard {
+            margin-left: -5px;
+        }
+    }
+
+    &__link {
+    }
+
+    &--fixed {
+        transition: margin-top 300ms ease;
+        position: fixed;
+        margin-top: 13px;
+    }
+
+    &--stick-bottom {
+        position: absolute;
+    }
+}

@@ -1,0 +1,32 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.google-map {
+
+    &__heading {
+        color: @brand-alt;
+        margin:0 0 3px;
+    }
+
+    &__canvas {
+        min-height: 250px;
+    }
+
+    @media(min-width: @screen-md-min){
+        &__canvas {
+            min-height: 0;
+        }
+    }
+}
+
+.google-map--video-page {
+
+    .google-map {
+        &__heading {
+            color: @light-brown;
+        }
+    }
+}
