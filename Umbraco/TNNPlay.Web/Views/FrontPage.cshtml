@@ -1,0 +1,37 @@
+﻿@inherits UmbracoViewPage<FrontPage>
+@{
+    Layout = "_Layout.cshtml";
+
+}
+
+<div class="container container--no-padding">
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.CachedPartial(
+              "Components/_Hero",
+              new HeroViewModel
+              {
+                  Image = Model.HeroImage,
+                  Trumpet = Model.Trumpet,
+                  Heading = Model.Heading,
+                  Lead = Model.Lead,
+                  Link = Model
+                      .GetPropertyValue("link", Enumerable.Empty<LinksPickerItem>())
+                      .FirstOrDefault(),
+                  GridSettings = new GridSettings
+                  {
+                    GridXs = 12,
+                    GridTotalPadding = -20
+                  },
+                  MediaHeights = new MediaHeights
+                  {
+                      HeightSm = 715,
+                      HeightXs = 450,
+                  }
+              }, 3600, cacheByPage: true)
+        </div>
+    </div>
+</div>
+
+@Html.GetGridHtml(Model, "layout", "_FrontPage")
+

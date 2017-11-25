@@ -1,0 +1,90 @@
+﻿@inherits UmbracoViewPage<IGenericPage>
+@using Skalk.Web.Helpers
+@using Umbraco.Web.PropertyValueConverters.Leaflet;
+
+@{
+    Layout = "_Layout.cshtml";
+    var page = Model;
+    var hasGridLayout = Model.HasProperty("layout") && Model.Layout.CheckIfGridExist();
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.CachedPartial(
+                "Components/_Breadcrumb",
+                new BreadcrumbViewModel
+                {
+                    CurrentPage = page,
+                    ShowCurrentPage = true,
+                    ClassModifier = "margin-bt45",
+                }, 3600, cacheByPage: true)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+            @Html.CachedPartial(
+                "Components/_PageHeader",
+                new PageHeaderViewModel
+                {
+                    Heading = page.Heading
+                }, 3600, cacheByPage: true)
+        </div>
+    </div>
+    <div class="row margin-bt40">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+            @Html.CachedPartial(
+                    "Components/_Media",
+                    new MediaViewModel
+                    {
+                        Image = page.HeroImage,
+                        GridSettings = new GridSettings
+                        {
+                            GridMd = 10
+                        },
+                        MediaHeights = new MediaHeights
+                        {
+                            HeightMd = 660,
+                            HeightMs = 350,
+                            HeightXs = 200
+                        }
+                    }, 3600, cacheByPage: true)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+            @Html.CachedPartial(
+                "Components/_PageHeader",
+                new PageHeaderViewModel
+                {
+                    Date = page.Date,
+                    Lead = page.Lead,
+                    Author = page.Author,
+                }, 3600, cacheByPage: true)
+            </div>
+        </div>
+    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-1">
+            @{Html.RenderPartial(
+                "Components/_SoMeShare",
+                new SoMeShareViewModel
+                {
+                    CurrentPage = page,
+                    EnableFacebook = true,
+                    EnableEmail = true,
+                    EnableCopyUrl = true
+                }); }
+        </div>
+        <div class="col-xs-12 col-md-6 col-md-offset-2">
+            @if (hasGridLayout)
+            {
+                @Html.GetGridHtml(page, "layout", "_GridPage")
+            }
+            @{ Html.RenderPartial("Components/_TagList", new TagListViewModel(Model.TagPicker)); }
+        </div>
+    </div>
+</div>
+
+@*@{ Html.RenderPartial("Shared/_RelatedPages", Model); }*@

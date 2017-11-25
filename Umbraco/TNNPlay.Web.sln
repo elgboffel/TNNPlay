@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TNNPlay.Web", "TNNPlay.Web\TNNPlay.Web.csproj", "{4D525ED3-87AF-462C-BD62-6121D0D0E9BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Git", ".Git", "{A4EE2646-164C-4B07-877E-F00B0E21E105}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D525ED3-87AF-462C-BD62-6121D0D0E9BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D525ED3-87AF-462C-BD62-6121D0D0E9BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D525ED3-87AF-462C-BD62-6121D0D0E9BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D525ED3-87AF-462C-BD62-6121D0D0E9BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4BCA67C2-AA45-406F-8E89-C3B2A3D7FB6A}
+	EndGlobalSection
+EndGlobal

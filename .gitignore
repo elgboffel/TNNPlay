@@ -1,0 +1,45 @@
+# nuget packages
+**/packages/
+
+# Nodejs modules
+**/node_modules/
+
+# Ignore bower components
+# Any changes to these files, must be manually added using: git add -f <path to file>
+
+# Ignore Umbraco temp files and media
+App_Data*/
+!App_Data/packages*/
+media*/
+
+# Umbraco Plugins and licenses
+**/UmbracoForms/Data/
+
+# Ignore thumbnails created by windows
+Thumbs.db
+
+# Ignore files build by Visual Studio
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.bak
+*.cache
+*.ilk
+*.log
+
+.vs*/
+!applicationhost.config
+[Bb]in*/
+![Bb]in/**/*.lic
+[Dd]ebug*/
+*.sbr
+obj/
+[Rr]elease*/
+_ReSharper*/
+
+
