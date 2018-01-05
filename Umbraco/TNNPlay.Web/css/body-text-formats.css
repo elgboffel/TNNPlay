@@ -1,4 +1,19 @@
-/**umb_name:Mellemrubrik*/
+
+
+
+
+
+
+
+/**umb_name:Heading*/
+h2{color: #070506;
+font-size: 34px;
+font-weight: 700;
+letter-spacing: 1px;
+line-height: 40px;}
+
+/**umb_name:Article Heading*/
 h4{font-size:20px;
 font-weight: 700;
-margin: 0 0 5px;}
+margin: 0 0 5px;
+color: #070506;}

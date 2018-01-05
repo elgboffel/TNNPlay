@@ -1,4 +1,4 @@
-﻿using BaseSite.Web.ViewModels.Components;
+﻿using TNNPlay.Web.ViewModels.Components;
 using Umbraco.Web.PublishedContentModels;
 using Examine;
 using Examine.LuceneEngine.SearchCriteria;
@@ -11,7 +11,7 @@ using Umbraco.Web;
 using Umbraco.Web.Mvc;
 using Umbraco.Core;
 
-namespace BaseSite.Web.Controllers
+namespace TNNPlay.Web.Controllers
 {
     public class MediaListController : SurfaceController
     {

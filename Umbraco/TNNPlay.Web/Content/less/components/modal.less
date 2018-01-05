@@ -1,0 +1,75 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.modal {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    min-height: 100vh;
+    overflow: auto;
+    color: #fff;
+    background-color: rgba(6, 4, 5, 0.70);
+    will-change: opacity;
+    transition: opacity 300ms;
+
+    &--visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &--hide-scroll {
+        overflow: hidden;
+    }
+
+    &__close {
+        position: absolute;
+        .fluid-property(top, 15, 40);
+        .fluid-property(right, 15, 40);
+
+        > span {
+            margin-right: 10px;
+        }
+    }
+
+    &__content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #262626;
+        margin: -200px auto 0 auto;
+        padding: 20px 30px;
+        .fluid-property(padding-top, 25, 72);
+        .fluid-property(padding-right, 25, 98);
+        .fluid-property(padding-bottom, 25, 72);
+        .fluid-property(padding-left, 25, 98);
+        width:95%;
+        max-width: 1540px;
+    }
+
+    @media(min-width: @screen-sm-min) {
+        &__content {
+            width: 70%;
+        }
+    }
+
+    @media(min-width: @screen-md-min) {
+        &__content {
+            width: 60%;
+        }
+    }
+
+    @media(min-width: @screen-lg-min) {
+        &__content {
+            width: 70%;
+        }
+    }
+}

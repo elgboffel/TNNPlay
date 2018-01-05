@@ -12,11 +12,13 @@
         sticky(_element: HTMLElement) {
             let _this = this,
                 elementTopDistance = this.getTotalDistanceToDocumentTop(_element),
-                elementHeight = _element.offsetHeight + 100,
+                elementHeight = _element.offsetHeight,
+                navbarHeight = 0,
                 stickyClass = 'sticky',
                 stickyTop = 'sticky--top',
                 hideClass = 'sticky--hide',
                 showClass = 'sticky--show',
+                navbarHeader = document.querySelector('.navbar-header') as HTMLElement,
                 breaks = document.querySelectorAll('.sticky--break') as NodeListOf<HTMLElement>,
                 breaksDistanceToTop: Array<number> = [];
 
@@ -26,9 +28,14 @@
             }
 
             window.addEventListener('scroll', function () {
-                let windowPosition = this.pageYOffset;
+                let windowPosition = this.pageYOffset,
+                    elementTotalHeight = elementHeight + 100;
 
-                if (windowPosition >= elementTopDistance)
+                if (navbarHeader.classList.contains('navbar-header--sticky')) {
+                    navbarHeight = navbarHeader.offsetHeight + 45;
+                }
+
+                if (windowPosition >= elementTopDistance - navbarHeight)
                     _element.classList.add(stickyClass, stickyTop);
                 else
                     _element.classList.remove(stickyClass, stickyTop);
@@ -45,8 +52,6 @@
                 //console.log(windowPosition);
             });
 
-            console.log(elementHeight);
-            console.log(breaksDistanceToTop);
             //console.log(elementTopDistance);
         }
 

@@ -14,22 +14,44 @@
 
     }
 
-    &__next {
+    &__content {
 
     }
 }
 
-.spot--bg {
-    background-size: cover;
-    height: 100vh;
-    spot {
-        &__trompet {
+.spot--hero-fluid {
+    color: #fff;
+
+    .spot {
+        &__media {
+            height: 80vh;
+        }
+
+        &__trumpet {
+            opacity: 0.5;
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 1.2px;
+            text-align: center;
+            .fluid-property(margin-bottom, 25, 35);
         }
 
         &__heading {
+            .fluid-property(margin-bottom, 35, 55);
         }
 
-        &__next {
+        &__content {
+            position: absolute;
+            z-index: 1;
+            width: 70vw;
+            max-width: 1540px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &__call-to-action {
+            text-align:center;
         }
     }
 }

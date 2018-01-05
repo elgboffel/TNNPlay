@@ -9,7 +9,7 @@
     line-height: 1.2;
     font-size: 17px;
     overflow: hidden;
-
+    font-family: @font-family-serif;
     > a {
         position: relative;
         z-index: 2;
@@ -22,6 +22,9 @@
     &__content {
         position: relative;
         z-index: 2;
+    }
+
+    &__inner {
     }
 
     &__date {
@@ -42,7 +45,7 @@
     &__lead {
         .fluid-property(font-size, 17, 20);
         font-weight: 700;
-        margin: 0;
+        margin: 0 0 15px 0;
     }
 
     &__tags {
@@ -59,27 +62,34 @@
 .card--default {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 1 1 auto;
     height: 100%;
     margin-bottom: 10px;
     .fluid-property(padding-top, 20, 30);
     .fluid-property(padding-right, 20, 30);
     .fluid-property(padding-left, 20, 30);
     background-color: @color-lime;
+    .clearfix();
 
-    > a {
-    }
 
     .card {
         &__content {
             display: flex;
             flex-direction: column;
-            flex: 1;
+            flex: 1 1 auto;
             height: 100%;
+        }
+
+        &__lead {
+            margin-bottom: 0;
         }
 
         &__spacer {
             .fluid-property(margin-top, 15, 25);
+        }
+
+        &__tags {
+            .fluid-property(margin-bottom, 0, 0)
         }
     }
 }
@@ -93,6 +103,7 @@
 
         > a {
             padding-right: 15px;
+            flex: 1 0 0;
         }
 
         .card {
@@ -102,10 +113,19 @@
 
             &__content {
                 padding-left: 15px;
+                flex: 1 0 0;
+            }
+
+            &__lead {
+                margin-bottom: 0;
             }
 
             &__tags {
                 .fluid-property(margin-bottom, 0, 0);
+            }
+
+            &__spacer {
+                margin: 0;
             }
         }
     }
@@ -143,6 +163,7 @@
         &__lead {
             .fluid-property(font-size, 17, 19);
             font-weight: 400;
+            margin-bottom: 0;
         }
 
         &__spacer {
@@ -164,13 +185,14 @@
     }
 }
 
+/*
+*   Card Hero e.g Carousels or Hero Images with content
+*/
 .card--hero {
+    line-height: 0.9;
+
     .card {
         &__content {
-            position: absolute;
-            left: 80px;
-            bottom: 80px;
-            width: 450px;
             background-color: #CFD8DD;
             padding: 25px 25px 0 25px;
         }
@@ -185,35 +207,61 @@
             font-weight: 400;
             margin-bottom: 10px;
         }
-    }
-}
 
-.card--hero-position-bottom-right {
-    .card {
-        &__content {
-            left: auto;
-            right: 80px;
-            bottom: 80px;
+        &__media {
+            margin-bottom: 0;
+        }
+    }
+
+    @media(min-width: @grid-float-breakpoint) {
+        line-height: 1.2;
+
+        .card {
+            &__content {
+                position: absolute;
+                left: 80px;
+                bottom: 80px;
+                width: 450px;
+                background-color: #CFD8DD;
+                padding: 25px 25px 0 25px;
+            }
+
+            &__media {
+                margin-bottom: 10px;
+            }
         }
     }
 }
 
-.card--hero-position-top-right {
-    .card {
-        &__content {
-            left: auto;
-            bottom:auto;
-            right: 80px;
-            top: 80px;
+@media(min-width: @grid-float-breakpoint) {
+
+    .card--hero-position-bottom-right {
+        .card {
+            &__content {
+                left: auto;
+                right: 80px;
+                bottom: 80px;
+            }
         }
     }
-}
 
-.card--hero-position-top-left {
-    .card {
-        &__content {
-            bottom: auto;
-            top: 80px;
+    .card--hero-position-top-right {
+        .card {
+            &__content {
+                left: auto;
+                bottom: auto;
+                right: 80px;
+                top: 80px;
+            }
+        }
+    }
+
+    .card--hero-position-top-left {
+        .card {
+            &__content {
+                bottom: auto;
+                top: 80px;
+            }
         }
     }
 }

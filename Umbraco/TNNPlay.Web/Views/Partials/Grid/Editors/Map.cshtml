@@ -1,0 +1,38 @@
+﻿@inherits UmbracoViewPage<LeBlenderModel>
+@using Lecoati.LeBlender.Extension.Models
+@using Our.Umbraco.LinksPicker.Models
+@foreach (var item in Model.Items)
+{
+    @renderContent(item)
+}
+
+@helper renderContent(LeBlenderValue content)
+{
+    var heading = content.GetValue<string>("heading");
+    var description = content.GetValue<string>("description");
+    var contentPicker = content.GetValue<IPublishedContent>("contentPicker");
+
+    if (contentPicker != null)
+    {
+        if (!string.IsNullOrEmpty(heading))
+        {
+            <h5 class="color-primary">@Html.Raw(heading)</h5>
+        }
+
+        { Html.RenderPartial(
+            "Components/_Map",
+            new MapViewModel()
+            {
+                ClassModifiers = "margin-bt5",
+                MapListRenderType = MapListRenderType.NestedContent,
+                MapList = contentPicker.Descendants<GridPage>(),
+                CanvasHeight = 530
+            });
+        }
+        if (!string.IsNullOrEmpty(description))
+        {
+            <p class="small">@Html.Raw(description)</p>
+        }
+        <div class="spacer20"></div>
+    }
+}

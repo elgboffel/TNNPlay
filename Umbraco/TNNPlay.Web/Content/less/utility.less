@@ -27,16 +27,17 @@ picture {
     }
 }
 
-img {
-    .img-responsive();
+.col-padding {
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
-.heading-hover {
-    transition: color 200ms ease;
+.link-hover {
+    .line-bottom-hover(@text-color, @brand-primary);
+}
 
-    &:hover, &:focus {
-        color: @brand-primary;
-    }
+img {
+    .img-responsive();
 }
 
 .font-serif {
@@ -45,6 +46,10 @@ img {
 
 .font-sans-serif {
     font-family: @font-family-serif;
+}
+
+.color-primary {
+    color: @brand-primary;
 }
 
 .weight-black {
@@ -195,6 +200,14 @@ img {
     .fluid-property(margin-top, 25, 45);
 }
 
+.margin-bt50 {
+    .fluid-property(margin-bottom, 30, 50)
+}
+
+.margin-t50 {
+    .fluid-property(margin-top, 30, 50);
+}
+
 .margin-bt55 {
     .fluid-property(margin-bottom, 35, 55)
 }
@@ -211,6 +224,19 @@ img {
     .fluid-property(margin-top, 45, 70) !important;
 }
 
+.margin-bt80 {
+    .fluid-property(margin-bottom, 55, 80);
+}
+
+.margin-t80 {
+    .fluid-property(margin-top, 55, 80) !important;
+}
+
+.row--col-margin-bt10 {
+    > [class*="col-"] {
+        margin-bottom: 10px;
+    }
+}
 .list-unstyled {
     list-style: none;
     padding-left: 0;
@@ -218,6 +244,10 @@ img {
 
 .text-center {
     text-align: center;
+}
+
+.flex-right {
+    margin-left: auto;
 }
 
 .flex-box {
@@ -254,12 +284,43 @@ img {
     padding: 0;
     list-style: none;
     line-height: 1;
+    color: #575E61;
 
     > li {
         margin: 0 0 12px;
 
         a {
-            .line-bottom-hover(#fff, @brand-primary);
+            .line-bottom-hover(#575E61, @brand-primary);
         }
     }
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    opacity: 1;
+    will-change: opacity, top;
+    transition: opacity 500ms ease, top 300ms ease-in-out;
+
+    &--top {
+        top: 25px;
+    }
+
+    &--hide {
+        opacity: 0;
+        transition: opacity 200ms ease, top 300ms ease-in-out;
+    }
+
+    &--show {
+        opacity: 1;
+    }
+}
+
+.cover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover !important;
 }

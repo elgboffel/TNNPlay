@@ -9,11 +9,19 @@
 //
 //## Gray and brand colors for use across Bootstrap.
 
-@gray-base: #000;
-@brand-primary: #F5B400;
-@brand-alt: #21C98E;
-@color-stone: red;
-@light-green: #CFFED5;
+@gray-base: #070506;
+
+@brand-primary: #D9002E;
+
+@gradient-brand-light: #FAA57F;
+@gradient-brand-dark: @brand-primary;
+
+@brand-alt: @color-stone;
+@color-stone: #819BAC;
+@color-light-stone: #CFD8DD;
+@color-dark-stone: #92A5B3;
+@color-lime: #D0E5DB;
+@color-red: #CD0023;
 @light-brown: #CD5C00;
 @dark-brown: #52290D;
 @light-yellow: #F7E29D;
@@ -21,16 +29,17 @@
 @red: red;
 @blue: #3381DC;
 @pink: #FFC7C3;
+
 //== Scaffolding
 //
 //## Settings for some of the most global styles.
 //** Background color for `<body>`.
 @body-bg: #fff;
 //** Global text color on `<body>`.
-@text-color: @gray-dark;
-@alt-text-color:@light-brown;
+@text-color: @gray-base;
+@alt-text-color:@brand-primary;
 //** Global textual link color.
-@link-color: @light-brown;
+@link-color: @brand-primary;
 //** Link hover color set via `darken()` function.
 @link-hover-color: darken(@link-color, 15%);
 //** Link hover decoration.
@@ -41,13 +50,13 @@
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-@font-family-sans-serif: 'Montserrat', Helvetica, Arial, sans-serif;
+@font-family-sans-serif: 'Roboto', Helvetica, Arial, sans-serif;
 @font-family-serif: 'Rokkit', Times, serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 @font-family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace;
-@font-family-base: @font-family-serif;
+@font-family-base: @font-family-sans-serif;
 
-@font-size-base: 22px;
+@font-size-base: 14px;
 
 @line-base: 35px;
 @line-base-min: 20px;

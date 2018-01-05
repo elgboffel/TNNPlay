@@ -1,6 +1,6 @@
 ﻿using Umbraco.Core.Models;
 
-namespace BaseSite.Web.ViewModels.Components
+namespace TNNPlay.Web.ViewModels.Components
 {
     public class SoMeShareViewModel
     {

@@ -6,17 +6,17 @@ using Newtonsoft.Json;
 using Umbraco.Web.PublishedContentModels;
 using System.Linq;
 
-namespace BaseSite.Web.ViewModels.Components
+namespace TNNPlay.Web.ViewModels.Components
 {
         public class MapViewModel
     {
         public string ClassModifiers { get; set; }
 
-        public string Heading { get; set; }
-
-        public IEnumerable<IPublishedContent> MapLocationList { get; set; }
+        public IEnumerable<IPublishedContent> MapList { get; set; }
 
         public LeafletMapModel MapLocation { get; set; }
+
+        public MapListRenderType MapListRenderType { get; set; }
 
         public int Zoom { get; set; }
 
@@ -26,7 +26,8 @@ namespace BaseSite.Web.ViewModels.Components
 
         public MapViewModel()
         {
-            CanvasHeight = 350;
+            CanvasHeight = 400;
+            MapListRenderType = MapListRenderType.Default;
         }
     }
 
@@ -52,5 +53,11 @@ namespace BaseSite.Web.ViewModels.Components
 
         [JsonProperty(PropertyName = "url")]
         public string Url { get; set; }
+    }
+
+        public enum MapListRenderType
+    {
+        Default,
+        NestedContent
     }
 }

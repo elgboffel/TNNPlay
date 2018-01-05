@@ -4,7 +4,7 @@ using System.Web;
 using Umbraco.Web.PropertyValueConverters.Leaflet;
 using Umbraco.Web.PublishedContentModels;
 
-namespace BaseSite.Web.ViewModels.Components
+namespace TNNPlay.Web.ViewModels.Components
 {
     public class InfoBoxViewModel
     {
@@ -26,12 +26,12 @@ namespace BaseSite.Web.ViewModels.Components
             Position = x.GetValue<InfoBoxPosition>("factboxPosition");
         }
 
-        public InfoBoxViewModel(Factbox x)
-        {
-            Heading = x.Heading;
-            Content = x.Rte;
-            Position = (InfoBoxPosition)x.FactboxPosition;
-        }
+        //public InfoBoxViewModel(Factbox x)
+        //{
+        //    Heading = x.Heading;
+        //    Content = x.Rte;
+        //    Position = (InfoBoxPosition)x.FactboxPosition;
+        //}
     }
 
     public enum InfoBoxPosition

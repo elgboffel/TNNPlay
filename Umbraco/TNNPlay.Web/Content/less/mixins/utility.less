@@ -1,0 +1,44 @@
+﻿@import (reference) "../bootstrap/variables.less";
+
+.multiline-truncate(@lines-to-show, @font-size, @line-height) {
+    display: block; /* Fallback for non-webkit */
+    display: -webkit-box;
+    height: @font-size*@line-height*@lines-to-show; /* Fallback for non-webkit */
+    margin: 0 auto;
+    font-size: @font-size;
+    line-height: @line-height;
+    -webkit-line-clamp: @lines-to-show;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.skewed-border-bottom {
+    overflow: hidden;
+
+    &:before, &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+    }
+
+    &:before {
+        height: 150px;
+        width: 35%;
+        opacity: 0.9;
+        background-color: @brand-primary;
+        bottom: -118px;
+        left: -20px;
+        transform: rotate(6deg);
+        z-index: 10;
+    }
+
+    &:after {
+        width: 100%;
+        height: 80px;
+        transform: rotate(-2deg);
+        background-color: #fff;
+        bottom: -52px;
+        z-index:12;
+    }
+}

@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
-using BaseSite.Web.ViewModels.Components;
+using TNNPlay.Web.ViewModels.Components;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Web.Mvc;
 
-namespace BaseSite.Web.Helpers
+namespace TNNPlay.Web.Helpers
 {
     public static partial class UtilityHelpers
     {
@@ -86,78 +86,6 @@ namespace BaseSite.Web.Helpers
                 return "";
 
             return tag.Name;
-        }
-
-        public static string GetEmbedThumbnail(this string embed)
-        {
-            if (string.IsNullOrEmpty(embed))
-                return "";
-
-            var thumbnailUrl = string.Empty;
-            var embedString = embed.ToString();
-
-            if (embedString.Contains("youtube"))
-                thumbnailUrl = embed.GetYouTubeThumbnail();
-
-            if (embedString.Contains("vimeo"))
-                thumbnailUrl = embed.GetVimeoThumbnail();
-
-            return thumbnailUrl;
-        }
-
-        public static string GetYouTubeThumbnail(this string embed)
-        {
-            if (string.IsNullOrEmpty(embed))
-                return "";
-
-            var videoId = string.Empty;
-
-            if(embed.Contains("?"))
-                videoId = embed.GetValueBetween("embed/", "?");
-            else
-                videoId = embed.Substring(embed.LastIndexOf('/') + 1);
-
-            var thumbnailUrl = $"http://img.youtube.com/vi/{videoId}/maxresdefault.jpg";
-
-            return thumbnailUrl;
-        }
-
-        public static string GetVimeoThumbnail(this string embed)
-        {
-            if (string.IsNullOrEmpty(embed))
-                return "";
-
-            var videoId = string.Empty;
-
-            if(embed.Contains("\" width"))
-                videoId = embed.GetValueBetween("video/", "\" width");
-            else
-                videoId = embed.Substring(embed.LastIndexOf('/') + 1);
-
-            var thumbnailUrl = $"https://i.vimeocdn.com//video/{videoId}_1280x720.jpg";
-
-            return thumbnailUrl;
-        }
-
-        public static string ConvertGridSettingsToString(this GridSettings settings)
-        {
-            if (settings == null)
-                return "";
-
-            var result = new StringBuilder();
-            var properties = typeof(GridSettings).GetProperties();
-
-            for (var i = 0; i < properties.Count(); i++)
-            {
-                var property = properties.ElementAt(i);
-                var propertyName = property.GetCustomAttribute(typeof(DisplayNameAttribute)) as DisplayNameAttribute;
-                var propertyValue = settings.GetType().GetProperty(property.Name).GetValue(settings);
-                if (propertyName == null) continue;
-
-                result.Append($"col-{propertyName.DisplayName}-{propertyValue} ");
-            }
-
-            return result.ToString();
         }
     }
 }

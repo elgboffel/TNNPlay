@@ -90,10 +90,10 @@
         "config": {
             "editors": [
                 {
-                    "name": "Billede",
-                    "alias": "image",
+                    "name": "Media",
+                    "alias": "Media",
                     "propretyType": {},
-                    "dataType": "93929b9a-93a2-4e2a-b239-d99334440a59"
+                    "dataType": "135d60e0-64d9-49ed-ab08-893c9ba44ae5"
                 },
                 {
                     "name": "Trumpet",
@@ -102,26 +102,32 @@
                     "dataType": "0cc0eba1-9960-42c9-bf9b-60e150b429ae"
                 },
                 {
-                    "name": "Rubrik",
-                    "alias": "headline",
+                    "name": "Heading",
+                    "alias": "heading",
                     "propretyType": {},
                     "dataType": "0cc0eba1-9960-42c9-bf9b-60e150b429ae"
+                },
+                {
+                    "name": "Content",
+                    "alias": "content",
+                    "propretyType": {},
+                    "dataType": "54f514ae-137c-4647-a609-234450b8edf5"
+                },
+                {
+                    "name": "Pick Call To Action",
+                    "alias": "pickCallToAction",
+                    "propretyType": {},
+                    "dataType": "53b80b37-6912-4a48-8503-80347240755f"
                 },
                 {
                     "name": "Link",
                     "alias": "link",
                     "propretyType": {},
                     "dataType": "4e1aa3a9-c2f7-4423-9086-c48253554b2d"
-                },
-                {
-                    "name": "Tekst",
-                    "alias": "content",
-                    "propretyType": {},
-                    "dataType": "54f514ae-137c-4647-a609-234450b8edf5"
                 }
             ],
             "frontView": "",
-            "renderInGrid": "1"
+            "renderInGrid": "0"
         }
     },
     {
@@ -318,6 +324,37 @@
                     "alias": "videoPicker",
                     "propretyType": {},
                     "dataType": "a3eec30b-008f-452d-84f9-0a775be656c7"
+                }
+            ],
+            "frontView": ""
+        }
+    },
+    {
+        "name": "Kort",
+        "alias": "map",
+        "view": "/App_Plugins/LeBlender/editors/leblendereditor/LeBlendereditor.html",
+        "icon": "icon-map-location color-red",
+        "render": "/App_Plugins/LeBlender/editors/leblendereditor/views/Base.cshtml",
+        "config": {
+            "editors": [
+                {
+                    "name": "Rubrik",
+                    "alias": "heading",
+                    "propretyType": {},
+                    "dataType": "0cc0eba1-9960-42c9-bf9b-60e150b429ae"
+                },
+                {
+                    "name": "Vælg Rod",
+                    "alias": "contentPicker",
+                    "propretyType": {},
+                    "dataType": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+                    "description": "Ud fra den valgte side, vil alle underliggende sider, indeholdende et kort, få deres lokationer vist på et samlet kort."
+                },
+                {
+                    "name": "Beskrivelse",
+                    "alias": "description",
+                    "propretyType": {},
+                    "dataType": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3"
                 }
             ],
             "frontView": ""

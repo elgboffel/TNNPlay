@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BaseSite.Web.ViewModels.Components
+namespace TNNPlay.Web.ViewModels.Components
 {
     public class PageHeaderViewModel
     {

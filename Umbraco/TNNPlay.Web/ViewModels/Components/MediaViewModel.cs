@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Umbraco.Core.Models;
+using System.ComponentModel;
 
-namespace BaseSite.Web.ViewModels.Components
+
+namespace TNNPlay.Web.ViewModels.Components
 {
     public class MediaViewModel
     {
@@ -138,6 +140,16 @@ namespace BaseSite.Web.ViewModels.Components
     {
         Image,
         ImageUrl,
-        Video
+        Video,
+        Cover
+    }
+
+    public enum YouTubeMediaType
+    {
+        Default,
+        Hqdefault,
+        Mqdefault,
+        Sddefault,
+        Maxresdefault
     }
 }

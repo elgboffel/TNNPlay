@@ -9,46 +9,45 @@
     var links = Model.GetPropertyValue<IEnumerable<LinksPickerItem>>("headerLinks", recurse: true);
 }
 
-<header class="mobile-header visible-xs">
-    <div style="position: relative;">
-
-    <div class="mobile-header__head">
-        <div class="mobile-header__logo">
-            <svg width="100%" height="100%" viewBox="0 0 210 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g transform="matrix(1,0,0,1,-135,-46)"> <g id="skalk" transform="matrix(0.49386,0,0,0.4913,-871.185,-1115.83)"> <path d="M2086.91,2425.8c9.9,4 8.9,8.5 8.9,8.5c0,12.5 -18.8,12.3 -18.8,12.3c-23.2,0 -38.2,-34.1 -38.2,-34.1l0,50l9.8,-18.7c0,0 15.2,10.6 29,10.6c13.8,0 35.3,-6.3 35.3,-25.2c0,0 1.4,-11.2 -17.6,-18.4l-33.3,-13c-9.1,-4 -8,-8 -8,-8c0,-12.2 16.5,-12.8 16.5,-12.8c21.4,0 35.3,27.4 35.3,27.4l0,-39.6l-9,12.9c0,0 -14,-7.6 -26.7,-7.6c-12.7,0 -32.7,6.1 -32.7,24.6c0,0 -1.3,10.9 16.2,18l33.3,13.1Zm113.4,17.1l43.6,-75.7l40.4,75.7l7.6,4.6l5.7,-4.6l0,-58.5l-20.4,-10l57.6,0l-22.7,10l0,60.7l26.6,0l19.5,-22.3l-9.4,30.2l-101.2,0l20.3,-10l-8.9,-16.8l-38.9,0l-9.6,16.8l19.6,10.1l-64.2,0l16.8,-10.1l-23.7,-30.5l-13.9,12.2l0,18.3l17.5,10l-48.1,0l16.1,-10l0,-58.6l-20.2,-10l50.2,0l-15.5,10l0,27.4l31.2,-27.4l-14.3,-10l51.3,0l-22.4,10l-21.5,18.9l30.8,39.6l0.1,0Zm201.2,10.1l-48,0l16.1,-10l0,-58.6l-20.2,-10l50.1,0l-15.5,10l0,27.5l31.2,-27.5l-14.2,-10l51.3,0l-22.5,10l-21.5,18.9l30.8,39.6l23.5,10.1l-57.7,0l16.8,-10l-23.7,-30.6l-13.9,12.2l-0.1,18.3l17.5,10.1Zm-146.8,-34.7l-14.5,-27.3l-15.6,27.3l30.1,0Z" style="fill:#f54d04;" /> </g> </g></svg>
-        </div>
-    </div>
-    <div class="mobile-header__nav">
-        <div class="mobile-header__nav-head">
-            @renderNavHead()
-        </div>
-        <nav role="navigation">
-            @{ Html.RenderPartial(
-                    "Components/_CollapseMenu",
-                    new CollapseMenuViewModel
-                    {
-                        StartNode = website,
-                        MaxLevelsRendered = 15
-                    }); }
-        </nav>
-        @if (links != null && links.Any())
-        {
-            <div class="mobile-header__menu">
-                <nav role="navigation">
-                    @foreach (var item in links)
-                    {
-                        @renderMenu(item)
-                    }
-                </nav>
+<header class="visible-xs">
+    <div class="mobile-header">
+        <div class="mobile-header__head">
+            <div class="mobile-header__logo">
+                <svg width="100%" height="100%" viewBox="0 0 210 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g transform="matrix(1,0,0,1,-135,-46)"> <g id="skalk" transform="matrix(0.49386,0,0,0.4913,-871.185,-1115.83)"> <path d="M2086.91,2425.8c9.9,4 8.9,8.5 8.9,8.5c0,12.5 -18.8,12.3 -18.8,12.3c-23.2,0 -38.2,-34.1 -38.2,-34.1l0,50l9.8,-18.7c0,0 15.2,10.6 29,10.6c13.8,0 35.3,-6.3 35.3,-25.2c0,0 1.4,-11.2 -17.6,-18.4l-33.3,-13c-9.1,-4 -8,-8 -8,-8c0,-12.2 16.5,-12.8 16.5,-12.8c21.4,0 35.3,27.4 35.3,27.4l0,-39.6l-9,12.9c0,0 -14,-7.6 -26.7,-7.6c-12.7,0 -32.7,6.1 -32.7,24.6c0,0 -1.3,10.9 16.2,18l33.3,13.1Zm113.4,17.1l43.6,-75.7l40.4,75.7l7.6,4.6l5.7,-4.6l0,-58.5l-20.4,-10l57.6,0l-22.7,10l0,60.7l26.6,0l19.5,-22.3l-9.4,30.2l-101.2,0l20.3,-10l-8.9,-16.8l-38.9,0l-9.6,16.8l19.6,10.1l-64.2,0l16.8,-10.1l-23.7,-30.5l-13.9,12.2l0,18.3l17.5,10l-48.1,0l16.1,-10l0,-58.6l-20.2,-10l50.2,0l-15.5,10l0,27.4l31.2,-27.4l-14.3,-10l51.3,0l-22.4,10l-21.5,18.9l30.8,39.6l0.1,0Zm201.2,10.1l-48,0l16.1,-10l0,-58.6l-20.2,-10l50.1,0l-15.5,10l0,27.5l31.2,-27.5l-14.2,-10l51.3,0l-22.5,10l-21.5,18.9l30.8,39.6l23.5,10.1l-57.7,0l16.8,-10l-23.7,-30.6l-13.9,12.2l-0.1,18.3l17.5,10.1Zm-146.8,-34.7l-14.5,-27.3l-15.6,27.3l30.1,0Z" style="fill:#f54d04;" /> </g> </g></svg>
             </div>
-        }
-    </div>
-    <div class="mobile-header__nav-expander">
-        <div class="expander">
-            <button class="expander__trigger expander__trigger--nav" href="#">
-                <span class="expander__icon"></span>
-            </button>
         </div>
-    </div>
+        <div class="mobile-header__nav">
+            <div class="mobile-header__nav-head">
+                @renderNavHead()
+            </div>
+            <nav role="navigation">
+                @{ Html.RenderPartial(
+                        "Components/_CollapseMenu",
+                        new CollapseMenuViewModel
+                        {
+                            StartNode = website,
+                            MaxLevelsRendered = 15
+                        }); }
+            </nav>
+            @if (links != null && links.Any())
+            {
+                <div class="mobile-header__menu">
+                    <nav role="navigation">
+                        @foreach (var item in links)
+                        {
+                            @renderMenu(item)
+                        }
+                    </nav>
+                </div>
+            }
+        </div>
+        <div class="mobile-header__nav-expander">
+            <div class="expander">
+                <button class="expander__trigger expander__trigger--nav" href="#">
+                    <span class="expander__icon"></span>
+                </button>
+            </div>
+        </div>
     </div>
 </header>
 

@@ -7,7 +7,7 @@
 // Utility
 // --------------------------------------------------
 .line-base {
-    .fluid-property(margin-bottom, 25, 35);
+    .fluid-property(margin-bottom, 20, 30);
 }
 
 //
@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: @headings-font-family;
     font-weight: @headings-font-weight;
-    .fluid-property(line-height, 0.95, 1.2, 768, 1440, em);
+    .fluid-property(line-height, 1.2, 1.95, 768, 1440, em);
     color: @headings-color;
 }
 
@@ -40,19 +40,17 @@ h6, .h6 {
 }
 
 h1, .h1 {
-    font-family: @font-family-serif;
-    font-weight: 900;
-    .fluid-property(font-size, 40, 70);
+    font-weight: 100;
+    .fluid-property(line-height, 1.1, 1.8, 768, 1440, em);
+    .fluid-property(font-size, 35, 80);
 }
 
 h2, .h2 {
-    font-size: @font-size-h2;
+    letter-spacing: 1px;
+    .fluid-property(font-size, 26, 34);
 }
 
 h3, .h3 {
-    font-family: @font-family-serif;
-    font-weight: 900;
-    letter-spacing: 0.03em;
     .fluid-property(font-size, 26, 34);
     .fluid-property(margin-bottom, 20, 30);
 
@@ -60,6 +58,7 @@ h3, .h3 {
 
 h4, .h4 {
     margin: 0 0 3px;
+    letter-spacing: 1px;
     .fluid-property(font-size, 17, 20);
 }
 
@@ -87,7 +86,7 @@ a {
 }
 
 p {
-    margin: 0;
+    margin:0;
     .line-base();
 }
 

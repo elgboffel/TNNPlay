@@ -18,7 +18,7 @@
             }
     
             initMap(element: HTMLElement) {
-                let isLandingPage = element.classList.contains('google-map--landingpage');
+                let isPageType = element.classList.contains('some-class');
                 let _googleMap = element.querySelector('.google-map__canvas') as HTMLElement;
                 const iconRootUrl = '/content/images/';
     
@@ -349,9 +349,10 @@
                     let markerOptions: any = '';
     
                     //render different options depending on page and values
-                    if (isLandingPage || dataMarkers.length === 1) {
+                    if (isPageType || dataMarkers.length === 1) {
                         markerOptions = {
                             position: latLng,
+                            icon: iconRootUrl + 'mapsPin.png',                                
                             label: {
                                 color: '#fff',
                                 fontFamily: "'Montserrat', Helvetica",
@@ -436,7 +437,7 @@
     }
     
     (function () {
-        var elements = document.querySelectorAll('.google-map');
+        let elements = document.querySelectorAll('.google-map');
         for (let i = 0; i < elements.length; i++) {
             let init = new App.GoogleMap(<HTMLElement>elements[i]);
         }

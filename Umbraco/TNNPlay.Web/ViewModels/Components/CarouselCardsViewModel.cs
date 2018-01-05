@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Core.Models;
 
-namespace BaseSite.Web.ViewModels.Components
+namespace TNNPlay.Web.ViewModels.Components
 {
     public class CarouselCardsViewModel : MediaViewModel
     {

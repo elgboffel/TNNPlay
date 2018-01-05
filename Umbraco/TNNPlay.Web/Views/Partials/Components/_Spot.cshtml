@@ -1,0 +1,79 @@
+﻿@inherits UmbracoViewPage<SpotViewModel>
+
+@{
+    var guid = Guid.NewGuid();
+    var hasCallToAction = Model.CallToAction != null;
+    if (hasCallToAction)
+    {
+        Html.RequiresJs("~/scripts/build/modal.js", 1, 2, new { @defer = string.Empty });
+    }
+}
+
+<div class="spot @(Model.ClassModifier)">
+    @if(!string.IsNullOrEmpty(Model.Url))
+    {
+        @:<a href="@Model.Url">
+    }
+
+    @if (Model.Image != null || Model.EnableImageFallback || Model.MediaType != RenderMediaTypes.Image)
+    {
+        <div class="spot__media">
+            @Html.Partial(
+           "Components/_Media",
+           new MediaViewModel
+           {
+               Image = Model.Image,
+               EmbedVideo = Model.EmbedVideo,
+               EmbedVideoUrl = Model.EmbedVideoUrl,
+               TypedWidths = Model.TypedWidths,
+               GridSettings = Model.GridSettings,
+               MediaHeights = Model.MediaHeights,
+               EnableImageFallback = Model.EnableImageFallback,
+               MediaType = Model.MediaType
+           })
+        </div>
+    }
+
+    @if(!string.IsNullOrEmpty(Model.Heading))
+    {
+        <div class="spot__content">
+
+                @if (!string.IsNullOrEmpty(Model.Trumpet))
+                {
+                    <div class="spot__trumpet">@Model.Trumpet</div>
+                }
+                @if(!string.IsNullOrEmpty(Model.Heading))
+                {
+                    <h1 class="spot__heading">@Html.Raw(Model.Heading)</h1>
+                }
+                @if (Model.Content != null)
+                {
+                    <p class="spot__content">@Html.Raw(Model.Content)</p>
+                }
+                @if (hasCallToAction)
+                {
+                    <div class="spot__call-to-action">
+                        <div class="btn btn--default btn--arrow modal--btn" role="button" data-target="@guid" >Register here</div>
+                    </div>
+                }
+                <div class="spot__spacer"></div>
+        </div>
+    }
+
+    @if(!string.IsNullOrEmpty(Model.Url))
+    {
+        @:</a>
+    }
+</div>
+@if (hasCallToAction)
+{
+    <div id="@guid" class="modal modal--call-to-action">
+        <div class="modal__content">
+            <button role="button" class="modal__close btn btn--close">
+                Luk
+            </button>
+            <h2 class="margin-bt70">Søg på Skalk</h2>
+        </div>
+    </div>
+}
+

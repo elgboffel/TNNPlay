@@ -5,28 +5,25 @@
 @import (reference) "../bootstrap/type.less";
 
 .google-map {
-
-    &__heading {
-        color: @brand-alt;
-        margin:0 0 3px;
-    }
-
-    &__canvas {
-        min-height: 250px;
-    }
-
-    @media(min-width: @screen-md-min){
+    
         &__canvas {
-            min-height: 0;
+            min-height: 250px;
+        }
+    
+        @media(min-width: @screen-md-min) {
+            &__canvas {
+                min-height: 0;
+            }
         }
     }
-}
-
-.google-map--video-page {
-
-    .google-map {
-        &__heading {
-            color: @light-brown;
+    
+    .gm-style-iw {
+        a {
+            display: block;
+            color: @brand-primary;
+            transition: color 200ms ease;
+            &:hover, &:focus {
+                color: @color-stone;
+            }
         }
     }
-}

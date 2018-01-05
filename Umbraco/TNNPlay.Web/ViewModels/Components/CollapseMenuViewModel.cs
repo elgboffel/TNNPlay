@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
-namespace BaseSite.Web.ViewModels.Components
+namespace TNNPlay.Web.ViewModels.Components
 {
     public class CollapseMenuViewModel
     {

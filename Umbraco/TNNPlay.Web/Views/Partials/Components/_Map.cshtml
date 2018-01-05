@@ -5,17 +5,25 @@
 @{
     //Remember to get a new Google Map API key on isupport account developers.google.com/maps/documentation/javascript/get-api-key
     // Sample developers.google.com/maps/documentation/javascript/examples/maptype-styled-simple
-    Html.RequiresJs("https://maps.googleapis.com/maps/api/js?key=AIzaSyBRbXdfQ3bMAE4RSDuU5gnLLRIJ-L7yxRs", 1, 2, new { @defer = string.Empty });
+    Html.RequiresJs("https://maps.googleapis.com/maps/api/js?key=AIzaSyCSgmMsbKTF_nfT7zM6lvWm81GlrcSgIFI ", 1, 2, new { @defer = string.Empty });
     Html.RequiresJs("~/Content/components/js-marker-clusterer/src/markerclusterer.js", 2, 2, new { @defer = string.Empty });
     Html.RequiresJs("~/scripts/build/google-map.js", 2, 2, new { @defer = string.Empty });
 
-    var mapList = Model.MapLocationList;
+    var mapList = Model.MapList;
     var map = Model.MapLocation;
 
     if (mapList != null && mapList.Any())
     {
-        @renderMapList(mapList)
-    } else if (map != null && (map.LatLng.Lng != 0 || map.LatLng.Lat != 0))
+        switch (Model.MapListRenderType)
+        {
+            case MapListRenderType.NestedContent:
+                @renderMapListNestedContent(mapList) break;
+            default:
+                @renderMapList(mapList) break;
+        }
+
+    }
+    else if (map != null && (map.LatLng.Lng != 0 || map.LatLng.Lat != 0))
     {
         @renderMap(map)
     }
@@ -23,28 +31,24 @@
 
 @helper renderMap(LeafletMapModel map)
 {
-    var zoom = map.Zoom;
+var zoom = map.Zoom;
 
-    var marker = new MapMarker
+var marker = new MapMarker
+{
+    Lat = map.LatLng.Lat,
+    Lng = map.LatLng.Lng
+};
+
+var markerAsJson = JsonConvert.SerializeObject(
+    marker.AsEnumerableOfOne(),
+    new JsonSerializerSettings
     {
-        Lat = map.LatLng.Lat,
-        Lng = map.LatLng.Lng
-    };
-
-    var markerAsJson = JsonConvert.SerializeObject(
-        marker.AsEnumerableOfOne(),
-        new JsonSerializerSettings
-        {
-            NullValueHandling = NullValueHandling.Ignore
-        });
+        NullValueHandling = NullValueHandling.Ignore
+    });
 
     <div class="google-map @(Model.ClassModifiers)"
-            data-zoom="@zoom"
-            data-markers="@markerAsJson">
-        @if (!string.IsNullOrEmpty(Model.Heading))
-        {
-            <h3 class="google-map__heading">@Model.Heading</h3>
-        }
+         data-zoom="@zoom"
+         data-markers="@markerAsJson">
         <div class="google-map__canvas" style="height: @(Model.CanvasHeight + "px")">
             Google Map...
         </div>
@@ -53,37 +57,90 @@
 
 @helper renderMapList(IEnumerable<IPublishedContent> mapList)
 {
-    var newList = from marker in mapList
-                  where marker.LeafletMapHasValues("mapLocation")
-                  group marker by new {
-                      marker.GetPropertyValue<LeafletMapModel>("mapLocation").LatLng.Lat,
-                      marker.GetPropertyValue<LeafletMapModel>("mapLocation").LatLng.Lng
-                  } into groupedMarkers
-                  select new MapMarker {
-                      Lat = groupedMarkers.Key.Lat,
-                      Lng = groupedMarkers.Key.Lng,
-                      contentList = from groupedMark in groupedMarkers
-                                    select new MapMarkerContent
-                                    {
-                                        Heading = groupedMark.GetPropertyValue<string>("heading", groupedMark.Name),
-                                        Url = groupedMark.Url
-                                    }
-                  };
+Model.Zoom = Model.Zoom == 0 ? 7 : Model.Zoom;
+var markers = from marker in mapList
+              where marker.LeafletMapHasValues("mapLocation")
+              group marker by new
+              {
+                  marker.GetPropertyValue<LeafletMapModel>("mapLocation").LatLng.Lat,
+                  marker.GetPropertyValue<LeafletMapModel>("mapLocation").LatLng.Lng
+              } into groupedMarkers
+              select new MapMarker
+              {
+                  Lat = groupedMarkers.Key.Lat,
+                  Lng = groupedMarkers.Key.Lng,
+                  ContentList = from groupedMark in groupedMarkers
+                                select new MapMarkerContent
+                                {
+                                    Heading = groupedMark.GetPropertyValue<string>("heading", groupedMark.Name),
+                                    Url = groupedMark.Url
+                                }
+              };
 
-    var markersAsJson = JsonConvert.SerializeObject(
-        newList,
-        new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore
-        });
+var markersAsJson = JsonConvert.SerializeObject(
+    markers,
+    new JsonSerializerSettings
+    {
+        NullValueHandling = NullValueHandling.Ignore
+    });
 
-    <div class="google-map @(Model.ClassModifiers)"
-         data-zoom="@Model.Zoom"
-         data-markers="@markersAsJson">
-        @if (!string.IsNullOrEmpty(Model.Heading))
-        {
-            <h3 class="google-map__heading">@Model.Heading</h3>
-        }
-        <div class="google-map__canvas" style="height: @(Model.CanvasHeight + "px")">
-            Google Map...
+        <div class="google-map @(Model.ClassModifiers)"
+             data-zoom="@Model.Zoom"
+             data-markers="@markersAsJson">
+            <div class="google-map__canvas" style="height: @(Model.CanvasHeight + "px")">
+                Google Map...
+            </div>
         </div>
-    </div>
+}
+
+@helper renderMapListNestedContent(IEnumerable<IPublishedContent> mapListNestedContent)
+{
+
+var markers = from page in mapListNestedContent
+              where page.HasValue("mapLocations")
+              from marker in page.GetPropertyValue<IEnumerable<IPublishedContent>>("mapLocations")
+              where marker.LeafletMapHasValues("mapLocation")
+              select new MapMarker
+              {
+                  Lat = marker.GetPropertyValue<LeafletMapModel>("mapLocation").LatLng.Lat,
+                  Lng = marker.GetPropertyValue<LeafletMapModel>("mapLocation").LatLng.Lng,
+                  Content = new MapMarkerContent
+                  {
+                      Heading = page.GetPropertyValue<string>("heading", page.Name),
+                      Url = page.Url
+                  }
+              };
+
+var distinctMarkers = from marker in markers
+                      group marker by new
+                      {
+                          marker.Lat,
+                          marker.Lng
+                      } into groupedMarkers
+                      select new MapMarker
+                      {
+                          Lat = groupedMarkers.Key.Lat,
+                          Lng = groupedMarkers.Key.Lng,
+                          ContentList = from item in groupedMarkers
+                                        select new MapMarkerContent
+                                        {
+                                            Heading = item.Content.Heading,
+                                            Url = item.Content.Url
+                                        }
+                      };
+
+var markersAsJson = JsonConvert.SerializeObject(
+distinctMarkers,
+new JsonSerializerSettings
+{
+    NullValueHandling = NullValueHandling.Ignore
+});
+
+        <div class="google-map @(Model.ClassModifiers)"
+             data-zoom="@Model.Zoom"
+             data-markers="@markersAsJson">
+            <div class="google-map__canvas" style="height: @(Model.CanvasHeight + "px")">
+                Google Map...
+            </div>
+        </div>
 }

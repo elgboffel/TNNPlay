@@ -325,7 +325,21 @@
     <Content Include="config\imageprocessor\processing.config" />
     <Content Include="config\imageprocessor\cache.config" />
     <Content Include="App_Plugins\ModelsBuilder\package.manifest" />
-    <Content Include="Content\less\mixins\hover.css" />
+    <Content Include="Content\components\animejs\anime.js" />
+    <Content Include="Content\components\animejs\anime.min.js" />
+    <Content Include="Content\components\picturefill\dist\picturefill.js" />
+    <Content Include="Content\components\picturefill\dist\picturefill.min.js" />
+    <Content Include="Content\components\picturefill\dist\plugins\intrinsic-dimension\pf.intrinsic.js" />
+    <Content Include="Content\components\picturefill\dist\plugins\intrinsic-dimension\pf.intrinsic.min.js" />
+    <Content Include="Content\components\picturefill\dist\plugins\mutation\pf.mutation.js" />
+    <Content Include="Content\components\picturefill\dist\plugins\mutation\pf.mutation.min.js" />
+    <Content Include="Content\components\picturefill\dist\plugins\oldie\pf.oldie.js" />
+    <Content Include="Content\components\picturefill\dist\plugins\oldie\pf.oldie.min.js" />
+    <Content Include="Content\components\picturefill\dist\plugins\print\pf.print.js" />
+    <Content Include="Content\components\picturefill\dist\plugins\print\pf.print.min.js" />
+    <Content Include="Content\components\picturefill\dist\plugins\typesupport\pf.type.js" />
+    <Content Include="Content\components\picturefill\dist\plugins\typesupport\pf.type.min.js" />
+    <Content Include="Content\images\small-arrow.png" />
     <Content Include="css\body-text-formats.css" />
     <Content Include="css\footer-formats.css" />
     <Content Include="gulpfile.js" />
@@ -400,7 +414,6 @@
     <Content Include="Content\less\components\tag-list.less" />
     <Content Include="Content\less\components\umb-grid.less" />
     <Content Include="Content\less\font-awesome.less" />
-    <Content Include="Content\less\identity.less" />
     <Content Include="Content\less\main.less" />
     <Content Include="Content\less\mixins.less" />
     <Content Include="Content\less\mixins\arrow.less" />
@@ -412,12 +425,15 @@
     <Content Include="Content\less\utility-layout.less" />
     <Content Include="Content\less\utility.less" />
     <Content Include=".bowerrc" />
+    <Content Include="scripts\build\modal.js" />
+    <Content Include="scripts\build\modal.js.map" />
     <Content Include="TNNPlay.Web.wpp.targets" />
     <Content Include="bower.json" />
     <Content Include="package.json" />
+    <Content Include="Content\less\components\modal.less" />
+    <Content Include="Content\less\mixins\utility.less" />
     <None Include="packages.config" />
     <Content Include="robots.txt" />
-    <Content Include="scripts\app\share-page.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Rte.cshtml" />
@@ -425,10 +441,7 @@
     <Content Include="Views\Partials\Grid\Editors\Macro.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Embed.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Base.cshtml" />
-    <Content Include="Views\Partials\Grid\Bootstrap3.cshtml" />
-    <Content Include="Views\Partials\Grid\Bootstrap3-Fluid.cshtml" />
-    <Content Include="Views\Partials\Grid\Bootstrap2.cshtml" />
-    <Content Include="Views\Partials\Grid\Bootstrap2-Fluid.cshtml" />
+    <Content Include="Views\Partials\Grid\_ThemePageFluid.cshtml" />
     <Content Include="Umbraco\assets\fonts\helveticons\helveticons.eot" />
     <Content Include="Umbraco\assets\fonts\helveticons\helveticons.ttf" />
     <Content Include="Umbraco\assets\fonts\helveticons\helveticons.woff" />
@@ -586,6 +599,12 @@
     <Content Include="Views\Partials\Grid\_FrontPage.cshtml" />
     <Content Include="Views\Partials\Grid\_GridPage.cshtml" />
     <Content Include="tsconfig.json" />
+    <Content Include="Views\Partials\Components\_Hero.cshtml" />
+    <Content Include="Views\Partials\Components\_Media.cshtml" />
+    <Content Include="Views\Partials\Components\_MediaList.cshtml" />
+    <Content Include="Views\Partials\Components\_MediaListAsync.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\Spot.cshtml" />
+    <Content Include="Views\Partials\Components\_Spot.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1866,9 +1885,12 @@
     <Compile Include="Extensions\UmbracoHelperExtensions.cs" />
     <Compile Include="Helpers\SearchHelper.cs" />
     <Compile Include="Helpers\UtilityHelpers.cs" />
+    <Compile Include="Helpers\VideoHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyValueConverters\LeafletMapPropertyValueConverter.cs" />
     <Compile Include="ViewModels\Components\BreadcrumbViewModel.cs" />
     <Compile Include="ViewModels\Components\BreakingViewModel.cs" />
+    <Compile Include="ViewModels\Components\SpotViewModel.cs" />
     <Compile Include="ViewModels\Components\CardViewModel.cs" />
     <Compile Include="ViewModels\Components\CarouselCardsViewModel.cs" />
     <Compile Include="ViewModels\Components\CarouselViewModel.cs" />
@@ -1883,26 +1905,18 @@
     <Compile Include="ViewModels\Components\SoMeShareViewModel.cs" />
     <Compile Include="ViewModels\Components\SoMeViewModel.cs" />
     <Compile Include="ViewModels\Components\TagListViewModel.cs" />
+    <Compile Include="ViewModels\Components\UtilityEnums.cs" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="scripts\app\carousel.ts" />
-    <TypeScriptCompile Include="scripts\app\clipboard.ts" />
-    <TypeScriptCompile Include="scripts\app\collapse-menu.tsx" />
-    <TypeScriptCompile Include="scripts\app\cookie-consent.ts" />
-    <TypeScriptCompile Include="scripts\app\expander.ts" />
-    <TypeScriptCompile Include="scripts\app\google-map.ts" />
-    <TypeScriptCompile Include="scripts\app\media-list.async.ts" />
-    <TypeScriptCompile Include="scripts\app\preview.ts" />
-    <TypeScriptCompile Include="scripts\app\search-form.ts" />
-    <TypeScriptCompile Include="scripts\app\squeeze-box.ts" />
-    <TypeScriptCompile Include="scripts\app\sticky.ts" />
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <TypeScriptCompile Include="scripts\app\modal.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

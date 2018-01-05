@@ -2,6 +2,23 @@
 @import (reference) "../../components/bootstrap/less/mixins.less";
 @import (reference) "../mixins.less";
 
+.legend {
+    display: block;
+    .fluid-property(margin-bottom, 25, 35);
+    .fluid-property(font-size, 25, 35);
+    line-height: inherit;
+    color: #333333;
+    border: 0;
+    border-bottom-width: 0px;
+    border-bottom-style: none;
+    border-bottom-color: currentcolor;
+    border-bottom: 1px solid #e5e5e5;
+
+    &--small {
+        .fluid-property(font-size, 17, 20);
+    }
+}
+
 /*
 * forms
 */

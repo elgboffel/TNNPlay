@@ -1,7 +1,7 @@
 using ImageProcessor.Web.HttpModules;
 using Umbraco.Core;
 
-namespace BaseSite.Web
+namespace TNNPlay.Web
 {
     /// <summary>
     /// Taps into ImageProcessor.Web events to intecept image requests to adjust output quality file size.

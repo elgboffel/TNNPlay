@@ -3,12 +3,14 @@
 @{
     Layout = null;
     Html
-        .RequiresJs("~/Content/components/es5-shim/es5-shim.min.js", 1, 1)
         .RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js", 1, 1)
         .RequiresJs("~/Content/components/picturefill/dist/picturefill.min.js", 1, 1)
         .RequiresJs("~/Content/components/animejs//anime.min.js", 1, 1)
-        .RequiresCss("~/content/css/shell.css", 1, 1)
-        .RequiresCss("~/content/css/main.css", 1, 2, new { @defer = string.Empty });
+        .RequiresJs("~/scripts/build/dropdown.js", 1, 1, new { @defer = string.Empty })
+        .RequiresCss("https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900", 1,1)
+        .RequiresCss("~/content/css/shell.css", 2, 1)
+        .RequiresCss("~/content/css/font-awesome.css", 1, 2, new { @defer = string.Empty })
+        .RequiresCss("~/content/css/main.css", 2, 2, new { @defer = string.Empty });
 
     var website = Model.Site() as Website;
 }
@@ -30,11 +32,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @Html.Raw(SEOChecker.Library.MetaData.Current.RenderTags())
     @Html.CachedPartial("_Favicons", Model, 3600, false)
-    @Html.CachedPartial("_OpenGraph", Model, 300, true)
+    @Html.CachedPartial("_OpenGraph", Model, 3600, true)
     @Html.RenderCssHere()
 </head>
 <body>
-   @*@Html.CachedPartial("_NavbarHeader", Model, 3600, cacheByPage: true)*@
+   @Html.CachedPartial("_NavbarHeader", Model, 3600, cacheByPage: true)
 
    @*@{ Html.RenderPartial("_MobileHeader"); }*@
 

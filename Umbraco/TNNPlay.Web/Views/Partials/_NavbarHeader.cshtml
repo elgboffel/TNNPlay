@@ -1,94 +1,40 @@
 ﻿@inherits UmbracoViewPage
-@using Our.Umbraco.LinksPicker.Models
-
 
 @{
     Html.RequiresJs("~/scripts/app/search-form.js", 1, 2, new { @defer = string.Empty });
 
+    var root = Model.AncestorOrSelf<Website>();
     var website = Model.AncestorOrSelf<Culture>() != null ?
         Model.AncestorOrSelf<Culture>() as IGenericWebsite :
-        Model.AncestorOrSelf<Website>() as IGenericWebsite;
+        root;
+
 }
 
-<header class="navbar-header hidden-xs">
+<header class="navbar-header">
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                @RenderMenu(website)
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
                 <div class="navbar-header__content">
-                    <a href="@website.Url" class="navbar-header__logo">
-                        <svg width="100%" height="100%" viewBox="0 0 210 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g transform="matrix(1,0,0,1,-135,-46)"> <g id="skalk" transform="matrix(0.49386,0,0,0.4913,-871.185,-1115.83)"> <path d="M2086.91,2425.8c9.9,4 8.9,8.5 8.9,8.5c0,12.5 -18.8,12.3 -18.8,12.3c-23.2,0 -38.2,-34.1 -38.2,-34.1l0,50l9.8,-18.7c0,0 15.2,10.6 29,10.6c13.8,0 35.3,-6.3 35.3,-25.2c0,0 1.4,-11.2 -17.6,-18.4l-33.3,-13c-9.1,-4 -8,-8 -8,-8c0,-12.2 16.5,-12.8 16.5,-12.8c21.4,0 35.3,27.4 35.3,27.4l0,-39.6l-9,12.9c0,0 -14,-7.6 -26.7,-7.6c-12.7,0 -32.7,6.1 -32.7,24.6c0,0 -1.3,10.9 16.2,18l33.3,13.1Zm113.4,17.1l43.6,-75.7l40.4,75.7l7.6,4.6l5.7,-4.6l0,-58.5l-20.4,-10l57.6,0l-22.7,10l0,60.7l26.6,0l19.5,-22.3l-9.4,30.2l-101.2,0l20.3,-10l-8.9,-16.8l-38.9,0l-9.6,16.8l19.6,10.1l-64.2,0l16.8,-10.1l-23.7,-30.5l-13.9,12.2l0,18.3l17.5,10l-48.1,0l16.1,-10l0,-58.6l-20.2,-10l50.2,0l-15.5,10l0,27.4l31.2,-27.4l-14.3,-10l51.3,0l-22.4,10l-21.5,18.9l30.8,39.6l0.1,0Zm201.2,10.1l-48,0l16.1,-10l0,-58.6l-20.2,-10l50.1,0l-15.5,10l0,27.5l31.2,-27.5l-14.2,-10l51.3,0l-22.5,10l-21.5,18.9l30.8,39.6l23.5,10.1l-57.7,0l16.8,-10l-23.7,-30.6l-13.9,12.2l-0.1,18.3l17.5,10.1Zm-146.8,-34.7l-14.5,-27.3l-15.6,27.3l30.1,0Z" style="fill:#f54d04;" /> </g> </g></svg>
-                    </a>
+                    @if (website.Logo != null)
+                    {
+                        <a href="@website.Url" class="navbar-header__logo">
+                            @Html.CachedPartial(
+                            "Components/_Media",
+                            new MediaViewModel
+                            {
+                                Image = root.Logo,
+                                TypedWidths = new TypedWidths
+                                {
+                                    TypedXs = 81
+                                }
+                            }, 3600, true)
+                        </a>
+                    }
                     <div class="navbar-header__navbar">
                         @Html.CachedPartial("_Navbar", Model, 3600, cacheByPage: true)
-                    </div>
-                    <div class="navbar-header__search">
-                        <button role="button" class="btn btn--search margin-bt0">
-                            <span>
-                                <svg width="100%" height="100%" viewBox="0 0 29 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g transform="matrix(1,0,0,1,-129,0)"> <g id="searchIkonGrafik" transform="matrix(1,0,0,1,-3185,-17.9993)"> <path d="M3332.5,38.625c-0.5,0.383 -1.038,0.729 -1.613,1.034c-5.607,2.974 -12.574,0.837 -15.548,-4.77c-2.974,-5.607 -0.837,-12.574 4.77,-15.548c5.607,-2.974 12.574,-0.837 15.548,4.77c1.678,3.163 1.729,6.759 0.448,9.826c2.222,2.483 4.349,5.053 6.527,7.575c0.148,0.181 0.26,0.383 0.319,0.612c0.046,0.181 0.058,0.369 0.037,0.554c-0.02,0.162 -0.065,0.321 -0.134,0.468c-0.242,0.512 -0.764,0.849 -1.324,0.854c-0.184,0.001 -0.368,-0.032 -0.54,-0.098c-0.064,-0.025 -0.126,-0.056 -0.187,-0.088c-2.737,-1.615 -5.4,-3.357 -8.099,-5.036c-0.072,-0.047 -0.14,-0.097 -0.204,-0.153Zm-11.454,-17.517c3.17,-1.681 7.737,0.714 10.194,5.346c2.457,4.632 1.879,9.757 -1.29,11.438c-3.17,1.681 -7.737,-0.714 -10.194,-5.346c-2.457,-4.632 -1.879,-9.757 1.29,-11.438Z" style="fill:#819bac;" /> </g> </g></svg>
-                            </span>
-                            Søg
-                        </button>
-                        @*<form class="search-form search-form--toggle closed" role="search" action="/soegeside">
-                            <div class="submit" data-action="/soegeside">
-                                <svg width="100%" height="100%" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><rect id="Moodbord" x="-333" y="-1457" width="1440" height="3797" style="fill:none;" /><g id="fa-search"><path id="fa-search1" d="M13.846,8.462c0,-1.483 -0.527,-2.751 -1.58,-3.805c-1.054,-1.053 -2.322,-1.58 -3.804,-1.58c-1.483,0 -2.751,0.527 -3.805,1.58c-1.053,1.054 -1.58,2.322 -1.58,3.805c0,1.482 0.527,2.75 1.58,3.804c1.054,1.053 2.322,1.58 3.805,1.58c1.482,0 2.75,-0.527 3.804,-1.58c1.053,-1.054 1.58,-2.322 1.58,-3.804Zm6.154,10c0,0.416 -0.152,0.777 -0.457,1.081c-0.304,0.305 -0.665,0.457 -1.081,0.457c-0.433,0 -0.794,-0.152 -1.082,-0.457l-4.123,-4.11c-1.434,0.993 -3.033,1.49 -4.795,1.49c-1.146,0 -2.242,-0.222 -3.288,-0.667c-1.045,-0.445 -1.947,-1.046 -2.704,-1.803c-0.757,-0.757 -1.358,-1.659 -1.803,-2.704c-0.445,-1.046 -0.667,-2.142 -0.667,-3.287c0,-1.146 0.222,-2.242 0.667,-3.288c0.445,-1.045 1.046,-1.947 1.803,-2.704c0.757,-0.757 1.659,-1.358 2.704,-1.803c1.046,-0.445 2.142,-0.667 3.288,-0.667c1.145,0 2.241,0.222 3.287,0.667c1.045,0.445 1.947,1.046 2.704,1.803c0.757,0.757 1.358,1.659 1.803,2.704c0.445,1.046 0.667,2.142 0.667,3.288c0,1.762 -0.497,3.361 -1.49,4.795l4.122,4.123c0.297,0.296 0.445,0.657 0.445,1.082Z" style="fill:#b4b5a2;fill-rule:nonzero;" /></g></svg>
-                            </div>
-                            <input type="text" name="q" value="@Umbraco.GetQueryString("q", "")" class="form-control" placeholder="Søg..." autocomplete="off">
-                        </form>*@
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </header>
-
-
-
-@helper RenderMenu(IGenericWebsite website)
-{
-    var links = Model.GetPropertyValue<IEnumerable<LinksPickerItem>>("headerLinks", recurse: true);
-
-    <div class="navbar-header__menu">
-        @if (links != null && links.Any())
-        {
-            <ul class="navbar-header__list">
-
-                @foreach (var link in links)
-                {
-                    <li>
-                        <a href="@link.Url" target="@link.Target">@link.Name</a>
-                    </li>
-                }
-            </ul>
-        }
-        <div class="navbar-header__login">
-            @renderLogin(website)
-        </div>
-    </div>
-}
-
-@helper renderLogin(IGenericWebsite website)
-{
-    var loginStatusModel = Members.GetCurrentLoginStatus();
-    var loginPagePicker = Model.GetPropertyValue<IEnumerable<IPublishedContent>>("headerLoginPage", recurse: true);
-
-    if (loginPagePicker != null && !loginStatusModel.IsLoggedIn)
-    {
-        var loginPage = loginPagePicker.FirstOrDefault();
-        <a class="navbar-header__login-link" href="@loginPage.Url">
-            <span>
-                <svg width="100%" height="100%" viewBox="0 0 14 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g transform="matrix(1,0,0,1,-41,-46)"> <g id="loginGrafik" transform="matrix(1,0,0,1,-8285,34)"> <path d="M8328,19l0,-2c0,-2.76 2.24,-5 5,-5c2.76,0 5,2.24 5,5l0,2l0.5,0c0.828,0 1.5,0.672 1.5,1.5l0,6c0,0.828 -0.672,1.5 -1.5,1.5l-11,1c-0.828,0 -1.5,-0.672 -1.5,-1.5l0,-7c0,-0.828 0.672,-1.5 1.5,-1.5l0.5,0Zm9,0l0,-2c0,0 0.244,-3.026 -4,-3c-1.656,0.01 -3,1.344 -3,3l0,2l7,0Z" style="fill:#819bac;" /> </g> </g></svg>
-            </span>
-            log ind
-        </a>
-    }
-
-    if (loginStatusModel.IsLoggedIn)
-    {
-        <div class="login-status">@loginStatusModel.Username</div>
-    }
-}

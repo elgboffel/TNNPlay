@@ -1,0 +1,28 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.ripple {
+    position: relative;
+
+    &:hover, &:focus {
+        .ripple__effect {
+            opacity:1;
+            transform: scale(2.5);
+        }
+    }
+
+    &__effect {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        border-radius: 50%;
+        height: 0;
+        width: 0;
+        transform: scale(0);
+        opacity: 0;
+        will-change: transform, opacity;
+    }
+}

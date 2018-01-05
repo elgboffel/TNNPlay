@@ -2,7 +2,7 @@ using Examine;
 using System.Collections.Generic;
 using Umbraco.Core;
 
-namespace BaseSite.Web.EventHandlers
+namespace TNNPlay.Web.EventHandlers
 {
     public class ExternalIndexerEventHandler : IApplicationEventHandler
     {
