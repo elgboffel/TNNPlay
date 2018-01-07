@@ -339,6 +339,7 @@
     <Content Include="Content\components\picturefill\dist\plugins\print\pf.print.min.js" />
     <Content Include="Content\components\picturefill\dist\plugins\typesupport\pf.type.js" />
     <Content Include="Content\components\picturefill\dist\plugins\typesupport\pf.type.min.js" />
+    <Content Include="Content\images\simple-close.png" />
     <Content Include="Content\images\small-arrow.png" />
     <Content Include="css\body-text-formats.css" />
     <Content Include="css\footer-formats.css" />
@@ -432,6 +433,7 @@
     <Content Include="package.json" />
     <Content Include="Content\less\components\modal.less" />
     <Content Include="Content\less\mixins\utility.less" />
+    <Content Include="Content\less\components\statement.less" />
     <None Include="packages.config" />
     <Content Include="robots.txt" />
     <Content Include="Views\Web.config" />
@@ -605,6 +607,7 @@
     <Content Include="Views\Partials\Components\_MediaListAsync.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Spot.cshtml" />
     <Content Include="Views\Partials\Components\_Spot.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\Statement.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

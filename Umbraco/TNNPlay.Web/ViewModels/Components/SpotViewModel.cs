@@ -11,7 +11,7 @@ namespace TNNPlay.Web.ViewModels.Components
 {
     public class SpotViewModel : MediaViewModel
     {
-        public RenderLayoutType LayoutType { get; set; }
+        public SpotSettings SpotSettings { get; set; }
 
         public string Heading { get; set; }
 
@@ -27,5 +27,25 @@ namespace TNNPlay.Web.ViewModels.Components
         /// E.g spot--green
         /// </summary>
         public string ClassModifier { get; set; }
+
+        public SpotViewModel()
+        {
+            SpotSettings = new SpotSettings()
+            {
+                ContentLayout = ContentLayout.Default
+            };
+        }
+    }
+
+    public class SpotSettings
+    {
+        public RenderLayoutType LayoutType { get; set; }
+
+        public bool EnableHeroLayout { get; set; }
+
+        public bool EnableOverlay { get; set; }
+
+        public ContentLayout ContentLayout { get; set; }
+
     }
 }

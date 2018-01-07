@@ -90,6 +90,27 @@
         "config": {
             "editors": [
                 {
+                    "name": "Enable Hero Layout",
+                    "alias": "enableHeroLayout",
+                    "propretyType": {},
+                    "dataType": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+                    "description": "Enabling this will make the spot image and text larger. Fitting for a starting element for a page (Hero Element)."
+                },
+                {
+                    "name": "Content Layout",
+                    "alias": "contentLayout",
+                    "propretyType": {},
+                    "dataType": "5c9234bc-4097-45c8-bed8-cdd2afa23f8f",
+                    "description": "Choosing a layout will enable the content to be centered to the right or left."
+                },
+                {
+                    "name": "Enable Overlay",
+                    "alias": "enableOverlay",
+                    "propretyType": {},
+                    "dataType": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+                    "description": "Enabling this will add a dark transparent overlay to the image. This way the text will be more visible."
+                },
+                {
                     "name": "Media",
                     "alias": "Media",
                     "propretyType": {},
@@ -355,6 +376,36 @@
                     "alias": "description",
                     "propretyType": {},
                     "dataType": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3"
+                }
+            ],
+            "frontView": ""
+        }
+    },
+    {
+        "name": "Statement",
+        "alias": "statement",
+        "view": "/App_Plugins/LeBlender/editors/leblendereditor/LeBlendereditor.html",
+        "icon": "icon-sound-medium color-orange",
+        "render": "/App_Plugins/LeBlender/editors/leblendereditor/views/Base.cshtml",
+        "config": {
+            "editors": [
+                {
+                    "name": "Heading",
+                    "alias": "heading",
+                    "propretyType": {},
+                    "dataType": "0cc0eba1-9960-42c9-bf9b-60e150b429ae"
+                },
+                {
+                    "name": "Content",
+                    "alias": "content",
+                    "propretyType": {},
+                    "dataType": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3"
+                },
+                {
+                    "name": "Bacground Color",
+                    "alias": "bacgroundColor",
+                    "propretyType": {},
+                    "dataType": "f3307e53-cde2-4d38-b94d-4174db5957fa"
                 }
             ],
             "frontView": ""

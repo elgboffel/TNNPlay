@@ -9,27 +9,36 @@
 
 @helper renderContent(LeBlenderValue content)
 {
-    var media = content.GetValue<IPublishedContent>("media");
-    var callToActionPicker = content.GetValue<IEnumerable<IPublishedContent>>("pickCallToAction");
-    var trumpet = content.GetValue<string>("trumpet");
-    var headline = content.GetValue<string>("heading");
-    var rte = content.GetValue<HtmlString>("content");
-    var link = content.GetValue<IEnumerable<Our.Umbraco.LinksPicker.Models.LinksPickerItem>>("link");
-    var renderedUrl = link.Any() ? link.FirstOrDefault().Url : "";
+var media = content.GetValue<IPublishedContent>("media");
+var callToActionPicker = content.GetValue<IEnumerable<IPublishedContent>>("pickCallToAction");
+var trumpet = content.GetValue<string>("trumpet");
+var headline = content.GetValue<string>("heading");
+var rte = content.GetValue<HtmlString>("content");
+var link = content.GetValue<IEnumerable<Our.Umbraco.LinksPicker.Models.LinksPickerItem>>("link");
+var renderedUrl = link.Any() ? link.FirstOrDefault().Url : "";
+var enableHeroLayout = content.GetValue<bool>("enableHeroLayout");
+var contentLayout = content.GetValue<UtilityEnums.ContentLayout>("contentLayout");
+var enableOverlay = content.GetValue<bool>("enableOverlay");
 
-    { Html.RenderPartial(
-        "Components/_Spot",
-        new SpotViewModel
+{ Html.RenderPartial(
+    "Components/_Spot",
+    new SpotViewModel
+    {
+        SpotSettings = new SpotSettings
         {
             LayoutType = UtilityEnums.RenderLayoutType.Fluid,
-            MediaType = RenderMediaTypes.Cover,
-            ClassModifier = "spot--hero-fluid",
-            Image = media,
-            Trumpet = trumpet,
-            Heading = headline,
-            Content = rte,
-            CallToAction = callToActionPicker,
-            Url = renderedUrl
-        }
-    ); }
+            EnableHeroLayout = enableHeroLayout,
+            EnableOverlay = enableOverlay,
+            ContentLayout = contentLayout
+
+        },
+        MediaType = RenderMediaTypes.Cover,
+        Image = media,
+        Trumpet = trumpet,
+        Heading = headline,
+        Content = rte,
+        CallToAction = callToActionPicker,
+        Url = renderedUrl
+    }
+); }
 }

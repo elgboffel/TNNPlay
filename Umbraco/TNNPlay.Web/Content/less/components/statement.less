@@ -1,0 +1,30 @@
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+.statement {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 14px;
+
+    p {
+        line-height: 17px;
+        font-weight: 300;
+    }
+
+    &__content {
+        width: 100%;
+        max-width: 1540px;
+        padding: 60px 15px 50px 15px;
+        ;
+    }
+
+    @media(min-width: @screen-xs-min) {
+        &__content {
+            width: 60vw;
+        }
+    }
+}

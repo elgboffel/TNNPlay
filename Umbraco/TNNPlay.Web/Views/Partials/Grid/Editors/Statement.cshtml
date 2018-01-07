@@ -1,0 +1,27 @@
+﻿@inherits UmbracoViewPage<LeBlenderModel>
+@using Lecoati.LeBlender.Extension.Models
+
+@foreach (var item in Model.Items)
+{
+    @renderContent(item)
+}
+
+@helper renderContent(LeBlenderValue content)
+{
+var heading = content.GetValue("heading");
+var text = content.GetValue("content");
+var bgColor = content.GetValue("bacgroundColor");
+
+    <div class="statement @Umbraco.If(!bgColor.IsNullOrWhiteSpace(), "bg-" + bgColor)">
+        <div class="statement__content">
+            @if (!heading.IsNullOrWhiteSpace())
+            {
+                <h2>@Html.Raw(heading)</h2>
+            }
+            @if (!text.IsNullOrWhiteSpace())
+            {
+                <p>@Html.Raw(Umbraco.ReplaceLineBreaksForHtml(text))</p>
+            }
+        </div>
+    </div>
+}

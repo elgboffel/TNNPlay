@@ -267,31 +267,26 @@
 .btn--close {
     background-color: transparent;
     box-shadow: none;
-    padding:0;
+    padding: 0;
     padding-right: 30px;
-    > svg {
+    min-width:24px;
+    min-height: 24px;
+    &:before {
         position: absolute;
-        right:0;
+        content: "";
+        right: 0;
         top: 50%;
         transform: translateY(-50%);
-        width: 20px;
-        height: 20px;
+        background: url(/Content/images/simple-close.png);
+        width: 24px;
+        height: 24px;
         will-change: transform;
         transition: transform 300ms ease-out;
-
-        path {
-            will-change: fill;
-            transition: fill 200ms ease;
-        }
     }
 
     &:hover {
-        > svg {
+        &:before {
             transform: rotateY(180deg) translateY(-50%);
-
-            path {
-                fill: @brand-primary !important;
-            }
         }
     }
 }

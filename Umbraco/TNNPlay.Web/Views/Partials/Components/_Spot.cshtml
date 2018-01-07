@@ -1,15 +1,17 @@
 ﻿@inherits UmbracoViewPage<SpotViewModel>
-
+@using TNNPlay.Web.Helpers
 @{
     var guid = Guid.NewGuid();
     var hasCallToAction = Model.CallToAction != null;
+    var contentLayout = Model.SpotSettings.ContentLayout;
+    var contentLayoutColumn = contentLayout == UtilityEnums.ContentLayout.ContentLeft ? "col-xs-12 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2" : "col-xs-12 col-sm-5 col-sm-offset-5 col-xs-12 col-md-4 col-md-offset-6";
     if (hasCallToAction)
     {
         Html.RequiresJs("~/scripts/build/modal.js", 1, 2, new { @defer = string.Empty });
     }
 }
 
-<div class="spot @(Model.ClassModifier)">
+<div class="spot @(Model.ClassModifier) @Umbraco.If(Model.SpotSettings.EnableHeroLayout, "spot--hero-fluid") @("spot--" + contentLayout.GetEnumDisplayName())">
     @if(!string.IsNullOrEmpty(Model.Url))
     {
         @:<a href="@Model.Url">
@@ -17,7 +19,7 @@
 
     @if (Model.Image != null || Model.EnableImageFallback || Model.MediaType != RenderMediaTypes.Image)
     {
-        <div class="spot__media">
+        <div class="spot__media @Umbraco.If(Model.SpotSettings.EnableOverlay, "overlay-dark")">
             @Html.Partial(
            "Components/_Media",
            new MediaViewModel
@@ -34,17 +36,34 @@
         </div>
     }
 
-    @if(!string.IsNullOrEmpty(Model.Heading))
+    @if(!string.IsNullOrEmpty(Model.Heading) || Model.Content != null)
     {
+        if (!Model.SpotSettings.EnableHeroLayout)
+        {
+            @:<div class="content"><div class="row"><div class="@contentLayoutColumn">
+        }
         <div class="spot__content">
-
                 @if (!string.IsNullOrEmpty(Model.Trumpet))
                 {
                     <div class="spot__trumpet">@Model.Trumpet</div>
                 }
                 @if(!string.IsNullOrEmpty(Model.Heading))
                 {
-                    <h1 class="spot__heading">@Html.Raw(Model.Heading)</h1>
+                    if (!Model.SpotSettings.EnableHeroLayout)
+                    {
+                        @:<h2 class="spot__heading">
+                    } else
+                    {
+                         @:<h1 class="spot__heading">
+                    }
+                    @Html.Raw(Model.Heading)
+                    if (!Model.SpotSettings.EnableHeroLayout)
+                    {
+                        @:</h2>
+                    } else
+                    {
+                         @:</h1>
+                    }
                 }
                 @if (Model.Content != null)
                 {
@@ -53,12 +72,16 @@
                 @if (hasCallToAction)
                 {
                     <div class="spot__call-to-action">
-                        <div class="btn btn--default btn--arrow modal--btn" role="button" data-target="@guid" >Register here</div>
+                        <div class="btn btn--default btn--arrow modal--btn" role="button" data-target="modal-@guid" >Register here</div>
                     </div>
                 }
                 <div class="spot__spacer"></div>
         </div>
-    }
+        if (!Model.SpotSettings.EnableHeroLayout)
+        {
+            @:</div></div></div>
+        }
+}
 
     @if(!string.IsNullOrEmpty(Model.Url))
     {
@@ -67,12 +90,66 @@
 </div>
 @if (hasCallToAction)
 {
-    <div id="@guid" class="modal modal--call-to-action">
+    var cta = Model.CallToAction.FirstOrDefault() as CallToAction;
+    var hasRightColumn = !cta.Html.IsNullOrWhiteSpace();
+    var column = hasRightColumn ? "col-xs-12 col-md-6" : "col-xs-12";
+
+    <div id="modal-@guid" class="modal modal--call-to-action">
         <div class="modal__content">
-            <button role="button" class="modal__close btn btn--close">
-                Luk
-            </button>
-            <h2 class="margin-bt70">Søg på Skalk</h2>
+            <button role="button" class="modal__close btn btn--close"></button>
+            <div class="row">
+                <div class="col-xs-12 margin-bt40">
+                    @if (cta.Logo != null)
+                    {
+                        @Html.CachedPartial(
+                        "Components/_Media",
+                        new MediaViewModel
+                        {
+                            Image = cta.Logo,
+                            TypedWidths = new TypedWidths
+                            {
+                                TypedXs = 76
+                            }
+                        }, 3600, true)
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="@column">
+                    @if (!cta.Trumpet.IsNullOrWhiteSpace())
+                    {
+                        <div class="trumpet margin-bt20">@cta.Trumpet</div>
+                    }
+                    <h3 class="margin-bt15">@Html.Raw(Umbraco.Coalesce(cta.Heading, cta.Name))</h3>
+
+                    @if (cta.Content != null)
+                    {
+                        <div class="margin-bt40">
+                            @Html.Raw(cta.Content)
+                        </div>
+                    }
+                    @Html.CachedPartial("Components/_SoMe", new SoMeViewModel
+                    {
+                        FacebookUrl = cta.FacebookLink,
+                        InstagramUrl = cta.InstagramLink,
+                        LinkedInUrl = cta.InstagramLink,
+                        TwitterUrl = cta.TwitterLink
+                    }, 3600, true)
+
+                </div>
+                @if (hasRightColumn)
+                {
+                    <div class="col-xs-12 col-md-6">
+                        @if (!cta.RightColumnHeading.IsNullOrWhiteSpace())
+                        {
+                            <div class="trumpet margin-bt20">
+                                @Html.Raw(cta.RightColumnHeading)
+                            </div>                            
+                        }
+                        @Html.Raw(cta.Html)
+                    </div>
+                }
+            </div>
         </div>
     </div>
 }

@@ -7,19 +7,10 @@
 .hero {
     position: relative;
     .fluid-property(margin-bottom,50, 120);
-    .skewed-border-bottom();
+    .skewed-border-bottom-left(@brand-primary);
 
     &__image {
-        &:after {
-            position: absolute;
-            top: 0;
-            left: 0;
-            content: "";
-            width: 100%;
-            height: 100%;
-            background-color: rgba(6,4,5,0.76);
-            z-index: 1;
-        }
+        .overlay-dark();
     }
 
     &__content {

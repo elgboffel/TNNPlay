@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace TNNPlay.Web.ViewModels.Components
 {
@@ -12,6 +8,16 @@ namespace TNNPlay.Web.ViewModels.Components
         {
             Default,
             Fluid
+        }
+
+        public enum ContentLayout
+        {
+            [Display(Name = "content-normal")]
+            Default,
+            [Display(Name = "content-left")]
+            ContentLeft = 165,
+            [Display(Name = "content-right")]
+            ContentRight = 166,
         }
     }
 }
