@@ -2,93 +2,71 @@
 @using Our.Umbraco.LinksPicker.Models
 
 @{
-    var website = Model.AncestorOrSelf<Website>();
-
-    var footer = website.Layout;
-}
-
-@{
     var website = Model.AncestorOrSelf<Culture>() != null ?
         Model.AncestorOrSelf<Culture>() as IGenericWebsite :
         Model.AncestorOrSelf<Website>() as IGenericWebsite;
 
-    var footer = website.FooterLayout;
+    var iconImage = Model.GetPropertyValue<IPublishedContent>("iconImage", true);
+    var heading = Model.GetPropertyValue<string>("heading", true);
+    var cta = Model.GetPropertyValue<IEnumerable<IPublishedContent>>("callToAction", true);
+    var logo = Model.GetPropertyValue<IPublishedContent>("logo", true);
+
 }
 
-@if (footer != null && footer.Any())
-{
-    <footer class="footer">
-        <div class="container">
-            <div class="row flex-box">
-                @for(var i = 0; i < footer.Count(); i++)
-                {
-                    var element = footer.ElementAt(i);
-                    switch (element.DocumentTypeAlias)
-                    {
-                        case "multipleLinks":
-                            @renderLinks(element, i) break;
 
-                        default:
-                            @renderRte(element, i) break;
-                    }
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-4 col-md-offset-4">
+                @if (iconImage != null)
+                {
+                    <img class="footer__icon-image center-block margin-bt45" src="@iconImage.Url" />
                 }
-                <div class="col-xs-12 col-ms-6 col-md-4">
-                    @Html.Raw(website.Newsletter)
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 flex-center">
-                    @Html.CachedPartial(
-                        "Components/_SoMe",
-                        new SoMeViewModel
-                        {
-                            FacebookUrl = website.FacebookUrl,
-                            InstagramUrl = website.InstagramUrl,
-                            YouTubeUrl = website.YouTubeUrl,
-                        },
-                        3600
-                    )
-                </div>
+                @if (!heading.IsNullOrWhiteSpace())
+                {
+                    <h2 class="footer__heading text-center">@Html.Raw(heading)</h2>
+                }
+                @if (cta != null)
+                {
+
+                }
             </div>
         </div>
-    </footer>
-}
-
-@helper renderLinks(IPublishedContent multipleLinks, int index)
-{
-    var links = multipleLinks.GetPropertyValue("links", Enumerable.Empty<LinksPickerItem>());
-
-    <div class="col-xs-12 col-ms-6 col-md-4">
-        @if (multipleLinks.HasValue("heading"))
-        {
-            <h5 class="margin-bt10">@Html.Raw(multipleLinks.GetPropertyValue<string>("heading"))</h5>
-        }
-        @if(links.Any())
-        {
-            <ul class="link-list">
-                @foreach(var link in links)
+        <div class="row">
+            <div class="col-xs-12 col-sm-3">
+                @if (logo != null)
                 {
-                    <li><a href="@link.Url" target="@link.Target">@link.Name</a></li>
+                    <a href="@website.Url" class="footer__logo">
+                        @Html.CachedPartial(
+                            "Components/_Media",
+                            new MediaViewModel
+                            {
+                                Image = logo,
+                                TypedWidths = new TypedWidths
+                                {
+                                    TypedXs = 81
+                                }
+                            }, 3600, true)
+                    </a>
                 }
-            </ul>
-        }
-    </div>
-}
-
-@helper renderRte(IPublishedContent rte, int index)
-{
-    <div class="col-xs-12 col-ms-6 col-md-4">
-        @if (rte.HasValue("heading"))
-        {
-            <h5>@Html.Raw(rte.GetPropertyValue<string>("heading"))</h5>
-        }
-        @if (rte.HasValue("rte"))
-        {
-            <div class="footer__rte">
-                @Html.Raw(rte.GetPropertyValue<IHtmlString>("rte", null))
             </div>
-        }
+            <div class="col-xs-12 col-sm-6">
+                <div class="footer__info">
+                    @Html.Raw(Model.GetPropertyValue("info", true))
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                @Html.CachedPartial("Components/_SoMe", new SoMeViewModel
+                {
+                    FacebookUrl = website.FacebookUrl,
+                    InstagramUrl = website.InstagramUrl,
+                    LinkedInUrl = website.LinkedInUrl,
+                    TwitterUrl = website.TwitterUrl
+                }, 3600, true)
+            </div>
+        </div>
     </div>
-}
+</footer>
+
 
 

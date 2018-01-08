@@ -2582,6 +2582,7 @@ select[multiple].input-lg {
 }
 .footer {
   color: #fff;
+  background-color: #262626;
   font-size: 16px;
   line-height: 1.2;
   padding-top: 25px;
@@ -2944,7 +2945,6 @@ select[multiple].input-lg {
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 25px;
-  text-align: center;
 }
 @media (min-width: 768px) {
   .spot--content-left .spot__trumpet {
@@ -3000,7 +3000,6 @@ select[multiple].input-lg {
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 25px;
-  text-align: center;
 }
 @media (min-width: 768px) {
   .spot--content-right .spot__trumpet {

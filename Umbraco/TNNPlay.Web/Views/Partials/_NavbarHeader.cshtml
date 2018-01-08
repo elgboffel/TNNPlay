@@ -8,6 +8,8 @@
         Model.AncestorOrSelf<Culture>() as IGenericWebsite :
         root;
 
+    var logo = Model.GetPropertyValue<IPublishedContent>("logo", true);
+
 }
 
 <header class="navbar-header">
@@ -15,14 +17,14 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="navbar-header__content">
-                    @if (website.Logo != null)
+                    @if (logo != null)
                     {
                         <a href="@website.Url" class="navbar-header__logo">
                             @Html.CachedPartial(
                             "Components/_Media",
                             new MediaViewModel
                             {
-                                Image = root.Logo,
+                                Image = logo,
                                 TypedWidths = new TypedWidths
                                 {
                                     TypedXs = 81
