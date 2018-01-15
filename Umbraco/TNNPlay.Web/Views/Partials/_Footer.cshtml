@@ -14,30 +14,31 @@
 }
 
 
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-4 col-md-offset-4">
-                @if (iconImage != null)
-                {
-                    <img class="footer__icon-image center-block margin-bt45" src="@iconImage.Url" />
-                }
-                @if (!heading.IsNullOrWhiteSpace())
-                {
-                    <h2 class="footer__heading text-center">@Html.Raw(heading)</h2>
-                }
-                @if (cta != null)
-                {
+<footer>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-4 col-md-offset-4">
+                    @if (iconImage != null)
+                    {
+                        <img class="footer__icon-image center-block margin-bt45" src="@iconImage.Url" />
+                    }
+                    @if (!heading.IsNullOrWhiteSpace())
+                    {
+                        <h2 class="footer__heading text-center">@Html.Raw(heading)</h2>
+                    }
+                    @if (cta != null)
+                    {
 
-                }
+                    }
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-3">
-                @if (logo != null)
-                {
-                    <a href="@website.Url" class="footer__logo">
-                        @Html.CachedPartial(
+            <div class="row">
+                <div class="col-xs-12 col-sm-3">
+                    @if (logo != null)
+                    {
+                        <a href="@website.Url" class="footer__logo">
+                            @Html.CachedPartial(
                             "Components/_Media",
                             new MediaViewModel
                             {
@@ -47,26 +48,26 @@
                                     TypedXs = 81
                                 }
                             }, 3600, true)
-                    </a>
-                }
-            </div>
-            <div class="col-xs-12 col-sm-6">
-                <div class="footer__info">
-                    @Html.Raw(Model.GetPropertyValue("info", true))
+                        </a>
+                    }
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-3">
-                @Html.CachedPartial("Components/_SoMe", new SoMeViewModel
-                {
-                    FacebookUrl = website.FacebookUrl,
-                    InstagramUrl = website.InstagramUrl,
-                    LinkedInUrl = website.LinkedInUrl,
-                    TwitterUrl = website.TwitterUrl
-                }, 3600, true)
+                <div class="col-xs-12 col-sm-6">
+                    <div class="footer__info">
+                        @Html.Raw(Model.GetPropertyValue("info", true))
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-3">
+                    @Html.CachedPartial("Components/_SoMe", new SoMeViewModel
+                   {
+                       FacebookUrl = website.FacebookUrl,
+                       InstagramUrl = website.InstagramUrl,
+                       LinkedInUrl = website.LinkedInUrl,
+                       TwitterUrl = website.TwitterUrl
+                   }, 3600, true)
+                </div>
             </div>
         </div>
     </div>
 </footer>
-
 
 

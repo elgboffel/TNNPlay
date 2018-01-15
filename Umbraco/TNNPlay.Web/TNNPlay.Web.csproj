@@ -434,6 +434,7 @@
     <Content Include="Content\less\components\modal.less" />
     <Content Include="Content\less\mixins\utility.less" />
     <Content Include="Content\less\components\statement.less" />
+    <Content Include="Content\less\components\announcement.less" />
     <None Include="packages.config" />
     <Content Include="robots.txt" />
     <Content Include="Views\Web.config" />
@@ -608,6 +609,9 @@
     <Content Include="Views\Partials\Grid\Editors\Spot.cshtml" />
     <Content Include="Views\Partials\Components\_Spot.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Statement.cshtml" />
+    <Content Include="Views\ThemePage.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\Announcement.cshtml" />
+    <Content Include="Views\Partials\Components\_Modal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1893,6 +1897,7 @@
     <Compile Include="PropertyValueConverters\LeafletMapPropertyValueConverter.cs" />
     <Compile Include="ViewModels\Components\BreadcrumbViewModel.cs" />
     <Compile Include="ViewModels\Components\BreakingViewModel.cs" />
+    <Compile Include="ViewModels\Components\ModalViewModel.cs" />
     <Compile Include="ViewModels\Components\SpotViewModel.cs" />
     <Compile Include="ViewModels\Components\CardViewModel.cs" />
     <Compile Include="ViewModels\Components\CarouselCardsViewModel.cs" />

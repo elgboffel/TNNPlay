@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     text-align: center;
+    flex-wrap: wrap;
     font-size: 14px;
 
     p {
@@ -15,11 +16,23 @@
         font-weight: 300;
     }
 
+    &__media {
+        width: 100%;
+        .fluid-property(margin-bottom, 30, 45);
+
+        img {
+            margin: 0 auto;
+        }
+    }
+
     &__content {
         width: 100%;
         max-width: 1540px;
         padding: 60px 15px 50px 15px;
-        ;
+
+        h2 {
+            .fluid-property(margin-bottom, 15, 20);
+        }
     }
 
     @media(min-width: @screen-xs-min) {

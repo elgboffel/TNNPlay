@@ -390,6 +390,12 @@
         "config": {
             "editors": [
                 {
+                    "name": "Icon Image",
+                    "alias": "iconImage",
+                    "propretyType": {},
+                    "dataType": "135d60e0-64d9-49ed-ab08-893c9ba44ae5"
+                },
+                {
                     "name": "Heading",
                     "alias": "heading",
                     "propretyType": {},
@@ -406,6 +412,42 @@
                     "alias": "bacgroundColor",
                     "propretyType": {},
                     "dataType": "f3307e53-cde2-4d38-b94d-4174db5957fa"
+                }
+            ],
+            "frontView": ""
+        }
+    },
+    {
+        "name": "Announcement",
+        "alias": "announcement",
+        "view": "/App_Plugins/LeBlender/editors/leblendereditor/LeBlendereditor.html",
+        "icon": "icon-voice color-yellow",
+        "render": "/App_Plugins/LeBlender/editors/leblendereditor/views/Base.cshtml",
+        "config": {
+            "editors": [
+                {
+                    "name": "Images",
+                    "alias": "images",
+                    "propretyType": {},
+                    "dataType": "9dbbcbbb-2327-434a-b355-af1b84e5010a"
+                },
+                {
+                    "name": "Heading",
+                    "alias": "heading",
+                    "propretyType": {},
+                    "dataType": "0cc0eba1-9960-42c9-bf9b-60e150b429ae"
+                },
+                {
+                    "name": "Text",
+                    "alias": "text",
+                    "propretyType": {},
+                    "dataType": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3"
+                },
+                {
+                    "name": "Pick Call To Action",
+                    "alias": "pickCallToAction",
+                    "propretyType": {},
+                    "dataType": "53b80b37-6912-4a48-8503-80347240755f"
                 }
             ],
             "frontView": ""

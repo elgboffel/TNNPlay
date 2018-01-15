@@ -90,67 +90,13 @@
 </div>
 @if (hasCallToAction)
 {
-    var cta = Model.CallToAction.FirstOrDefault() as CallToAction;
-    var hasRightColumn = !cta.Html.IsNullOrWhiteSpace();
-    var column = hasRightColumn ? "col-xs-12 col-md-6" : "col-xs-12";
-
-    <div id="modal-@guid" class="modal modal--call-to-action">
-        <div class="modal__content">
-            <button role="button" class="modal__close btn btn--close"></button>
-            <div class="row">
-                <div class="col-xs-12 margin-bt40">
-                    @if (cta.Logo != null)
-                    {
-                        @Html.CachedPartial(
-                        "Components/_Media",
-                        new MediaViewModel
-                        {
-                            Image = cta.Logo,
-                            TypedWidths = new TypedWidths
-                            {
-                                TypedXs = 76
-                            }
-                        }, 3600, true)
-                    }
-                </div>
-            </div>
-            <div class="row">
-                <div class="@column">
-                    @if (!cta.Trumpet.IsNullOrWhiteSpace())
-                    {
-                        <div class="trumpet margin-bt20">@cta.Trumpet</div>
-                    }
-                    <h3 class="margin-bt15">@Html.Raw(Umbraco.Coalesce(cta.Heading, cta.Name))</h3>
-
-                    @if (cta.Content != null)
-                    {
-                        <div class="margin-bt40">
-                            @Html.Raw(cta.Content)
-                        </div>
-                    }
-                    @Html.CachedPartial("Components/_SoMe", new SoMeViewModel
-                    {
-                        FacebookUrl = cta.FacebookLink,
-                        InstagramUrl = cta.InstagramLink,
-                        LinkedInUrl = cta.LinkedInLink,
-                        TwitterUrl = cta.TwitterLink
-                    }, 3600, true)
-
-                </div>
-                @if (hasRightColumn)
-                {
-                    <div class="col-xs-12 col-md-6">
-                        @if (!cta.RightColumnHeading.IsNullOrWhiteSpace())
-                        {
-                            <div class="trumpet margin-bt20">
-                                @Html.Raw(cta.RightColumnHeading)
-                            </div>                            
-                        }
-                        @Html.Raw(cta.Html)
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
+    { Html.RenderPartial(
+        "Components/_Modal",
+        new ModalViewModel
+        {
+            Id = guid,
+            Modal = Model.CallToAction
+        }); }
 }
+
 

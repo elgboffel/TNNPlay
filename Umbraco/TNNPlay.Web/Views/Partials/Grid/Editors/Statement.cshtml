@@ -8,12 +8,19 @@
 
 @helper renderContent(LeBlenderValue content)
 {
+var media = content.GetValue<IPublishedContent>("iconImage");
 var heading = content.GetValue("heading");
 var text = content.GetValue("content");
 var bgColor = content.GetValue("bacgroundColor");
 
     <div class="statement @Umbraco.If(!bgColor.IsNullOrWhiteSpace(), "bg-" + bgColor)">
         <div class="statement__content">
+            @if (media != null)
+            {
+                <div class="statement__media">
+                    <img src="@media.Url" alt="@media.Name" />
+                </div>
+            }
             @if (!heading.IsNullOrWhiteSpace())
             {
                 <h2>@Html.Raw(heading)</h2>

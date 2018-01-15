@@ -1,0 +1,89 @@
+﻿@inherits UmbracoViewPage<LeBlenderModel>
+@using Lecoati.LeBlender.Extension.Models
+
+@foreach (var item in Model.Items)
+{
+    @renderContent(item)
+}
+
+@helper renderContent(LeBlenderValue content)
+{
+var images = content.GetValue<IEnumerable<IPublishedContent>>("images");
+var heading = content.GetValue("heading");
+var text = content.GetValue("text");
+var callToAction = content.GetValue<IEnumerable<IPublishedContent>>("pickCallToAction");
+var hasCallToAction = callToAction != null;
+var guid = Guid.NewGuid();
+
+if (hasCallToAction)
+{
+    Html.RequiresJs("~/scripts/build/modal.js", 1, 2, new { @defer = string.Empty });
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="announcement">
+                    @if (images != null)
+                    {
+                        <ul class="announcement__images">
+                            @foreach (var image in images)
+                            {
+                                @renderImage(image)
+                            }
+                        </ul>
+                    }
+                    <div class="announcement__content">
+                        @if (!heading.IsNullOrWhiteSpace())
+                        {
+                            <h2>@Html.Raw(heading)</h2>
+                        }
+                        @if (!text.IsNullOrWhiteSpace())
+                        {
+                            <p>@Html.Raw(Umbraco.ReplaceLineBreaksForHtml(text))</p>
+                        }
+                        @if (hasCallToAction)
+                        {
+                            <div class="announcement__call-to-action">
+                                <div class="btn btn--default btn--arrow modal--btn" role="button" data-target="modal-@guid">Register here</div>
+                            </div>
+                        }
+                        <div class="announcement__spacer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    { Html.RenderPartial(
+        "Components/_Modal",
+        new ModalViewModel
+        {
+            Id = guid,
+            Modal = callToAction
+        }); }
+}
+
+
+
+@helper renderImage(IPublishedContent image)
+{
+    <li>
+        @{
+            Html.RenderPartial(
+              "Components/_Media",
+              new MediaViewModel
+              {
+                  Image = image,
+                  GridSettings = new GridSettings
+                  {
+                      GridLg = 3,
+                      GridMd = 4,
+                      GridMs = 6
+                  },
+                  MediaHeights = new MediaHeights
+                  {
+                      HeightXs = 300
+                  }
+              }); }
+    </li>
+}
