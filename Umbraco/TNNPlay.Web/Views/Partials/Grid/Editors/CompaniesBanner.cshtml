@@ -1,0 +1,44 @@
+﻿@inherits UmbracoViewPage<LeBlenderModel>
+@using Lecoati.LeBlender.Extension.Models
+
+@foreach (var item in Model.Items)
+{
+    @renderContent(item)
+}
+
+@helper renderContent(LeBlenderValue content)
+{
+var logos = content.GetValue<IEnumerable<IPublishedContent>>("companyLogos");
+var heading = content.GetValue("heading");
+var text = content.GetValue("text");
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="companies">
+                    <div class="companies__content">
+                        @if (!heading.IsNullOrWhiteSpace())
+                        {
+                            <h3>@Html.Raw(heading)</h3>
+                        }
+                        @if (!text.IsNullOrWhiteSpace())
+                        {
+                            <p>@Html.Raw(Umbraco.ReplaceLineBreaksForHtml(text))</p>
+                        }
+                        @if (logos != null && logos.Any())
+                        {
+                            <ul class="companies__media">
+                                @foreach (var logo in logos)
+                                {
+                                    <li>
+                                        <img src="@logo.Url" alt="@logo.Name" />
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        <div class="companies__spacer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

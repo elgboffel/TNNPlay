@@ -1,0 +1,34 @@
+﻿@inherits UmbracoViewPage<LeBlenderModel>
+@using Lecoati.LeBlender.Extension.Models
+
+@foreach (var item in Model.Items)
+{
+    @renderContent(item)
+}
+
+@helper renderContent(LeBlenderValue content)
+{
+var media = content.GetValue<IPublishedContent>("iconImage");
+var heading = content.GetValue("heading");
+var text = content.GetValue("text");
+
+    <div class="statement statement--small">
+        <div class="statement__content">
+            @if (media != null)
+            {
+                <div class="statement__media">
+                    <img src="@media.Url" alt="@media.Name" />
+                </div>
+            }
+            @if (!heading.IsNullOrWhiteSpace())
+            {
+                <h3>@Html.Raw(heading)</h3>
+            }
+            @if (!text.IsNullOrWhiteSpace())
+            {
+                <p>@Html.Raw(Umbraco.ReplaceLineBreaksForHtml(text))</p>
+            }
+            <div class="statement__spacer"></div>
+        </div>
+    </div>
+}
