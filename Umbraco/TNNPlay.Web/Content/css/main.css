@@ -4010,6 +4010,27 @@ main:after {
 .content-video__spacer {
   margin-top: 125px;
 }
+.so-me-list {
+  list-style: none;
+  margin-bottom: 20px;
+  padding: 0 !important;
+  color: #99AEBB;
+  font-size: 24px;
+}
+.so-me-list > li {
+  display: inline-block;
+  margin-right: 15px;
+}
+.so-me-list > li:last-child {
+  margin-right: 0;
+}
+.so-me-list > li > a {
+  -webkit-transition: color 250ms ease-in-out;
+  transition: color 250ms ease-in-out;
+}
+.so-me-list > li > a:hover {
+  color: #D9002E;
+}
 /*
 * Utility
 */

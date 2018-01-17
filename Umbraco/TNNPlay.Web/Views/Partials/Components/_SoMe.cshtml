@@ -9,11 +9,11 @@
             </a>
         </li>
     }
-    @if(!string.IsNullOrEmpty(Model.TwitterUrl))
+    @if(!string.IsNullOrEmpty(Model.InstagramUrl))
     {
         <li>
-            <a href="@Model.TwitterUrl" target="_blank">
-                <div class="fa fa-twitter fa--border-circle fa--color-brand"></div>
+            <a href="@Model.InstagramUrl" target="_blank">
+                <div class="fa fa-instagram fa--border-circle fa--color-brand"></div>
             </a>
         </li>
     }
@@ -21,15 +21,15 @@
     {
         <li>
             <a href="@Model.LinkedInUrl" target="_blank">
-                <div class="fa fa-linkedin fa--border-circle fa--color-brand"></div>
+                <div class="fa fa-linkedin-square fa--border-circle fa--color-brand"></div>
             </a>
         </li>
     }
-    @if(!string.IsNullOrEmpty(Model.InstagramUrl))
+    @if(!string.IsNullOrEmpty(Model.TwitterUrl))
     {
         <li>
-            <a href="@Model.InstagramUrl" target="_blank">
-                <div class="fa fa-instagram fa--border-circle fa--color-brand"></div>
+            <a href="@Model.TwitterUrl" target="_blank">
+                <div class="fa fa-twitter fa--border-circle fa--color-brand"></div>
             </a>
         </li>
     }

@@ -9,9 +9,9 @@
     }
     <div class="content-video__content">
         <div class="content-video__inner">
-            @if (Model.HasValue("trumpet"))
+            @if (Model.HasValue("videoTrumpet"))
             {
-                <div class="content-video__trumpet">@(Model.GetPropertyValue<string>("trumpet"))</div>
+                <div class="content-video__trumpet">@(Model.GetPropertyValue<string>("videoTrumpet"))</div>
 
             }
             @if (Model.HasValue("number"))
@@ -19,14 +19,14 @@
                 <div class="content-video__number">@(Model.GetPropertyValue<string>("number"))</div>
 
             }
-            @if (Model.HasValue("heading"))
+            @if (Model.HasValue("videoHeading"))
             {
-                <h3 class="content-video__heading">@(Html.Raw(Model.GetPropertyValue<string>("heading")))</h3>
+                <h3 class="content-video__heading">@(Html.Raw(Model.GetPropertyValue<string>("videoHeading")))</h3>
 
             }
-            @if (Model.HasValue("text"))
+            @if (Model.HasValue("videoText"))
             {
-                <p class="content-video__text">@(Html.Raw(Model.GetPropertyValue<string>("text")))</p>
+                <p class="content-video__text">@(Html.Raw(Model.GetPropertyValue<string>("videoText")))</p>
 
             }
             <div class="content-video__spacer"></div>
