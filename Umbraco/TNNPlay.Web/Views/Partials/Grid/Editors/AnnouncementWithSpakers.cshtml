@@ -1,0 +1,80 @@
+﻿@inherits UmbracoViewPage<LeBlenderModel>
+@using Lecoati.LeBlender.Extension.Models
+
+@foreach (var item in Model.Items)
+{
+    @renderContent(item)
+}
+
+@helper renderContent(LeBlenderValue content)
+{
+var speakers = content.GetValue<IEnumerable<IPublishedContent>>("speakersPicker");
+var heading = content.GetValue<string>("heading");
+var text = content.GetValue<string>("text");
+var link = content.GetValue<IPublishedContent>("pickPage");
+
+if (speakers != null && speakers.Any())
+{
+    var counter = speakers.Count();
+
+    if (counter != 3 && counter != 5) {
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 @Umbraco.If(counter == 2, "col-md-6 col-md-offset-3")  @Umbraco.If(counter == 4, "col-md-10 col-md-offset-1")">
+                    <div class="row speakers @Umbraco.If(counter == 4, "speakers--layout4") @Umbraco.If(counter == 6, "speakers--layout6")">
+                    @if (link != null)
+                    {
+                        @:<a href="@link.Url">
+                    }
+                        @for (var i = 0; i < counter; i++)
+                        {
+                            var speaker = speakers.ElementAt(i);
+
+                            <div class="col-xs-12 col-ms-6 col-sm-6 @Umbraco.If(counter == 4, "col-md-4") @Umbraco.If(counter == 6, "col-md-3") speakers__item">
+                                @{ Html.RenderPartial(
+                                  "Components/_Media",
+                                  new MediaViewModel
+                                  {
+                                      Image = speaker.GetPropertyValue<IPublishedContent>("image"),
+                                      GridSettings = new GridSettings
+                                      {
+                                          GridMd = 4,
+                                          GridMs = 6,
+                                          GridTotalPadding = 0
+                                      },
+                                      MediaHeights = new MediaHeights
+                                      {
+                                          HeightLg = 400,
+                                          HeightSm = 400,
+                                          HeightXs = 325
+                                      }
+                                  }); }
+                            </div>
+                        }
+                        <div class="col-xs-12 @Umbraco.If(counter == 4, "col-md-8") @Umbraco.If(counter == 6, "col-md-6") speakers__content speakers__item">
+                            <div class="speakers__inner">
+                                @if (!heading.IsNullOrWhiteSpace())
+                                {
+                                    <h3>@Html.Raw(heading)</h3>
+                                }
+                                @if (!text.IsNullOrWhiteSpace())
+                                {
+                                    <p>@Html.Raw(text)</p>
+                                }
+                                @if (link != null)
+                                {
+                                    <div class="btn btn--default btn--arrow">Register here</div>
+                                }
+                            </div>
+                        </div>
+                    @if (link != null)
+                    {
+                        @:</a>
+                    }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+}

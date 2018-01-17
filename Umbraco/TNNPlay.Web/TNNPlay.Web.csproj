@@ -436,6 +436,7 @@
     <Content Include="Content\less\components\statement.less" />
     <Content Include="Content\less\components\announcement.less" />
     <Content Include="Content\less\components\companies.less" />
+    <Content Include="Content\less\components\speaker.less" />
     <None Include="packages.config" />
     <Content Include="robots.txt" />
     <Content Include="Views\Web.config" />
@@ -615,6 +616,9 @@
     <Content Include="Views\Partials\Components\_Modal.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\QuoteWithIcon.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\CompaniesBanner.cshtml" />
+    <Content Include="Views\Partials\Components\_SoMe.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\Employee.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\AnnouncementWithSpakers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

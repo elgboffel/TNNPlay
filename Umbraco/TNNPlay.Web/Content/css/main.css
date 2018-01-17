@@ -2958,7 +2958,7 @@ main:after {
   position: relative;
   color: #fff;
 }
-.spot--content-left .content {
+.spot--content-left .container {
   position: absolute;
   top: -webkit-calc(50% - 40px);
   top: calc(50% - 40px);
@@ -3013,7 +3013,7 @@ main:after {
   position: relative;
   color: #fff;
 }
-.spot--content-right .content {
+.spot--content-right .container {
   position: absolute;
   top: -webkit-calc(50% + 30px);
   top: calc(50% + 30px);
@@ -3398,22 +3398,443 @@ main:after {
   margin-bottom: 30px;
 }
 .companies__spacer {
-  margin-top: 100px;
+  margin-top: 75px;
 }
 @media (min-width: 768px) {
   .companies__spacer {
-    margin-top: -webkit-calc(100px + (170 - 100) * ((100vw - 768px)/(1440 - 768)));
-    margin-top: calc(100px + (170 - 100) * ((100vw - 768px)/(1440 - 768)));
+    margin-top: -webkit-calc(75px + (130 - 75) * ((100vw - 768px)/(1440 - 768)));
+    margin-top: calc(75px + (130 - 75) * ((100vw - 768px)/(1440 - 768)));
   }
 }
 @media (min-width: 1440px) {
   .companies__spacer {
-    margin-top: 170px;
+    margin-top: 130px;
   }
 }
 @media (min-width: 480px) {
   .companies__media > li {
     width: auto;
+  }
+}
+.speaker--spot {
+  margin-bottom: 50px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  /* Safari fix
+     * See: http://stackoverflow.com/questions/32894387/safari-flexbox-does-not-contain-its-elements-properly
+    */
+}
+@media (min-width: 768px) {
+  .speaker--spot {
+    margin-bottom: -webkit-calc(50px + (125 - 50) * ((100vw - 768px)/(1440 - 768)));
+    margin-bottom: calc(50px + (125 - 50) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .speaker--spot {
+    margin-bottom: 125px;
+  }
+}
+.speaker--spot.row:before,
+.speaker--spot.row:after {
+  display: none;
+}
+.speaker--spot h3 {
+  line-height: 1.1;
+  margin-top: 21px;
+  margin-bottom: 10.5px;
+  font-size: 30px;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1.2em;
+  color: inherit;
+  margin-top: 0;
+  margin-bottom: 35px;
+  letter-spacing: 1px;
+  font-size: 26px;
+  margin-bottom: 15px;
+}
+.speaker--spot h3 small,
+.speaker--spot h3 .small {
+  font-weight: normal;
+  line-height: 1;
+  color: #92687d;
+}
+.speaker--spot h3 small,
+.speaker--spot h3 .small {
+  font-size: 65%;
+}
+@media (min-width: 768em) {
+  .speaker--spot h3 {
+    line-height: -webkit-calc(1.2em + (1.95 - 1.2) * ((100vw - 768em)/(1440 - 768)));
+    line-height: calc(1.2em + (1.95 - 1.2) * ((100vw - 768em)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440em) {
+  .speaker--spot h3 {
+    line-height: 1.95em;
+  }
+}
+@media (min-width: 768px) {
+  .speaker--spot h3 {
+    font-size: -webkit-calc(26px + (34 - 26) * ((100vw - 768px)/(1440 - 768)));
+    font-size: calc(26px + (34 - 26) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .speaker--spot h3 {
+    font-size: 34px;
+  }
+}
+.speaker--spot .speaker__media {
+  margin-bottom: 15px;
+}
+.speaker--spot .speaker__content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+@media (min-width: 768px) {
+  .speaker--spot .speaker__content {
+    padding-right: -webkit-calc(15px + (75 - 15) * ((100vw - 768px)/(1440 - 768)));
+    padding-right: calc(15px + (75 - 15) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .speaker--spot .speaker__content {
+    padding-right: 75px;
+  }
+}
+@media (min-width: 768px) {
+  .speaker--spot .speaker__content {
+    padding-left: -webkit-calc(15px + (75 - 15) * ((100vw - 768px)/(1440 - 768)));
+    padding-left: calc(15px + (75 - 15) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .speaker--spot .speaker__content {
+    padding-left: 75px;
+  }
+}
+.speaker--spot .speaker__title {
+  color: #828182;
+  font-size: 19px;
+  font-weight: 700;
+}
+.speaker--spot .speaker__content-spacer {
+  margin-top: 35px;
+}
+@media (min-width: 768px) {
+  .speaker--spot .speaker__content-spacer {
+    margin-top: -webkit-calc(35px + (50 - 35) * ((100vw - 768px)/(1440 - 768)));
+    margin-top: calc(35px + (50 - 35) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .speaker--spot .speaker__content-spacer {
+    margin-top: 50px;
+  }
+}
+@media (min-width: 480px) {
+  .speaker--spot .speaker__media {
+    padding-right: 0;
+    margin-bottom: 0;
+  }
+}
+.speaker--remove-bottom-spacing {
+  margin-bottom: 0;
+}
+@media (min-width: 480px) {
+  .speaker--right .speaker__media {
+    -webkit-box-ordinal-group: 3;
+    -webkit-order: 2;
+        -ms-flex-order: 2;
+            order: 2;
+  }
+  .speaker--right .speaker__content {
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+        -ms-flex-order: 1;
+            order: 1;
+  }
+  .speaker--right .speaker__media {
+    padding-right: 15px;
+    padding-left: 0;
+  }
+}
+.speakers {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  /* Safari fix
+     * See: http://stackoverflow.com/questions/32894387/safari-flexbox-does-not-contain-its-elements-properly
+    */
+  margin: 0;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.speakers.row:before,
+.speakers.row:after {
+  display: none;
+}
+@media (min-width: 768px) {
+  .speakers {
+    margin-top: -webkit-calc(50px + (75 - 50) * ((100vw - 768px)/(1440 - 768)));
+    margin-top: calc(50px + (75 - 50) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .speakers {
+    margin-top: 75px;
+  }
+}
+@media (min-width: 768px) {
+  .speakers {
+    margin-bottom: -webkit-calc(50px + (75 - 50) * ((100vw - 768px)/(1440 - 768)));
+    margin-bottom: calc(50px + (75 - 50) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .speakers {
+    margin-bottom: 75px;
+  }
+}
+.speakers > a {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  /* Safari fix
+     * See: http://stackoverflow.com/questions/32894387/safari-flexbox-does-not-contain-its-elements-properly
+    */
+}
+.speakers > a.row:before,
+.speakers > a.row:after {
+  display: none;
+}
+.speakers h3 {
+  line-height: 1.1;
+  margin-top: 21px;
+  margin-bottom: 10.5px;
+  font-size: 30px;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1.2em;
+  color: inherit;
+  margin-top: 0;
+  margin-bottom: 35px;
+  letter-spacing: 1px;
+  font-size: 26px;
+  margin-bottom: 15px;
+}
+.speakers h3 small,
+.speakers h3 .small {
+  font-weight: normal;
+  line-height: 1;
+  color: #92687d;
+}
+.speakers h3 small,
+.speakers h3 .small {
+  font-size: 65%;
+}
+@media (min-width: 768em) {
+  .speakers h3 {
+    line-height: -webkit-calc(1.2em + (1.95 - 1.2) * ((100vw - 768em)/(1440 - 768)));
+    line-height: calc(1.2em + (1.95 - 1.2) * ((100vw - 768em)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440em) {
+  .speakers h3 {
+    line-height: 1.95em;
+  }
+}
+@media (min-width: 768px) {
+  .speakers h3 {
+    font-size: -webkit-calc(26px + (34 - 26) * ((100vw - 768px)/(1440 - 768)));
+    font-size: calc(26px + (34 - 26) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .speakers h3 {
+    font-size: 34px;
+  }
+}
+.speakers p {
+  margin-bottom: 20px;
+}
+.speakers__item {
+  padding: 0;
+}
+.speakers__content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #D9002E;
+  color: #fff;
+  height: 300px;
+}
+@media (min-width: 768px) {
+  .speakers__content {
+    padding-left: -webkit-calc(15px + (50 - 15) * ((100vw - 768px)/(1440 - 768)));
+    padding-left: calc(15px + (50 - 15) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .speakers__content {
+    padding-left: 50px;
+  }
+}
+@media (min-width: 768px) {
+  .speakers__content {
+    padding-right: -webkit-calc(15px + (50 - 15) * ((100vw - 768px)/(1440 - 768)));
+    padding-right: calc(15px + (50 - 15) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .speakers__content {
+    padding-right: 50px;
+  }
+}
+.speakers--layout4 .speakers__item:nth-child(1) {
+  -webkit-box-ordinal-group: 2;
+  -webkit-order: 1;
+      -ms-flex-order: 1;
+          order: 1;
+}
+.speakers--layout4 .speakers__item:nth-child(2) {
+  -webkit-box-ordinal-group: 3;
+  -webkit-order: 2;
+      -ms-flex-order: 2;
+          order: 2;
+}
+.speakers--layout4 .speakers__item:nth-child(3) {
+  -webkit-box-ordinal-group: 5;
+  -webkit-order: 4;
+      -ms-flex-order: 4;
+          order: 4;
+}
+.speakers--layout4 .speakers__item:nth-child(4) {
+  -webkit-box-ordinal-group: 6;
+  -webkit-order: 5;
+      -ms-flex-order: 5;
+          order: 5;
+}
+.speakers--layout4 .speakers__item:nth-child(5) {
+  -webkit-box-ordinal-group: 4;
+  -webkit-order: 3;
+      -ms-flex-order: 3;
+          order: 3;
+}
+@media (min-width: 992px) {
+  .speakers--layout4 .speakers__content {
+    height: auto;
+  }
+  .speakers--layout4 .speakers__item:nth-child(1) {
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+        -ms-flex-order: 1;
+            order: 1;
+  }
+  .speakers--layout4 .speakers__item:nth-child(2) {
+    -webkit-box-ordinal-group: 3;
+    -webkit-order: 2;
+        -ms-flex-order: 2;
+            order: 2;
+  }
+  .speakers--layout4 .speakers__item:nth-child(3) {
+    -webkit-box-ordinal-group: 4;
+    -webkit-order: 3;
+        -ms-flex-order: 3;
+            order: 3;
+  }
+  .speakers--layout4 .speakers__item:nth-child(4) {
+    -webkit-box-ordinal-group: 6;
+    -webkit-order: 5;
+        -ms-flex-order: 5;
+            order: 5;
+  }
+  .speakers--layout4 .speakers__item:nth-child(5) {
+    -webkit-box-ordinal-group: 5;
+    -webkit-order: 4;
+        -ms-flex-order: 4;
+            order: 4;
+  }
+}
+.speakers--layout6 .speakers__item:nth-child(1) {
+  -webkit-box-ordinal-group: 2;
+  -webkit-order: 1;
+      -ms-flex-order: 1;
+          order: 1;
+}
+.speakers--layout6 .speakers__item:nth-child(2) {
+  -webkit-box-ordinal-group: 3;
+  -webkit-order: 2;
+      -ms-flex-order: 2;
+          order: 2;
+}
+.speakers--layout6 .speakers__item:nth-child(3) {
+  -webkit-box-ordinal-group: 4;
+  -webkit-order: 3;
+      -ms-flex-order: 3;
+          order: 3;
+}
+.speakers--layout6 .speakers__item:nth-child(4) {
+  -webkit-box-ordinal-group: 5;
+  -webkit-order: 4;
+      -ms-flex-order: 4;
+          order: 4;
+}
+.speakers--layout6 .speakers__item:nth-child(5) {
+  -webkit-box-ordinal-group: 7;
+  -webkit-order: 6;
+      -ms-flex-order: 6;
+          order: 6;
+}
+.speakers--layout6 .speakers__item:nth-child(6) {
+  -webkit-box-ordinal-group: 8;
+  -webkit-order: 7;
+      -ms-flex-order: 7;
+          order: 7;
+}
+.speakers--layout6 .speakers__item:nth-child(7) {
+  -webkit-box-ordinal-group: 6;
+  -webkit-order: 5;
+      -ms-flex-order: 5;
+          order: 5;
+}
+@media (min-width: 992px) {
+  .speakers--layout6 .speakers__content {
+    height: auto;
   }
 }
 /*
@@ -3469,6 +3890,20 @@ picture img {
 .col-padding {
   margin-left: 15px;
   margin-right: 15px;
+}
+.row-spacing {
+  margin-bottom: 50px;
+}
+@media (min-width: 768px) {
+  .row-spacing {
+    margin-bottom: -webkit-calc(50px + (75 - 50) * ((100vw - 768px)/(1440 - 768)));
+    margin-bottom: calc(50px + (75 - 50) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .row-spacing {
+    margin-bottom: 75px;
+  }
 }
 .link-hover {
   display: inline;

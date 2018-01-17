@@ -271,16 +271,16 @@
         }
     },
     {
-        "name": "Pick Employee",
+        "name": "Pick Speaker",
         "alias": "employee",
         "view": "/App_Plugins/LeBlender/editors/leblendereditor/LeBlendereditor.html",
-        "icon": "icon-umb-users color-yellow",
+        "icon": "icon-umb-users color-blue",
         "render": "/App_Plugins/LeBlender/editors/leblendereditor/views/Base.cshtml",
         "config": {
             "editors": [
                 {
-                    "name": "Heading",
-                    "alias": "headline",
+                    "name": "Title",
+                    "alias": "title",
                     "propretyType": {},
                     "dataType": "0cc0eba1-9960-42c9-bf9b-60e150b429ae"
                 },
@@ -289,6 +289,19 @@
                     "alias": "contentPicker",
                     "propretyType": {},
                     "dataType": "bb329145-266f-4914-ab10-510db1f804fd"
+                },
+                {
+                    "name": "Layout",
+                    "alias": "layout",
+                    "propretyType": {},
+                    "dataType": "5c9234bc-4097-45c8-bed8-cdd2afa23f8f"
+                },
+                {
+                    "name": "Remove bottom spacing",
+                    "alias": "removeBottomSpacing",
+                    "propretyType": {},
+                    "dataType": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+                    "description": "When this is enabled, the element will align with the underlying element. Meaning the spacing between them will be removed."
                 }
             ],
             "frontView": ""
@@ -508,6 +521,44 @@
                     "alias": "companyLogos",
                     "propretyType": {},
                     "dataType": "9dbbcbbb-2327-434a-b355-af1b84e5010a"
+                }
+            ],
+            "frontView": ""
+        }
+    },
+    {
+        "name": "Announcement with Spakers",
+        "alias": "announcementWithSpakers",
+        "view": "/App_Plugins/LeBlender/editors/leblendereditor/LeBlendereditor.html",
+        "icon": "icon-users color-blue",
+        "render": "/App_Plugins/LeBlender/editors/leblendereditor/views/Base.cshtml",
+        "config": {
+            "editors": [
+                {
+                    "name": "Pick Speakers",
+                    "alias": "speakersPicker",
+                    "propretyType": {},
+                    "dataType": "cf122230-f075-4fff-a952-5605f1b03659",
+                    "description": "Pick in even numbers. 2, 4, 6. If not, nothing will be rendered."
+                },
+                {
+                    "name": "Heading",
+                    "alias": "heading",
+                    "propretyType": {},
+                    "dataType": "0cc0eba1-9960-42c9-bf9b-60e150b429ae"
+                },
+                {
+                    "name": "Text",
+                    "alias": "text",
+                    "propretyType": {},
+                    "dataType": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3"
+                },
+                {
+                    "name": "Pick Page",
+                    "alias": "pickPage",
+                    "propretyType": {},
+                    "dataType": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+                    "description": "Element will link to selected page."
                 }
             ],
             "frontView": ""
