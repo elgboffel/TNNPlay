@@ -437,6 +437,7 @@
     <Content Include="Content\less\components\announcement.less" />
     <Content Include="Content\less\components\companies.less" />
     <Content Include="Content\less\components\speaker.less" />
+    <Content Include="Content\less\components\content-video.less" />
     <None Include="packages.config" />
     <Content Include="robots.txt" />
     <Content Include="Views\Web.config" />
@@ -619,6 +620,8 @@
     <Content Include="Views\Partials\Components\_SoMe.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Employee.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\AnnouncementWithSpakers.cshtml" />
+    <Content Include="Views\VideoPage.cshtml" />
+    <Content Include="Views\Partials\ContentVideo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

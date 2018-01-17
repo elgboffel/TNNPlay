@@ -1,44 +1,8 @@
-﻿@inherits UmbracoViewPage<IGenericVideoPage>
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<VideoPage>
 @{
 	Layout = "_Layout.cshtml";
-
-    var embedVideo = Model.EmbedVideo as MvcHtmlString;
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            @Html.CachedPartial(
-                  "Components/_Breadcrumb",
-                  new BreadcrumbViewModel
-                  {
-                      CurrentPage = Model,
-                      ShowCurrentPage = true,
-                      ClassModifier = "breadcrumb--brand margin-bt70 margin-t20",
-                      DropdownClassModifier = "dropdown--brand dropdown--bg-brown"
-                  }, 3600, cacheByPage: true)
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="embed-responsive embed-responsive-16by9 video-embed margin-bt30">
-                @(embedVideo)
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-md-10 col-md-offset-1">
-            @Html.CachedPartial(
-                  "Components/_PageHeader",
-                  new PageHeaderViewModel
-                  {
-                      ClassModifier = "",
-                      Trumpet = Model.Trumpet,
-                      Heading = Model.Heading,
-                      Date = Model.Date,
-                      Lead = Model.Lead,
-                  }, 3600, cacheByPage: true)
-        </div>
-    </div>
-</div>
+@Html.CachedPartial("ContentVideo", Model, 3600, true)
 
+@Html.GetGridHtml(Model, "layout", "_ThemePageFluid")
