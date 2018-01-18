@@ -1,8 +1,39 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<VideoPage>
+@using TNNPlay.Web.Helpers
+
 @{
-	Layout = "_Layout.cshtml";
+    Layout = "_Layout.cshtml";
+
+    var contentLayout = Model.GetPropertyValue<string>("headerLayout").ConvertToContentLayout();
+    var media = Model.Video != null ? Model.Video : Model.Image;
+    var mediaType = Model.Video != null ? RenderMediaTypes.BackgroundVideo : RenderMediaTypes.Cover;
 }
+@if (Model.Image != null || Model.Video != null)
+{
+    <div class="hero-layout">
+        @Html.CachedPartial(
+          "Components/_Spot",
+          new SpotViewModel
+          {
+              SpotSettings = new SpotSettings
+              {
+                  LayoutType = UtilityEnums.RenderLayoutType.Fluid,
+                  EnableHeroLayout = true,
+                  EnableOverlay = Model.EnableOverlay,
+                  ContentLayout = contentLayout
 
-@Html.CachedPartial("ContentVideo", Model, 3600, true)
+              },
+              MediaType = mediaType,
+              Image = media,
+              Trumpet = Model.Trumpet,
+              Heading = Model.Heading,
+              Content = Model.Content as HtmlString,
+              CallToAction = Model.CallToAction
+          }, 3600, true)
 
-@Html.GetGridHtml(Model, "layout", "_ThemePageFluid")
+        @*<div class="border-bottom--left-white margin-bt45"></div>*@
+    </div>
+}
+@Html.CachedPartial("_ContentVideo", Model, 3600, true)
+
+@Html.GetGridHtml(Model, "layout", "_VideoPageFluid")

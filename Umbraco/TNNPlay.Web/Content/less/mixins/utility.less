@@ -35,7 +35,7 @@
     }
 
     &:after {
-        width: 100%;
+        width: 101%;
         height: 80px;
         transform: rotate(-2deg);
         background-color: @large-angle-bg;
@@ -46,6 +46,7 @@
 
 .skewed-border-bottom-right(@small-angle-bg, @large-angle-bg: #fff) {
     position: relative;
+    width: 100%;
 
     &:before, &:after {
         content: "";
@@ -53,41 +54,41 @@
     }
 
     &:before {
-        .fluid-property(height, 55, 70);
+        height: 150px;
         width: 35%;
         opacity: 0.9;
         background-color: @small-angle-bg;
         bottom: -3.3em;
         right: -20px;
-        transform: rotate(12deg);
-        z-index: 10;
+        transform: rotate(10deg);
+        z-index: -10;
     }
 
     &:after {
-        width: calc(~"100% + 10px");
-        .fluid-property(height, 80, 110);
-        transform: rotate(3deg);
+        width: 102%;
+        height: 80px;
+        transform: rotate(2.5deg);
         background-color: @large-angle-bg;
         bottom: -33px;
         right: -5px;
-        z-index: 11;
+        z-index: -9;
     }
 
     @media(min-width: @screen-xs-min) {
         &:before {
-            bottom: -4.1em;
+            bottom: -3.45em;
         }
     }
 
     @media(min-width: @screen-sm-min) {
         &:before {
-            bottom: -4.5em;
+            bottom: -4.15em;
         }
     }
 
     @media(min-width: @screen-md-min) {
         &:before {
-            bottom: -5.1em;
+            bottom: -4.55em;
         }
     }
 

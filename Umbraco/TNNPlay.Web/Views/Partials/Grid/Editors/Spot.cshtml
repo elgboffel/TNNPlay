@@ -16,7 +16,6 @@ var headline = content.GetValue<string>("heading");
 var rte = content.GetValue<HtmlString>("content");
 var link = content.GetValue<IEnumerable<Our.Umbraco.LinksPicker.Models.LinksPickerItem>>("link");
 var renderedUrl = link.Any() ? link.FirstOrDefault().Url : "";
-var enableHeroLayout = content.GetValue<bool>("enableHeroLayout");
 var contentLayout = content.GetValue<UtilityEnums.ContentLayout>("contentLayout");
 var enableOverlay = content.GetValue<bool>("enableOverlay");
 
@@ -27,7 +26,7 @@ var enableOverlay = content.GetValue<bool>("enableOverlay");
         SpotSettings = new SpotSettings
         {
             LayoutType = UtilityEnums.RenderLayoutType.Fluid,
-            EnableHeroLayout = enableHeroLayout,
+            EnableHeroLayout = false,
             EnableOverlay = enableOverlay,
             ContentLayout = contentLayout
 

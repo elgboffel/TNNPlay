@@ -1,0 +1,36 @@
+﻿@inherits UmbracoViewPage
+<div class="content-video">
+    <div class="content-video__container">
+        @if (Model.HasValue("contentVideo"))
+        {
+            <video playsinline autoplay muted loop>
+                <source src="@(Model.GetPropertyValue<IPublishedContent>("contentVideo").Url)" type="video/mp4">
+            </video>
+        }
+        <div class="content-video__content">
+            <div class="content-video__inner">
+                @if (Model.HasValue("videoTrumpet"))
+            {
+                    <div class="content-video__trumpet">@(Model.GetPropertyValue<string>("videoTrumpet"))</div>
+
+                }
+                @if (Model.HasValue("number"))
+            {
+                    <div class="content-video__number">@(Model.GetPropertyValue<string>("number"))</div>
+
+                }
+                @if (Model.HasValue("videoHeading"))
+            {
+                    <h3 class="content-video__heading">@(Html.Raw(Model.GetPropertyValue<string>("videoHeading")))</h3>
+
+                }
+                @if (Model.HasValue("videoText"))
+            {
+                    <p class="content-video__text">@(Html.Raw(Model.GetPropertyValue<string>("videoText")))</p>
+
+                }
+                <div class="content-video__spacer"></div>
+            </div>
+        </div>
+    </div>
+</div>

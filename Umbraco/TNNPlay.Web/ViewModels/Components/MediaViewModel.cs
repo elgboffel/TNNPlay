@@ -141,7 +141,8 @@ namespace TNNPlay.Web.ViewModels.Components
         Image,
         ImageUrl,
         Video,
-        Cover
+        Cover,
+        BackgroundVideo
     }
 
     public enum YouTubeMediaType

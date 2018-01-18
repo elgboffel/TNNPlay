@@ -8,11 +8,36 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Web.Mvc;
+using static TNNPlay.Web.ViewModels.Components.UtilityEnums;
 
 namespace TNNPlay.Web.Helpers
 {
     public static partial class UtilityHelpers
     {
+        public static ContentLayout ConvertToContentLayout(this string value)
+        {
+            var result = ContentLayout.Default;
+
+            if (value == string.Empty)
+                return ContentLayout.Default;
+
+            switch (value)
+            {
+                case "Content Right":
+                    result = ContentLayout.ContentRight;
+                    break;
+
+                case "Content Left":
+                    result = ContentLayout.ContentLeft;
+                    break;
+
+                default:
+                    break;
+            }
+
+            return result;
+        }
+
         public static bool CheckIfGridExist(this JToken grid)
         {
             if (grid == null)

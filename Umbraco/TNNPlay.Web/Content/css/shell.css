@@ -1403,11 +1403,11 @@ pre code {
   display: inline;
   -webkit-transition: box-shadow 200ms ease;
   transition: box-shadow 200ms ease;
-  box-shadow: inset 0 -2px 0 transparent;
+  box-shadow: inset 0 -1px 0 transparent;
 }
 .breadcrumb a:hover,
 .breadcrumb a:focus {
-  box-shadow: inset 0 -2px 0 #D9002E;
+  box-shadow: inset 0 -1px 0 #D9002E;
 }
 .breadcrumb > li:first-child {
   width: 17px;
@@ -2416,11 +2416,10 @@ pre code {
 *   COMPONENTS
 */
 .navbar-header {
-  padding-top: 7px;
   background-color: #060405;
 }
 .navbar-header__logo {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   -webkit-box-ordinal-group: 2;
   -webkit-order: 1;
       -ms-flex-order: 1;
@@ -2441,13 +2440,14 @@ pre code {
   display: inline;
   -webkit-transition: box-shadow 200ms ease;
   transition: box-shadow 200ms ease;
-  box-shadow: inset 0 -2px 0 transparent;
+  box-shadow: inset 0 -1px 0 transparent;
 }
 .navbar-header__list > li a:hover,
 .navbar-header__list > li a:focus {
-  box-shadow: inset 0 -2px 0 #D9002E;
+  box-shadow: inset 0 -1px 0 #D9002E;
 }
 .navbar-header__content {
+  padding-top: 17px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2459,10 +2459,6 @@ pre code {
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-top: 15px;
-  will-change: margin-top;
-  -webkit-transition: margin-top 300ms ease;
-  transition: margin-top 300ms ease;
 }
 .navbar-header__navbar {
   -webkit-box-ordinal-group: 4;
@@ -2482,8 +2478,8 @@ pre code {
             flex-wrap: nowrap;
   }
   .navbar-header__logo {
-    width: 210px;
-    height: 49px;
+    width: 81px;
+    height: 46px;
     -webkit-box-ordinal-group: 2;
     -webkit-order: 1;
         -ms-flex-order: 1;
@@ -3012,7 +3008,7 @@ pre code {
   z-index: 10;
 }
 .hero:after {
-  width: 100%;
+  width: 101%;
   height: 80px;
   -webkit-transform: rotate(-2deg);
       -ms-transform: rotate(-2deg);
@@ -3028,7 +3024,7 @@ pre code {
   content: "";
   width: 100%;
   height: 100%;
-  background-color: rgba(6, 4, 5, 0.76);
+  background-color: rgba(6, 4, 5, 0.6);
   z-index: 1;
 }
 .hero__content {
@@ -3071,6 +3067,73 @@ pre code {
     -webkit-transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
+  }
+}
+.hero-layout {
+  position: relative;
+}
+.hero-layout .border-bottom--left-white {
+  height: 50px;
+  margin-top: -40px;
+  margin-bottom: 45px;
+}
+@media (min-width: 768px) {
+  .hero-layout .border-bottom--left-white {
+    height: -webkit-calc(50px + (150 - 50) * ((100vw - 768px)/(1440 - 768)));
+    height: calc(50px + (150 - 50) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .hero-layout .border-bottom--left-white {
+    height: 150px;
+  }
+}
+@media (min-width: 768px) {
+  .hero-layout .border-bottom--left-white {
+    margin-top: -webkit-calc(-40px + (-140 - -40) * ((100vw - 768px)/(1440 - 768)));
+    margin-top: calc(-40px + (-140 - -40) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .hero-layout .border-bottom--left-white {
+    margin-top: -140px;
+  }
+}
+@media (min-width: 768px) {
+  .hero-layout .border-bottom--left-white {
+    margin-bottom: -webkit-calc(45px + (75 - 45) * ((100vw - 768px)/(1440 - 768)));
+    margin-bottom: calc(45px + (75 - 45) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .hero-layout .border-bottom--left-white {
+    margin-bottom: 75px;
+  }
+}
+.hero-layout .border-bottom--left-lighter-dark {
+  height: 50px;
+  margin-top: -40px;
+}
+@media (min-width: 768px) {
+  .hero-layout .border-bottom--left-lighter-dark {
+    height: -webkit-calc(50px + (150 - 50) * ((100vw - 768px)/(1440 - 768)));
+    height: calc(50px + (150 - 50) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .hero-layout .border-bottom--left-lighter-dark {
+    height: 150px;
+  }
+}
+@media (min-width: 768px) {
+  .hero-layout .border-bottom--left-lighter-dark {
+    margin-top: -webkit-calc(-40px + (-140 - -40) * ((100vw - 768px)/(1440 - 768)));
+    margin-top: calc(-40px + (-140 - -40) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .hero-layout .border-bottom--left-lighter-dark {
+    margin-top: -140px;
   }
 }
 .page-header {

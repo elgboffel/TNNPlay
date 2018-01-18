@@ -6,10 +6,17 @@
         Model.AncestorOrSelf<Culture>() as IGenericWebsite :
         Model.AncestorOrSelf<Website>() as IGenericWebsite;
 
-    var iconImage = Model.GetPropertyValue<IPublishedContent>("iconImage", true);
-    var heading = Model.GetPropertyValue<string>("heading", true);
-    var cta = Model.GetPropertyValue<IEnumerable<IPublishedContent>>("callToAction", true);
+    var iconImage = Model.GetPropertyValue<IPublishedContent>("footerIconImage", true);
+    var heading = Model.GetPropertyValue<string>("footerHeading", true);
+    var cta = Model.GetPropertyValue<IEnumerable<IPublishedContent>>("footerPickCallToAction", true);
     var logo = Model.GetPropertyValue<IPublishedContent>("logo", true);
+    var hasCallToAction = cta != null;
+    var guid = Guid.NewGuid();
+
+    if (hasCallToAction)
+    {
+        Html.RequiresJs("~/scripts/build/modal.js", 1, 2, new { @defer = string.Empty });
+    }
 
 }
 
@@ -27,9 +34,11 @@
                     {
                         <h2 class="footer__heading text-center">@Html.Raw(heading)</h2>
                     }
-                    @if (cta != null)
+                    @if (hasCallToAction)
                     {
-
+                        <div class="flex-center">
+                            <div class="btn btn--default btn--arrow modal--btn margin-bt65" role="button" data-target="modal-@guid">Register here</div>
+                        </div>
                     }
                 </div>
             </div>
@@ -53,7 +62,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-6">
                     <div class="footer__info">
-                        @Html.Raw(Model.GetPropertyValue("info", true))
+                        @Html.Raw(Model.GetPropertyValue("footerInfo", true))
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-3">
@@ -69,5 +78,17 @@
         </div>
     </div>
 </footer>
+@if (hasCallToAction)
+{
+    {
+        Html.RenderPartial(
+          "Components/_Modal",
+          new ModalViewModel
+          {
+              Id = guid,
+              Modal = cta
+          });
+    }
+}
 
 

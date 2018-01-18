@@ -1,7 +1,76 @@
 ﻿@inherits UmbracoViewPage<ThemePage>
+@using TNNPlay.Web.Helpers
 @{
     Layout = "_Layout.cshtml";
 
+    var contentLayout = Model.GetPropertyValue<string>("headerLayout").ConvertToContentLayout();
+    var media = Model.Video != null ? Model.Video : Model.Image;
+    var mediaType = Model.Video != null ? RenderMediaTypes.BackgroundVideo : RenderMediaTypes.Cover;
 }
+@if (Model.Image != null || Model.Video != null)
+{
+    <div class="hero-layout">
+        @Html.CachedPartial(
+          "Components/_Spot",
+          new SpotViewModel
+          {
+              SpotSettings = new SpotSettings
+              {
+                  LayoutType = UtilityEnums.RenderLayoutType.Fluid,
+                  EnableHeroLayout = true,
+                  EnableOverlay = Model.EnableOverlay,
+                  ContentLayout = contentLayout
+
+              },
+              MediaType = mediaType,
+              Image = media,
+              Trumpet = Model.Trumpet,
+              Heading = Model.Heading,
+              Content = Model.Content as HtmlString,
+              CallToAction = Model.CallToAction
+          }, 3600, true)
+        @if (Model.EnableDarkVersion)
+        {
+            <div class="border-bottom--left-lighter-dark"></div>
+        }
+        else
+        {
+            <div class="border-bottom--left-white margin-bt45"></div>
+        }
+    </div>
+}
+@if (!Model.IntroHeading.IsNullOrWhiteSpace() || !Model.IntroContent.IsNullOrWhiteSpace())
+{
+    <div class="statement @Umbraco.If(Model.EnableDarkVersion, "statement--dark")">
+        <div class="statement__content">
+            @if (Model.IconImage != null)
+                {
+                <div class="statement__media">
+                    <img src="@Model.IconImage.Url" alt="@Model.IconImage.Name" />
+                </div>
+            }
+            @if (!Model.IntroHeading.IsNullOrWhiteSpace())
+                {
+                <h2>@Html.Raw(Model.IntroHeading)</h2>
+            }
+            @if (!Model.IntroContent.IsNullOrWhiteSpace())
+                {
+                <p>@Html.Raw(Umbraco.ReplaceLineBreaksForHtml(Model.IntroContent))</p>
+            }
+            @if (!Model.EnableDarkVersion)
+            {
+                <div class="statement__spacer"></div>
+            }
+        </div>
+        @if (Model.EnableDarkVersion)
+        {
+            <div class="border-bottom--right-lighter-dark"></div>
+        }
+    </div>
+}
+
+
+
+
 
 @Html.GetGridHtml(Model, "layout", "_ThemePageFluid")

@@ -25,7 +25,8 @@
         },
         MediaHeights = new MediaHeights
         {
-            HeightMd = 750,
+            HeightXl = 750,
+            HeightMd = 650,
             HeightXs = 450
         }
     }, 3600, cacheByPage: true)
@@ -37,6 +38,14 @@
                 @if (!Model.ArticleHeading.IsNullOrWhiteSpace())
                 {
                     <h2 class="margin-bt40">@Html.Raw(Model.ArticleHeading)</h2>
+                }
+                @if (Model.HasValue("date"))
+                {
+                    <div class="color-stone margin-bt10">@(Model.GetPropertyValue<DateTime>("date").ToString("d. MMMM yyyy"))</div>
+                }
+                @if (Model.HasValue("author"))
+                {
+                    <div class="color-stone margin-bt10">Written by @(Model.GetPropertyValue<string>("author"))</div>
                 }
                 <div class="row">
                     <div class="col-xs-12 col-md-10">
@@ -66,3 +75,4 @@
         </div>        
     </div>
 </div>
+<div class="fluid-spacer100"></div>

@@ -6,6 +6,8 @@
 {
     case RenderMediaTypes.Video:
         @renderVideoImage(); break;
+    case RenderMediaTypes.BackgroundVideo:
+        @renderBackgroundVideo(); break;
     case RenderMediaTypes.Cover:
         @RenderCoverImage(); break;
     default:
@@ -32,6 +34,16 @@
         <div class="cover-image"
                 style="background: url(@Model.Image.Url) no-repeat center center;">
         </div>
+    }
+}
+
+@helper renderBackgroundVideo()
+{
+    if (Model.Image != null)
+    {
+        <video playsinline autoplay muted loop>
+            <source src="@(Model.Image.Url)" type="video/mp4">
+        </video>
     }
 }
 

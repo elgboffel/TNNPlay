@@ -14,6 +14,7 @@
     p {
         line-height: 17px;
         font-weight: 300;
+        .fluid-property(margin-bottom, 15, 20);
     }
 
     &__media {
@@ -28,11 +29,15 @@
     &__content {
         width: 100%;
         max-width: 1540px;
-        padding: 60px 15px 50px 15px;
+        padding: 0px 15px 15px;
 
         h2 {
             .fluid-property(margin-bottom, 15, 20);
         }
+    }
+
+    &__spacer {
+        .fluid-line-base-spacer();
     }
 
     @media(min-width: @screen-xs-min) {
@@ -43,8 +48,7 @@
 }
 
 .statement--small {
-    .fluid-property(margin-top, 55, 115);
-
+    /*.fluid-property(margin-top, 55, 115);*/
     h3 {
         .fluid-property(font-size, 19, 24);
         margin-bottom: 15px;
@@ -62,5 +66,23 @@
         &__spacer {
             .fluid-property(margin-top, 75, 150);
         }
+    }
+}
+
+.statement--dark {
+    background-color: @color-lighter-dark;
+    color: #fff;
+    .fluid-property(margin-bottom, 125, 150);
+    padding-top: 35px;
+
+    .statement {
+        &__content {
+            padding-bottom: 0;
+        }
+    }
+    //overwrites
+    .border-bottom--right-lighter-dark {
+        .fluid-property(height, 20, 50);
+        /*.fluid-property(margin-top, -40, -140);*/
     }
 }

@@ -17,6 +17,16 @@
     .clearfix();
 }
 
+.fluid-spacer100 {
+    .fluid-property(margin-top, 50, 100);
+    .clearfix();
+}
+
+.fluid-spacer40 {
+    .fluid-property(margin-top, 25, 40);
+    .clearfix();
+}
+
 .no-overflow {
     overflow: hidden;
 }
@@ -54,6 +64,15 @@ img {
 
 .color-primary {
     color: @brand-primary;
+}
+
+.color-stone {
+    color: #99AEBB;
+}
+
+.bg-dark {
+    background-color: #060405;
+    color: #fff;
 }
 
 .weight-black {
@@ -220,6 +239,14 @@ img {
     .fluid-property(margin-top, 35, 55);
 }
 
+.margin-bt65 {
+    .fluid-property(margin-bottom, 45, 65)
+}
+
+.margin-t65 {
+    .fluid-property(margin-top, 45, 65);
+}
+
 .margin-bt70 {
     .fluid-property(margin-bottom, 45, 70);
 }
@@ -250,7 +277,7 @@ img {
         content: "";
         width: 100%;
         height: 100%;
-        background-color: rgba(6,4,5,0.76);
+        background-color: rgba(6,4,5,0.6);
         z-index: 1;
     }
 }

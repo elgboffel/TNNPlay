@@ -38,7 +38,7 @@
 <body>
    @Html.CachedPartial("_NavbarHeader", Model, 3600, cacheByPage: true)
 
-   @*@{ Html.RenderPartial("_MobileHeader"); }*@
+   @{ Html.RenderPartial("_MobileHeader"); }
 
     <main class="@Model.DocumentTypeAlias.ToLower()">
         @RenderBody()

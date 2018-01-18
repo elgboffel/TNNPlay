@@ -8,12 +8,11 @@
 
 @helper renderContent(LeBlenderValue content)
 {
-var media = content.GetValue<IPublishedContent>("iconImage");
-var heading = content.GetValue("heading");
-var text = content.GetValue("content");
-var bgColor = content.GetValue("bacgroundColor");
+    var media = content.GetValue<IPublishedContent>("iconImage");
+    var heading = content.GetValue("heading");
+    var text = content.GetValue("content");
 
-    <div class="statement @Umbraco.If(!bgColor.IsNullOrWhiteSpace(), "bg-" + bgColor)">
+    <div class="statement">
         <div class="statement__content">
             @if (media != null)
             {
@@ -29,6 +28,7 @@ var bgColor = content.GetValue("bacgroundColor");
             {
                 <p>@Html.Raw(Umbraco.ReplaceLineBreaksForHtml(text))</p>
             }
+            <div class="statement__spacer"></div>
         </div>
     </div>
 }

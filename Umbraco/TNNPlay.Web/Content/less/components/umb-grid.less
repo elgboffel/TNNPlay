@@ -19,20 +19,11 @@
         }
 
         ol, ul {
-            .fluid-property(margin-top, -20, -25);
+            .fluid-property(margin-top, -15, -20);
         }
 
         a {
-            transition: color 300ms ease;
-            .line-bottom-hover(@text-color, @alt-text-color);
-
-            &:hover {
-                color: @alt-text-color;
-            }
-
-            &:after {
-                margin-bottom: 3px;
-            }
+            .box-hover(@brand-primary, @brand-primary);
         }
 
         img {
