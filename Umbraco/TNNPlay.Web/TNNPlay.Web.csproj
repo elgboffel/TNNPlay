@@ -548,7 +548,9 @@
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="nuget.exe" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\MediaListController.cs" />
