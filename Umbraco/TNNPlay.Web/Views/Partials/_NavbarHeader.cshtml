@@ -1,7 +1,7 @@
 ﻿@inherits UmbracoViewPage
 
 @{
-    Html.RequiresJs("~/scripts/app/search-form.js", 1, 2, new { @defer = string.Empty });
+    Html.RequiresJs("~/scripts/build/navbar.js", 1, 2, new { @defer = string.Empty });
 
     var root = Model.AncestorOrSelf<Website>();
     var website = Model.AncestorOrSelf<Culture>() != null ?
@@ -32,6 +32,7 @@
                             }, 3600, true)
                         </a>
                     }
+                    <button role="button" class="navbar-header__expander btn btn--toggle"></button>
                     <div class="navbar-header__navbar">
                         @Html.CachedPartial("_Navbar", Model, 3600, cacheByPage: true)
                     </div>

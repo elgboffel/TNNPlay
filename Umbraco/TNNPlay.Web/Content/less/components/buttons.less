@@ -49,6 +49,9 @@
 
 .btn--arrow {
     padding-right: 80px;
+    will-change: box-shadow;
+    transition: box-shadow 200ms ease-in-out;
+    box-shadow: 0 6px 17px 0 rgba(0,0,0,0.27);
 
     &:after {
         position: absolute;
@@ -66,6 +69,8 @@
     &:hover, &:focus {
         color: @brand-primary;
         background-color: #fff;
+        box-shadow: 0 3px 6px -2px @brand-primary;
+        box-shadow: 0 6px 17px 0 rgba(224,0,36,0.57);
 
         &:after {
             right: 25px;
@@ -290,6 +295,36 @@
         }
     }
 }
+
+.btn--toggle {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    min-width: 24px;
+    min-height: 24px;
+
+    &:before {
+        position: absolute;
+        left:0;
+        content: "";
+        background: url(/Content/images/simple-close.png);
+        transform: rotate(45deg) translateY(-50%);
+        width: 24px;
+        height: 24px;
+        will-change: transform;
+        transition: transform 300ms ease-out, margin 300ms ease-out;
+        transform-origin: center center;
+    }
+}
+
+.btn--toggle-open {
+    &:before {
+        transform: rotate(0) translateY(-50%);
+        margin-left: 6px;
+    }
+}
+
+.btn--toggle-active
 
 .btn--md {
     .fluid-property(padding-left, 40, 75);

@@ -5,10 +5,12 @@
 @import (reference) "../bootstrap/type.less";
 
 .navbar-header {
-    background-color: #060405;
+    background-color: #060405;    
 
     &__logo {
-        margin-bottom:12px;
+        width: 81px;
+        height: 46px;
+        margin-bottom: 12px;
         order: 1;
     }
 
@@ -31,15 +33,35 @@
     }
 
     &__content {
-        padding-top: 17px;
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-between;
+        padding-top: 17px;
         justify-content: space-between;
     }
 
     &__navbar {
-        order: 3;
         width: 100%;
+        order: 3;
+        opacity: 0;
+        visibility: hidden;
+        min-height: 0;
+        height: 0;
+
+        &--open {
+            margin-top: 35px;
+            opacity: 1;
+            visibility: visible;
+            min-height: calc(~"100vh - 75px");
+            will-change: opacity, min-height;
+            transition: opacity 750ms ease, min-height 350ms ease;
+
+        }
+    }
+
+    &__expander {
+        order: 2;
+        margin-right: 15px;
     }
 
     @media(min-width: @grid-float-breakpoint) {
@@ -50,15 +72,26 @@
         }
 
         &__logo {
-            width: 81px;
-            height: 46px;
             order: 1;
         }
 
         &__navbar {
+            display: flex;
+            flex-wrap: wrap;
+            order: 3;
+            width: 100%;
             .fluid-property(margin-left, 30, 110);
             order: 2;
             width: auto;
+            height: auto;
+            margin-top: 0;
+            min-height: 0;
+            opacity:1;
+            visibility: visible;
+        }
+
+        &__expander {
+            display: none;
         }
     }
 }
@@ -78,12 +111,20 @@
         &__content {
             margin-top: 0;
         }
-
     }
 }
 
 @keyframes fade-out {
-    0% { opacity: 1;}
-    99% { opacity:0; }
-    100% { opacity:0; visibility:hidden; }
+    0% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
 }

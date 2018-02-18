@@ -9,6 +9,9 @@
     @if (Model.Image != null || Model.EnableImageFallback || Model.MediaType != RenderMediaTypes.Image)
     {
         <div class="card__media">
+            <div class="card__overlay">
+                <div class="card__overlay-text">Read article</div>
+            </div>
             @Html.Partial(
            "Components/_Media",
            new MediaViewModel

@@ -1,40 +1,71 @@
 ﻿@inherits UmbracoViewPage<LeBlenderModel>
 @using Lecoati.LeBlender.Extension.Models
+@using TNNPlay.Web.Helpers
 
 @foreach (var item in Model.Items)
 {
-        @renderContent(item)
+    @renderCarousel(item)
 }
 
-@helper renderContent(LeBlenderValue content)
+@helper renderCarousel(LeBlenderValue content)
 {
-var contentPicker = content.GetValue<IEnumerable<IPublishedContent>>("contentPicker");
+    var heading = content.GetValue<string>("heading");
+    var text = content.GetValue<string>("text");
+    var contentPicker = content.GetValue<IPublishedContent>("contentPicker");
 
-if (contentPicker != null)
-{
-
-    { Html.RenderPartial(
-        "Components/_MediaList",
-        new MediaListViewModel()
-        {
-            MediaList = contentPicker,
-            ViewRenderMode = ViewRenderMode.EnableBootstrap,
-            CardClassModifier = "",
-            ShowLead = false,
-            EnableImageFallback = true,
-            GridSettings = new GridSettings
-            {
-                GridLg = 2,
-                GridSm = 3,
-                GridMs = 6
-            },
-            MediaHeights = new MediaHeights
-            {
-                HeightSm = 210,
-                HeightMs = 300,
-                HeightXs = 250
-            }
-        });}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-1">
+                @if (!heading.IsNullOrWhiteSpace())
+                {
+                    <h2 class="margin-bt15">@Html.Raw(heading)</h2>
+                    if (!text.IsNullOrWhiteSpace())
+                    {
+                        <div class="">@Html.Raw(text)</div>
+                    }
+                    <div class="spacer60"></div>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+            @{
+                Html.RenderPartial(
+                "Components/_CarouselCards",
+                    new CarouselCardsViewModel
+                    {
+                        MediaList = contentPicker.Descendants().Where(x => x.IsVisible() && (x.DocumentTypeAlias.Equals("gridPage") || x.DocumentTypeAlias.Equals("themePage") || x.DocumentTypeAlias.Equals("newsPage"))),
+                        CarouselClassModifier = "owl-carousel--list",
+                        CardClassModifier = "card--carousel",
+                        Options = "{\"responsive\":{\"0\":{\"items\":1,\"stagePadding\":0},\"480\":{\"items\":2,\"stagePadding\":0},\"768\":{\"items\":3,\"stagePadding\":0},\"992\":{\"items\":3,\"stagePadding\":0},\"1200\":{\"items\":4,\"stagePadding\":0},\"1440\":{\"items\":4,\"stagePadding\":0}},\"nav\":true,\"loop\":false,\"dots\":true,\"navText\":[\"\",\"\"],\"autoplay\":false,\"margin\":30,\"autoHeight\":true}",
+                        TypedWidths = new TypedWidths
+                        {
+                            TypedXxl = 365,
+                            TypedXl = 325,
+                            TypedLg = 265,
+                            TypedMd = 295,
+                            TypedSm = 220,
+                            TypedMs = 345,
+                            TypedXs = 215
+                        },
+                        MediaHeights = new MediaHeights
+                        {
+                            HeightXxl = 365,
+                            HeightXl = 325,
+                            HeightLg = 265,
+                            HeightMd = 295,
+                            HeightSm = 220,
+                            HeightMs = 345,
+                            HeightXs = 215
+                        },
+                        MediaListSettings = new MediaListSettings
+                        {
+                            ShowImage = true,
+                            ShowLead = true
+                        }
+                    }
+                ); }
+            </div>
+        </div>
+    </div>
 }
-}
-

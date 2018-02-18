@@ -6,33 +6,21 @@
 
             if (!xsMin.matches) {
                 this.mobileNavExpander(element);
-                this.stickyToggle(element);
+                //this.stickyToggle(element);
             }
-
-            window.addEventListener('resize', () => {
-                if (!xsMin.matches) {
-                    this.mobileNavExpander(element);
-                    this.stickyToggle(element);
-                }
-            });
         }
 
         private mobileNavExpander(_element: HTMLElement) {
             let __this = this;
 
-            let navExpander = _element.querySelector('.expander__trigger--nav') as HTMLElement;
+            let navExpander = _element.querySelector('.navbar-header__expander') as HTMLElement;
 
             navExpander.addEventListener('click', function (event) {
-                let expander = this.closest('.expander') as HTMLElement;
-                let mobileHeader = this.closest('.mobile-header');
-                let expanderTarget = mobileHeader.querySelector('.mobile-header__nav') as HTMLElement;
+                let mobileContent = _element.querySelector('.navbar-header__navbar') as HTMLElement;
 
                 event.preventDefault();
 
-                expander.classList.toggle('expander--open');
-                mobileHeader.classList.toggle('mobile-header--open');
-
-                __this.slideToggle(expanderTarget);
+                __this.slideToggle(mobileContent);
             });
         }
 
@@ -89,36 +77,17 @@
         }
 
         private slideToggle(_element: HTMLElement, _duration: number = 600, _easing: string = 'easeInOutQuint') {
+            let openClass = 'navbar-header__navbar--open';
+            let openBtnClass = 'btn--toggle-open';
+            let expanderBtn = _element.parentElement.querySelector('.btn--toggle');
+            if (_element.classList.contains(openClass)) {
+                _element.classList.remove(openClass);
+                expanderBtn.classList.remove(openBtnClass);
 
-            if (_element.offsetHeight > 0) {
-                _element.style.overflowX = 'hidden';
-
-                anime({
-                    targets: _element,
-                    height: 0,
-                    duration: _duration,
-                    easing: _easing,
-                    complete: () => {
-                        _element.removeAttribute('style');
-                    }
-                });
 
             } else {
-                _element.style.overflowX = 'hidden';
-                _element.style.display = 'block';
-                _element.style.height = '0';
-                let height = this.getHeightFromChilds(_element);
-
-                anime({
-                    targets: _element,
-                    height: height,
-                    duration: _duration,
-                    easing: _easing,
-                    complete: () => {
-                        _element.style.overflowX = 'visible';
-                        _element.style.height = 'auto';
-                    }
-                });
+                _element.classList.add(openClass);
+                expanderBtn.classList.add(openBtnClass);
             }
         }
 
@@ -137,7 +106,7 @@
 }
 
 (function () {
-    var elements = document.querySelectorAll('.expander') as NodeListOf<HTMLElement>;
+    var elements = document.querySelectorAll('.navbar-header') as NodeListOf<HTMLElement>;
     for (let i = 0; i < elements.length; i++) {
         var init = new App.Expander(elements.item(i));
     }

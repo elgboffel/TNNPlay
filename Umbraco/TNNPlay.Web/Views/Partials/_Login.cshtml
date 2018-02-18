@@ -8,8 +8,8 @@
 @using Umbraco.Web.Controllers
 
 @{
-    var loginModel = new LoginModel();
-    
+    var loginModel = new LoginModel() { RedirectUrl = "/front-page" };
+
     Html.EnableClientValidation();
     Html.EnableUnobtrusiveJavaScript();
     Html.RequiresJs("/umbraco_client/ui/jquery.js");

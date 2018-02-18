@@ -1,40 +1,89 @@
-﻿
-@inherits UmbracoViewPage<CarouselCardsViewModel>
-
-@{
+﻿@inherits UmbracoViewPage<CarouselCardsViewModel>
+@using TNNPlay.Web.Helpers
+    @{
     Html.RequiresCss("~/Content/components/owl-carousel2/dist/assets/owl.carousel.css")
-            .RequiresCss("~/Content/components/animate-css/animate.css")
-            .RequiresJs("~/Content/components/owl-carousel2/dist/owl.carousel.js", 1, 2, new { @defer = string.Empty })
-            .RequiresJs("~/scripts/build/carousel.js", 1, 2, new { @defer = string.Empty });
+    .RequiresCss("~/Content/components/animate-css/animate.css")
+    .RequiresJs("~/Content/components/owl-carousel2/dist/owl.carousel.js", 1, 2, new { @defer = string.Empty })
+    .RequiresJs("~/scripts/build/carousel.js", 1, 2, new { @defer = string.Empty });
 
-    var list = Model.List;
-}
-@if (list != null && list.Any())
-{
+    var list = Model.MediaList;
+    }
+    @if (list != null && list.Any())
+    {
 
     <div class="owl-carousel @(Model.CarouselClassModifier)"
          data-options='@Model.Options'>
         @foreach (var item in list)
         {
-            @renderSlide(item)
+        switch (Model.CarouselType)
+        {
+        case CarouselType.Hero:
+        @renderHeroSlide(item) break;
+        default:
+        @renderDefaultSlide(item) break;
+        }
         }
     </div>
-}
-@helper renderSlide(IPublishedContent item)
-{
-    <div class="owl-carousel__item">
-            @{ Html.RenderPartial(
-                    "Components/_Card",
-                    new CardViewModel(item, showLead: Model.ShowLead, showTitle: Model.ShowTitle, showInfo: Model.ShowInfo)
-                    {
-                        ClassModifier = Model.CardClassModifier,
-                        TypedWidth = Model.TypedWidth,
-                        GridSettings = Model.GridSettings,
-                        MediaHeights = Model.MediaHeights,
-                        EnableImageFallback = Model.EnableImageFallback,
-                        MediaType = Model.MediaType
+    }
 
-                    }); }
+    @helper renderHeroSlide(IPublishedContent item)
+    {
+    var hero = item as CarouselPicker;
+
+    if (hero.ContentPicker != null && hero.ContentPicker.Any())
+    {
+    var heroPosition = (HeroPosition)hero.HeroPosition;
+    var convertHeroPosition = heroPosition != HeroPosition.Default && heroPosition > 0 ?
+    " card--hero-position-" + heroPosition.GetEnumDisplayName() :
+    string.Empty;
+
+    var cardClassModifier = Model.CardClassModifier + convertHeroPosition;
+
+    <div class="owl-carousel__item">
+        @{ Html.RenderPartial(
+        "Components/_Card",
+        new CardViewModel(
+        hero.ContentPicker.FirstOrDefault(),
+        showLead: Model.MediaListSettings.ShowLead,
+        showTitle: Model.MediaListSettings.ShowTitle,
+        showImage: Model.MediaListSettings.ShowImage,
+        showTrumpet: Model.MediaListSettings.ShowTrumpet
+        )
+        {
+        ClassModifier = cardClassModifier,
+        TypedWidths = Model.TypedWidths,
+        GridSettings = Model.GridSettings,
+        MediaHeights = Model.MediaHeights,
+        EnableImageFallback = Model.EnableImageFallback,
+        MediaType = Model.MediaType
+
+        }); }
         <div class="owl-carousel__spacer"></div>
     </div>
-}
+    }
+    }
+
+    @helper renderDefaultSlide(IPublishedContent item)
+    {
+    <div class="owl-carousel__item">
+        @{ Html.RenderPartial(
+        "Components/_Card",
+        new CardViewModel(
+        item,
+        showLead: Model.MediaListSettings.ShowLead,
+        showTitle: Model.MediaListSettings.ShowTitle,
+        showImage: Model.MediaListSettings.ShowImage,
+        showTrumpet: Model.MediaListSettings.ShowTrumpet
+        )
+        {
+        ClassModifier = Model.CardClassModifier,
+        TypedWidths = Model.TypedWidths,
+        GridSettings = Model.GridSettings,
+        MediaHeights = Model.MediaHeights,
+        EnableImageFallback = Model.EnableImageFallback,
+        MediaType = Model.MediaType
+
+        }); }
+        <div class="owl-carousel__spacer"></div>
+    </div>
+    }

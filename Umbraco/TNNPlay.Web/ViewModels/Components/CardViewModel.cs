@@ -66,6 +66,9 @@ namespace TNNPlay.Web.ViewModels.Components
             if (showTrumpet)
                 Trumpet = x.GetPropertyValue<string>("trumpet");
 
+            if (x.HasProperty("date") && x.HasValue("date"))
+                Date = x.GetPropertyValue<DateTime>("date").ToString("dd MMMM yyyy");
+
             if (showInfo)
                 Date = x.GetPropertyValue<DateTime>("date").ToString("d. MMMM yyyy");
 

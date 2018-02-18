@@ -170,7 +170,7 @@
         }
     },
     {
-        "name": "Listevisning",
+        "name": "Page List",
         "alias": "list",
         "view": "/App_Plugins/LeBlender/editors/leblendereditor/LeBlendereditor.html",
         "icon": "icon-thumbnail-list color-blue",
@@ -178,15 +178,27 @@
         "config": {
             "editors": [
                 {
-                    "name": "Vælg Sider",
+                    "name": "Heading",
+                    "alias": "heading",
+                    "propretyType": {},
+                    "dataType": "0cc0eba1-9960-42c9-bf9b-60e150b429ae"
+                },
+                {
+                    "name": "Text",
+                    "alias": "text",
+                    "propretyType": {},
+                    "dataType": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3"
+                },
+                {
+                    "name": "Choose Root Page",
                     "alias": "contentPicker",
                     "propretyType": {},
-                    "dataType": "152b2bb0-6545-408f-a827-b6a2ed1b37dc",
-                    "description": "Valgte sider vil blive vist i en liste."
+                    "dataType": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+                    "description": "Descendant pages will be shown from the picked page."
                 }
             ],
             "frontView": "",
-            "renderInGrid": "1"
+            "renderInGrid": "0"
         }
     },
     {

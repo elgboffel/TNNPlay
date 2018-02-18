@@ -67,7 +67,7 @@ img {
 }
 
 .color-stone {
-    color: #99AEBB;
+    color: @color-stone;
 }
 
 .bg-dark {
@@ -114,6 +114,11 @@ img {
 
 .spacer45 {
     .fluid-property(margin-top, 25, 45);
+    .clearfix();
+}
+
+.spacer60 {
+    .fluid-property(margin-top, 30, 60);
     .clearfix();
 }
 
@@ -253,6 +258,14 @@ img {
 
 .margin-t70 {
     .fluid-property(margin-top, 45, 70) !important;
+}
+
+.margin-bt75 {
+    .fluid-property(margin-bottom, 45, 75);
+}
+
+.margin-t75 {
+    .fluid-property(margin-top, 45, 75) !important;
 }
 
 .margin-bt80 {
