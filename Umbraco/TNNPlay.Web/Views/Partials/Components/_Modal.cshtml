@@ -33,7 +33,7 @@
                 <div class="@column">
                     @if (!cta.Trumpet.IsNullOrWhiteSpace())
                     {
-                        <div class="trumpet margin-bt20">@cta.Trumpet</div>
+                        <div class="trumpet trumpet--sm margin-bt20">@cta.Trumpet</div>
                     }
                     <h3 class="margin-bt15">@Html.Raw(Umbraco.Coalesce(cta.Heading, cta.Name))</h3>
 
@@ -57,7 +57,7 @@
                     <div class="col-xs-12 col-md-6">
                         @if (!cta.RightColumnHeading.IsNullOrWhiteSpace())
                         {
-                            <div class="trumpet margin-bt20">
+                            <div class="trumpet trumpet--sm margin-bt40">
                                 @Html.Raw(cta.RightColumnHeading)
                             </div>
                         }

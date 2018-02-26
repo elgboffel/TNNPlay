@@ -33,10 +33,10 @@ namespace TNNPlay.Web
                     args.QueryString += "&quality=85";
                 }
 
-                if (args.Context.Request.RawUrl.Contains(".png") && !args.QueryString.Contains("format=png8"))
-                {
-                    args.QueryString += "&format=png8";
-                }
+                //if (args.Context.Request.RawUrl.Contains(".png") && !args.QueryString.Contains("format=png8"))
+                //{
+                //    args.QueryString += "&format=png8";
+                //}
             };
         }
     }

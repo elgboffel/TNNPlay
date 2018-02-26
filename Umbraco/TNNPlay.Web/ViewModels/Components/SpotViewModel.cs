@@ -47,5 +47,7 @@ namespace TNNPlay.Web.ViewModels.Components
 
         public ContentLayout ContentLayout { get; set; }
 
+        public CustomGraphic CustomGraphic { get; set; }
+
     }
 }

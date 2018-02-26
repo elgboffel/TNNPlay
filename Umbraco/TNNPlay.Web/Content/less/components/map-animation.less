@@ -1,0 +1,65 @@
+﻿.map-animation {
+    position: relative;
+    height: 100%;
+    background-color: #060405;
+
+    &__map {
+        position: absolute;
+        top: -225px;
+        left: 0;
+    }
+
+    &__path2, &__path4, &__path6 {
+        position: absolute;
+        path {
+            fill: transparent !important;
+        }
+    }
+
+    &__path2 {
+        top: 170px;
+        left: 775px;
+    }
+
+    &__path4 {
+        top: 170px;
+        left: 835px;
+    }
+
+    &__path6 {
+        top: 170px;
+        left: 720px;
+    }
+
+    &__dot {
+        width: 22px;
+        height: 22px;
+        background-color: @brand-primary;
+        border: solid 2px #fff;
+        border-radius: 50%;
+
+        &--position1 {
+            position: absolute;
+            top: 163px;
+            left: 828px;
+        }
+
+        &--position2 {
+            position: absolute;
+            top: 218px;
+            left: 964px;
+        }
+
+        &--position3 {
+            position: absolute;
+            top: 306px;
+            left: 711px;
+        }
+
+        &--position4 {
+            position: absolute;
+            top: 415px;
+            left: 770px;
+        }
+    }
+}

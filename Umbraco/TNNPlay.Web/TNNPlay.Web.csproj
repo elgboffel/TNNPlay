@@ -327,6 +327,7 @@
     <Content Include="App_Plugins\ModelsBuilder\package.manifest" />
     <Content Include="Content\components\animejs\anime.js" />
     <Content Include="Content\components\animejs\anime.min.js" />
+    <Content Include="Content\components\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\components\owl-carousel2\dist\assets\ajax-loader.gif" />
     <Content Include="Content\components\owl-carousel2\dist\assets\owl.carousel.css" />
     <Content Include="Content\components\owl-carousel2\dist\assets\owl.carousel.min.css" />
@@ -446,7 +447,11 @@
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\shell.css" />
+    <Content Include="Content\images\Path 2.svg" />
+    <Content Include="Content\images\Path 4.svg" />
+    <Content Include="Content\images\Path 6.svg" />
     <Content Include="Content\images\simple-close.png" />
+    <Content Include="Content\images\Skærmbillede 2018-02-19 kl. 20.55.18.png" />
     <Content Include="Content\images\small-arrow.png" />
     <Content Include="css\body-text-formats.css" />
     <Content Include="css\footer-formats.css" />
@@ -633,6 +638,12 @@
     <Content Include="Content\components\owl-carousel2\src\scss\_theme.scss" />
     <Content Include="Content\components\owl-carousel2\src\scss\_video.scss" />
     <Content Include="Content\components\owl-carousel2\_config.json" />
+    <Content Include="Content\less\components\map-animation.less" />
+    <Content Include="Content\components\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\components\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\components\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\components\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\components\font-awesome\fonts\FontAwesome.otf" />
     <None Include="packages.config" />
     <Content Include="robots.txt" />
     <Content Include="Views\Web.config" />
@@ -794,6 +805,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <TypeScriptCompile Include="scripts\app\forms.ts" />
+    <TypeScriptCompile Include="scripts\app\map-animation.ts" />
     <TypeScriptCompile Include="scripts\app\navbar.ts" />
     <TypeScriptCompile Include="scripts\app\modal.ts" />
   </ItemGroup>

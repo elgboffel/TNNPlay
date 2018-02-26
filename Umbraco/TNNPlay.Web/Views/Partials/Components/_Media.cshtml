@@ -32,7 +32,7 @@
     if (Model.Image != null)
     {
         <div class="cover-image"
-                style="background: url(@Model.Image.Url) no-repeat center center;">
+                style="background: url(@Model.Image.GetCropUrl(width: 2550)) no-repeat center center;">
         </div>
     }
 }

@@ -4,6 +4,7 @@
     Layout = "_Layout.cshtml";
 
     var contentLayout = Model.GetPropertyValue<string>("headerLayout").ConvertToContentLayout();
+    var customGraphic = Model.GetPropertyValue<UtilityEnums.CustomGraphic>("pickCustomGraphic");
     var media = Model.Video != null ? Model.Video : Model.Image;
     var mediaType = Model.Video != null ? RenderMediaTypes.BackgroundVideo : RenderMediaTypes.Cover;
 }
@@ -17,10 +18,11 @@
               SpotSettings = new SpotSettings
               {
                   LayoutType = UtilityEnums.RenderLayoutType.Fluid,
+
                   EnableHeroLayout = true,
                   EnableOverlay = Model.EnableOverlay,
-                  ContentLayout = contentLayout
-
+                  ContentLayout = contentLayout,
+                  CustomGraphic = customGraphic
               },
               MediaType = mediaType,
               Image = media,
@@ -39,6 +41,7 @@
         }
     </div>
 }
+
 @if (!Model.IntroHeading.IsNullOrWhiteSpace() || !Model.IntroContent.IsNullOrWhiteSpace())
 {
     <div class="statement @Umbraco.If(Model.EnableDarkVersion, "statement--dark")">

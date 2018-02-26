@@ -19,5 +19,11 @@ namespace TNNPlay.Web.ViewModels.Components
             [Display(Name = "content-right")]
             ContentRight = 166,
         }
+
+        public enum CustomGraphic
+        {
+            Default,
+            MapAnimation = 246
+        }
     }
 }
