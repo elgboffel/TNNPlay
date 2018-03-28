@@ -26,7 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.6</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -539,6 +539,7 @@
     <Content Include="Content\less\utility.less" />
     <Content Include=".bowerrc" />
     <Content Include="scripts\build\carousel.js" />
+    <Content Include="scripts\build\cookie-consent.js" />
     <Content Include="scripts\build\modal.js" />
     <Content Include="scripts\build\modal.js.map" />
     <Content Include="TNNPlay.Web.wpp.targets" />
@@ -689,6 +690,7 @@
     <Content Include="Views\Partials\Grid\Editors\List.cshtml" />
     <Content Include="Views\Partials\Components\_CarouselCards.cshtml" />
     <Content Include="Views\Partials\Components\_Card.cshtml" />
+    <Content Include="Views\Partials\Components\_CookieConsent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

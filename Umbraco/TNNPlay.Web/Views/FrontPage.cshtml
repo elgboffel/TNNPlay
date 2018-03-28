@@ -43,10 +43,10 @@
 }
 @if (!Model.IntroHeading.IsNullOrWhiteSpace() || !Model.IntroContent.IsNullOrWhiteSpace())
 {
-    <div class="statement @Umbraco.If(Model.EnableDarkVersion, "statement--dark")">
+    <div class="statement @Umbraco.If(Model.EnableDarkVersion, "statement--dark") statement--banner">
         <div class="statement__content">
             @if (Model.IconImage != null)
-                {
+            {
                 <div class="statement__media">
                     <img src="@Model.IconImage.Url" alt="@Model.IconImage.Name" />
                 </div>
@@ -58,6 +58,11 @@
             @if (!Model.IntroContent.IsNullOrWhiteSpace())
                 {
                 <p>@Html.Raw(Umbraco.ReplaceLineBreaksForHtml(Model.IntroContent))</p>
+            }
+            @if(Model.HasValue("link"))
+            {
+                var link = Model.Link.FirstOrDefault();
+                <a class="btn btn--default" href="@link.Url" target="@link.Target">@link.Name</a>
             }
             @if (!Model.EnableDarkVersion)
             {

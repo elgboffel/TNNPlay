@@ -625,7 +625,7 @@ p {
   }
 }
 .trumpet--sm {
-  font-size: 14px;
+  font-size: 15px;
 }
 time {
   display: block;
@@ -1394,7 +1394,7 @@ pre code {
   background-color: transparent;
   padding: 0;
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   color: #8C8C8C;
   line-height: 1.1;
@@ -3434,6 +3434,41 @@ pre code {
   /* Firefox 18- */
   opacity: 1;
   color: #D9002E;
+}
+.cookie-consent {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #D9002E;
+  z-index: 999;
+  opacity: 1;
+  visibility: visible;
+  color: #070506;
+  font-size: 13px;
+  will-change: opacity, visibility;
+  -webkit-transition: opacity 500ms ease, visibility 500ms ease;
+  transition: opacity 500ms ease, visibility 500ms ease;
+}
+.cookie-consent__content {
+  background-color: #fff;
+  padding: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.cookie-consent--hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
 /*# sourceMappingURL=shell.css.map */

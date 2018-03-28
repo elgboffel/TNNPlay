@@ -47,7 +47,7 @@
 
    @Html.CachedPartial("_Footer", Model, 3600)
 
-   @*@{ Html.RenderPartial("Components/_CookieConsent", Model); }*@
+   @{ Html.RenderPartial("Components/_CookieConsent", Model); }
 
     <!-- ANALYTICS -->
     @Html.Raw(website.Analytics)

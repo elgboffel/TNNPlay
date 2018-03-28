@@ -5,17 +5,21 @@
 @import (reference) "../bootstrap/type.less";
 
 .spot {
-    
-    &__trompet {
 
+    strong {
+        font-size: 16px;
+    }
+
+    &__trompet {
     }
 
     &__heading {
-
     }
 
     &__content {
-
+        a {
+            .box-hover(@brand-primary, @brand-primary, 2px);
+        }
     }
 }
 
@@ -29,6 +33,7 @@
     .spot {
         &__media {
             height: 80vh;
+
             video {
                 position: absolute;
                 top: 0;
@@ -47,6 +52,7 @@
 
         &__heading {
             .fluid-property(margin-bottom, 35, 55);
+            font-weight: 300;
         }
 
         &__content {
@@ -154,7 +160,7 @@
         }
 
         &__trumpet {
-            text-align:left;
+            text-align: left;
             .trumpet();
             .fluid-property(margin-bottom, 5, 10);
         }

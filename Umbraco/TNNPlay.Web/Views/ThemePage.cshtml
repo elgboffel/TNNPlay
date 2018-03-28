@@ -8,7 +8,7 @@
     var media = Model.Video != null ? Model.Video : Model.Image;
     var mediaType = Model.Video != null ? RenderMediaTypes.BackgroundVideo : RenderMediaTypes.Cover;
 }
-@if (Model.Image != null || Model.Video != null)
+@if (Model.Image != null || Model.Video != null || customGraphic != 0)
 {
     <div class="hero-layout">
         @Html.CachedPartial(
