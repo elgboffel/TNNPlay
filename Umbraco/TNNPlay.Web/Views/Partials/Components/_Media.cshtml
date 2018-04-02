@@ -41,7 +41,7 @@
 {
     if (Model.Image != null)
     {
-        <video playsinline autoplay muted loop>
+        <video playsinline autoplay muted loop data-object-fit="cover">
             <source src="@(Model.Image.Url)" type="video/mp4">
         </video>
     }
