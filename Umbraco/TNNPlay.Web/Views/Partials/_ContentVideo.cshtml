@@ -3,7 +3,7 @@
     <div class="content-video__container">
         @if (Model.HasValue("contentVideo"))
         {
-            <video playsinline autoplay muted loop>
+            <video playsinline autoplay muted loop data-object-fit="cover">
                 <source src="@(Model.GetPropertyValue<IPublishedContent>("contentVideo").Url)" type="video/mp4">
             </video>
         }

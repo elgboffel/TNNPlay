@@ -62,7 +62,7 @@
             @if(Model.HasValue("link"))
             {
                 var link = Model.Link.FirstOrDefault();
-                <a class="btn btn--default" href="@link.Url" target="@link.Target">@link.Name</a>
+                <a class="btn btn--default btn--arrow" href="@link.Url" target="@link.Target">@link.Name</a>
             }
             @if (!Model.EnableDarkVersion)
             {
