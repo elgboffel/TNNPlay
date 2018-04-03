@@ -53,12 +53,13 @@
         &__heading {
             .fluid-property(margin-bottom, 35, 55);
             font-weight: 300;
+            text-align: center;
         }
 
         &__content {
             position: absolute;
             z-index: 1;
-            width: 70vw;
+            width: 95vw;
             max-width: 1540px;
             top: 50%;
             left: 50%;
@@ -67,6 +68,14 @@
 
         &__call-to-action {
             text-align: center;
+        }
+    }
+
+    @media(min-width: @grid-float-breakpoint) {
+        .spot {
+            &__content {
+                width: 70vw;
+            }
         }
     }
 }
@@ -94,6 +103,7 @@
 
         &__heading {
             .fluid-property(margin-bottom, 17, 27);
+            text-align: left;
         }
 
         &__content {
@@ -129,6 +139,7 @@
 
         &__heading {
             .fluid-property(margin-bottom, 17, 27);
+            text-align: left;
         }
 
         &__content {

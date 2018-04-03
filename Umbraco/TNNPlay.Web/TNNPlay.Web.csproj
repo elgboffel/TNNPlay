@@ -543,6 +543,7 @@
     <Content Include="scripts\build\cookie-consent.js" />
     <Content Include="scripts\build\modal.js" />
     <Content Include="scripts\build\modal.js.map" />
+    <Content Include="scripts\build\navbar.js" />
     <Content Include="TNNPlay.Web.wpp.targets" />
     <Content Include="bower.json" />
     <Content Include="package.json" />
@@ -766,7 +767,6 @@
   <ItemGroup>
     <Compile Include="Controllers\MediaListController.cs" />
     <Compile Include="EventHandlers\ExternalIndexerEventHandler.cs" />
-    <Compile Include="EventHandlers\ImageProcessorInterceptorEventHandler.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\ExamineExtensions.cs" />

@@ -41,9 +41,9 @@
 
     &__content {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 0;
+        left: 0;
+        right: 0;
         background-color: #262626;
         margin: -200px auto 0 auto;
         padding: 20px 30px;
@@ -51,7 +51,7 @@
         .fluid-property(padding-right, 25, 98);
         .fluid-property(padding-bottom, 25, 72);
         .fluid-property(padding-left, 25, 98);
-        width:95%;
+        width: 100%;
         max-width: 1540px;
     }
 
@@ -63,6 +63,9 @@
 
     @media(min-width: @screen-md-min) {
         &__content {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 60%;
         }
     }

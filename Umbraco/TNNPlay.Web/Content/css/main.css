@@ -3002,9 +3002,8 @@ main:after {
   }
 }
 .footer__logo {
-  width: 130px;
-  height: 65px;
-  margin: 20px 0 23px 0;
+  width: 76px;
+  margin: 0 0 23px 0;
 }
 .footer__rte p,
 .footer__rte ul,
@@ -3193,11 +3192,9 @@ main:after {
 }
 .modal__content {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: #262626;
   margin: -200px auto 0 auto;
   padding: 20px 30px;
@@ -3205,7 +3202,7 @@ main:after {
   padding-right: 25px;
   padding-bottom: 25px;
   padding-left: 25px;
-  width: 95%;
+  width: 100%;
   max-width: 1540px;
 }
 @media (min-width: 768px) {
@@ -3259,6 +3256,11 @@ main:after {
 }
 @media (min-width: 992px) {
   .modal__content {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     width: 60%;
   }
 }
@@ -3326,6 +3328,7 @@ main:after {
 .spot--hero-fluid .spot__heading {
   margin-bottom: 35px;
   font-weight: 300;
+  text-align: center;
 }
 @media (min-width: 768px) {
   .spot--hero-fluid .spot__heading {
@@ -3341,7 +3344,7 @@ main:after {
 .spot--hero-fluid .spot__content {
   position: absolute;
   z-index: 1;
-  width: 70vw;
+  width: 95vw;
   max-width: 1540px;
   top: 50%;
   left: 50%;
@@ -3351,6 +3354,11 @@ main:after {
 }
 .spot--hero-fluid .spot__call-to-action {
   text-align: center;
+}
+@media (min-width: 768px) {
+  .spot--hero-fluid .spot__content {
+    width: 70vw;
+  }
 }
 .spot--content-left {
   position: relative;
@@ -3392,6 +3400,7 @@ main:after {
 }
 .spot--content-left .spot__heading {
   margin-bottom: 17px;
+  text-align: left;
 }
 @media (min-width: 768px) {
   .spot--content-left .spot__heading {
@@ -3450,6 +3459,7 @@ main:after {
 }
 .spot--content-right .spot__heading {
   margin-bottom: 17px;
+  text-align: left;
 }
 @media (min-width: 768px) {
   .spot--content-right .spot__heading {
@@ -4456,6 +4466,18 @@ main:after {
   position: relative;
   width: 100vw;
   height: 85vh;
+  margin-bottom: 50px;
+}
+@media (min-width: 768px) {
+  .content-video {
+    margin-bottom: -webkit-calc(50px + (100 - 50) * ((100vw - 768px)/(1440 - 768)));
+    margin-bottom: calc(50px + (100 - 50) * ((100vw - 768px)/(1440 - 768)));
+  }
+}
+@media (min-width: 1440px) {
+  .content-video {
+    margin-bottom: 100px;
+  }
 }
 .content-video:before,
 .content-video:after {
@@ -4494,7 +4516,6 @@ main:after {
   background: linear-gradient(rgba(255, 255, 255, 0), #060405 45%);
   text-align: center;
   padding: 0 30px 0 15px;
-  padding-bottom: 50px;
 }
 @media (min-width: 768px) {
   .content-video__content {
@@ -4505,17 +4526,6 @@ main:after {
 @media (min-width: 1440px) {
   .content-video__content {
     bottom: -100px;
-  }
-}
-@media (min-width: 768px) {
-  .content-video__content {
-    padding-bottom: -webkit-calc(50px + (100 - 50) * ((100vw - 768px)/(1440 - 768)));
-    padding-bottom: calc(50px + (100 - 50) * ((100vw - 768px)/(1440 - 768)));
-  }
-}
-@media (min-width: 1440px) {
-  .content-video__content {
-    padding-bottom: 100px;
   }
 }
 .content-video__trumpet {
@@ -4872,6 +4882,7 @@ main:after {
   position: relative;
   height: 100%;
   background-color: #060405;
+  overflow: hidden;
 }
 .map-animation__map {
   position: absolute;
@@ -4926,6 +4937,39 @@ main:after {
   position: absolute;
   top: 415px;
   left: 770px;
+}
+@media (min-width: 1440px) {
+  .map-animation__map {
+    left: 300px;
+  }
+  .map-animation__path2 {
+    left: -webkit-calc(1075px);
+    left: calc(1075px);
+  }
+  .map-animation__path4 {
+    left: -webkit-calc(1135px);
+    left: calc(1135px);
+  }
+  .map-animation__path6 {
+    left: -webkit-calc(1020px);
+    left: calc(1020px);
+  }
+  .map-animation__dot--position1 {
+    left: -webkit-calc(1128px);
+    left: calc(1128px);
+  }
+  .map-animation__dot--position2 {
+    left: -webkit-calc(1264px);
+    left: calc(1264px);
+  }
+  .map-animation__dot--position3 {
+    left: -webkit-calc(1011px);
+    left: calc(1011px);
+  }
+  .map-animation__dot--position4 {
+    left: -webkit-calc(1070px);
+    left: calc(1070px);
+  }
 }
 /*
 * Utility

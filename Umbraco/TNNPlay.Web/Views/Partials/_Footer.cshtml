@@ -46,18 +46,9 @@
                 <div class="col-xs-12 col-sm-3">
                     @if (logo != null)
                     {
-                        <a href="@website.Url" class="footer__logo">
-                            @Html.CachedPartial(
-                            "Components/_Media",
-                            new MediaViewModel
-                            {
-                                Image = logo,
-                                TypedWidths = new TypedWidths
-                                {
-                                    TypedXs = 81
-                                }
-                            }, 3600, true)
-                        </a>
+                    <a href="@website.Url" class="footer__logo">
+                        <img src="@logo.Url" alt="Logo" />
+                    </a>
                     }
                 </div>
                 <div class="col-xs-12 col-sm-6">

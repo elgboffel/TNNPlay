@@ -1,7 +1,7 @@
 ﻿@inherits UmbracoViewPage
 
 @{
-    Html.RequiresJs("~/scripts/build/navbar.js", 1, 2, new { @defer = string.Empty });
+    Html.RequiresJs("~/scripts/build/navbar.js");
 
     var root = Model.AncestorOrSelf<Website>();
     var website = Model.AncestorOrSelf<Culture>() != null ?
@@ -20,16 +20,7 @@
                     @if (logo != null)
                     {
                         <a href="@website.Url" class="navbar-header__logo">
-                            @Html.CachedPartial(
-                            "Components/_Media",
-                            new MediaViewModel
-                            {
-                                Image = logo,
-                                TypedWidths = new TypedWidths
-                                {
-                                    TypedXs = 81
-                                }
-                            }, 3600, true)
+                           <img src="@logo.Url" alt="Logo" />
                         </a>
                     }
                     <button role="button" class="navbar-header__expander btn btn--toggle"></button>

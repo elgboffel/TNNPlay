@@ -1,7 +1,16 @@
-﻿.map-animation {
+﻿@import (reference) "../bootstrap/variables.less";
+@import (reference) "../../components/bootstrap/less/mixins.less";
+@import (reference) "../mixins.less";
+@import (reference) "../utility.less";
+@import (reference) "../bootstrap/type.less";
+
+@base-left-position: 300px;
+
+.map-animation {
     position: relative;
     height: 100%;
     background-color: #060405;
+    overflow: hidden;
 
     &__map {
         position: absolute;
@@ -11,6 +20,7 @@
 
     &__path2, &__path4, &__path6 {
         position: absolute;
+
         path {
             fill: transparent !important;
         }
@@ -60,6 +70,43 @@
             position: absolute;
             top: 415px;
             left: 770px;
+        }
+    }
+
+    @media(min-width: 1440px) {
+        &__map {
+            left: @base-left-position;
+        }
+
+        &__path2 {
+            left: calc(775px + @base-left-position);
+        }
+
+        &__path4 {
+            left: calc(835px + @base-left-position);
+        }
+
+        &__path6 {
+            left: calc(720px + @base-left-position);
+        }
+
+        &__dot {
+
+            &--position1 {
+                left: calc(828px + @base-left-position);
+            }
+
+            &--position2 {
+                left: calc(964px + @base-left-position);
+            }
+
+            &--position3 {
+                left: calc(711px + @base-left-position);
+            }
+
+            &--position4 {
+                left: calc(770px + @base-left-position);
+            }
         }
     }
 }

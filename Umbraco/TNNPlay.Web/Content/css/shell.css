@@ -1,6 +1,5 @@
 /* This is the minimum shell for a web app. Everything included here should work a minumum use of frameworks e.g. bootstrap-shell.
    It should be stored in browser memory to compliment Progressive Web App */
-@import "../css/webfonts.css";
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
   font-family: sans-serif;
