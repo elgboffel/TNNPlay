@@ -11,26 +11,26 @@
 @if (Model.Image != null || Model.Video != null || customGraphic != 0)
 {
     <div class="hero-layout">
-        @Html.CachedPartial(
-          "Components/_Spot",
-          new SpotViewModel
-          {
-              SpotSettings = new SpotSettings
-              {
-                  LayoutType = UtilityEnums.RenderLayoutType.Fluid,
+        @{ Html.RenderPartial(
+       "Components/_Spot",
+       new SpotViewModel
+       {
+           SpotSettings = new SpotSettings
+           {
+               LayoutType = UtilityEnums.RenderLayoutType.Fluid,
 
-                  EnableHeroLayout = true,
-                  EnableOverlay = Model.EnableOverlay,
-                  ContentLayout = contentLayout,
-                  CustomGraphic = customGraphic
-              },
-              MediaType = mediaType,
-              Image = media,
-              Trumpet = Model.Trumpet,
-              Heading = Model.Heading,
-              Content = Model.Content as HtmlString,
-              CallToAction = Model.CallToAction
-          }, 3600, true)
+               EnableHeroLayout = true,
+               EnableOverlay = Model.EnableOverlay,
+               ContentLayout = contentLayout,
+               CustomGraphic = customGraphic
+           },
+           MediaType = mediaType,
+           Image = media,
+           Trumpet = Model.Trumpet,
+           Heading = Model.Heading,
+           Content = Model.Content as HtmlString,
+           CallToAction = Model.CallToAction
+       }); }
         @if (Model.EnableDarkVersion)
         {
             <div class="border-bottom--left-lighter-dark"></div>

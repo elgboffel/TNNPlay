@@ -7,9 +7,7 @@
         .RequiresJs("~/Content/components/picturefill/dist/picturefill.min.js", 1, 1)
         .RequiresJs("~/Content/components/animejs//anime.min.js", 1, 1)
         .RequiresJs("~/Content/components/object-fit-polyfill/object-fit-polyfill.js", 1, 1)
-        .RequiresJs("~/scripts/build/dropdown.js", 1, 1, new { @defer = string.Empty })
-        .RequiresJs("~/scripts/build/forms.js", 1, 1, new { @defer = string.Empty })
-        .RequiresCss("https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900", 1,1)
+        .RequiresCss("https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900", 1, 1)
         .RequiresCss("~/content/css/shell.css", 2, 1)
         .RequiresCss("~/content/css/font-awesome.css", 1, 2, new { @defer = string.Empty })
         .RequiresCss("~/content/css/main.css", 2, 2, new { @defer = string.Empty });
@@ -17,28 +15,21 @@
     var website = Model.Site() as Website;
 }
 <!DOCTYPE html>
-<!--
-  Solution by
-  Datagraf Communications A/S
-  Jægergårdsgade 122 · 8000 Aarhus C
-  Havneholmen 33 · 1561 København V
-  www.datagraf.dk
-  Tlf. +45 87 95 55 55
--->
 <html lang="@Model.GetCulture().TwoLetterISOLanguageName" prefix="og: http://ogp.me/ns#">
 <head>
     <!-- TODO: Remember to remove on live environment-->
-    <meta NAME="robots" content="noindex, nofollow">
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @Html.Raw(SEOChecker.Library.MetaData.Current.RenderTags())
-    @Html.CachedPartial("_Favicons", Model, 3600, false)
+    <title>@(Model.Name) | TnnPlay</title>
+    <meta name="description" content="@(Model.GetPropertyValue<string>("content"))">
+    <meta name="robots" content="index, follow">
+    @Html.Partial("_Favicons")
     @Html.CachedPartial("_OpenGraph", Model, 3600, true)
     @Html.RenderCssHere()
 </head>
 <body>
-   @Html.CachedPartial("_NavbarHeader", Model, 3600, cacheByPage: true)
+   @{ Html.RenderPartial("_NavbarHeader", Model); }
 
    @*@{ Html.RenderPartial("_MobileHeader"); }*@
 
@@ -46,7 +37,7 @@
         @RenderBody()
     </main>
 
-   @Html.CachedPartial("_Footer", Model, 3600)
+   @{ Html.RenderPartial("_Footer", Model); }
 
    @{ Html.RenderPartial("Components/_CookieConsent", Model); }
 

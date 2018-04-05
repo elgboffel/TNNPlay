@@ -448,6 +448,15 @@
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\shell.css" />
+    <Content Include="Content\favicons\android-chrome-192x192.png" />
+    <Content Include="Content\favicons\android-chrome-256x256.png" />
+    <Content Include="Content\favicons\apple-touch-icon.png" />
+    <Content Include="Content\favicons\browserconfig.xml" />
+    <Content Include="Content\favicons\favicon-16x16.png" />
+    <Content Include="Content\favicons\favicon-32x32.png" />
+    <Content Include="Content\favicons\favicon.ico" />
+    <Content Include="Content\favicons\mstile-150x150.png" />
+    <Content Include="Content\favicons\safari-pinned-tab.svg" />
     <Content Include="Content\images\Path 2.svg" />
     <Content Include="Content\images\Path 4.svg" />
     <Content Include="Content\images\Path 6.svg" />
@@ -647,6 +656,7 @@
     <Content Include="Content\components\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\components\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\components\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\favicons\site.webmanifest" />
     <None Include="packages.config" />
     <Content Include="robots.txt" />
     <Content Include="Views\Web.config" />

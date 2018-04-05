@@ -3025,7 +3025,6 @@ pre code {
 .hero {
   margin-bottom: 50px;
   position: relative;
-  overflow: hidden;
 }
 @media (min-width: 768px) {
   .hero {
@@ -3116,12 +3115,6 @@ pre code {
 }
 .hero-layout {
   position: relative;
-}
-.hero-layout .border-bottom--left-white {
-  height: 60px;
-}
-.hero-layout .border-bottom--left-lighter-dark {
-  height: 60px;
 }
 .page-header {
   color: #070506;

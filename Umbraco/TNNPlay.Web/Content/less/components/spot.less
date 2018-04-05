@@ -27,8 +27,8 @@
     color: #fff;
     position: relative;
     width: 100vw;
-    height: 70vh;
-
+    height: 80vh;
+    overflow: hidden;
 
     .spot {
         &__media {
@@ -39,7 +39,7 @@
                 top: 0;
                 left: 0;
                 width: 100%;
-                height: 70vh;
+                height: 80vh;
                 object-fit: cover;
                 z-index: -1;
             }
@@ -83,10 +83,12 @@
 .spot--content-left {
     position: relative;
     color: #fff;
+    height: 60vh;
+
 
     .container {
         position: absolute;
-        top: calc(~"50% - 40px");
+        top: calc(~"50% + 30px");
         transform: translateY(-50%);
         left: 0;
         z-index: 1;
@@ -94,7 +96,7 @@
 
     .spot {
         &__media {
-            height: 550px;
+            height: 60vh;
         }
 
         &__trumpet {
@@ -119,6 +121,7 @@
 .spot--content-right {
     position: relative;
     color: #fff;
+    height: 60vh;
 
     .container {
         position: absolute;
@@ -130,7 +133,7 @@
 
     .spot {
         &__media {
-            height: 550px;
+            height: 60vh;
         }
 
         &__trumpet {
@@ -156,18 +159,16 @@
     position: relative;
     color: #fff;
     text-align: left;
+    height: 60vh;
 
     .container {
-        position: absolute;
-        top: calc(~"50% - 15px");
-        transform: translateY(-50%);
-        left: 0;
-        z-index: 1;
+        top: 0;
+        transform: translateY(0);
     }
 
     .spot {
         &__media {
-            height: 550px;
+            height: 60vh;
         }
 
         &__trumpet {
@@ -187,11 +188,25 @@
             top: auto;
             left: auto;
             transform: translate(0,0);
-            padding: 0 15px;
+            padding: 0;
         }
 
         &__call-to-action {
             text-align: center;
+        }
+    }
+
+    @media(min-width: @grid-float-breakpoint) {
+        .container {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .spot {
+            &__content {
+                padding: 0 15px;
+            }
         }
     }
 }
@@ -200,18 +215,16 @@
     position: relative;
     color: #fff;
     text-align: left;
+    height: 60vh;
 
     .container {
-        position: absolute;
-        top: calc(~"50% - 15px");
-        transform: translateY(-50%);
-        left: 0;
-        z-index: 1;
+        top: 0;
+        transform: translateY(0);
     }
 
     .spot {
         &__media {
-            height: 550px;
+            height: 60vh;
         }
 
         &__trumpet {
@@ -231,11 +244,25 @@
             top: auto;
             left: auto;
             transform: translate(0,0);
-            padding: 0 15px;
+            padding: 0;
         }
 
         &__call-to-action {
             text-align: center;
+        }
+    }
+
+    @media(min-width: @grid-float-breakpoint) {
+        .container {
+            top: calc(~"50% ");
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .spot {
+            &__content {
+                padding: 0 15px;
+            }
         }
     }
 }
